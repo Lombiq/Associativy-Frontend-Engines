@@ -14,7 +14,7 @@ using QuickGraph.Graphviz;
 namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 {
     [OrchardFeature("Associativy.FrontendEngines")]
-    public class GraphImageService : AssociativyService,  IGraphImageService
+    public class GraphImageService : AssociativyServiceBase,  IGraphImageService
     {
         protected readonly IStorageProvider _storageProvider;
         protected readonly ICacheManager _cacheManager;
