@@ -22,30 +22,30 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 
         protected string _storagePath;
 
-        private object _contextLocker = new object();
-        public override IAssociativyContext Context
+        private object _graphDescriptorLocker = new object();
+        public override IAssociativyGraphDescriptor GraphDescriptor
         {
             set
             {
-                lock (_contextLocker) // This is to ensure that used services also have the same context
+                lock (_graphDescriptorLocker) // This is to ensure that used services also have the same graphDescriptor
                 {
                     _storagePath = "Associativy/Graphs-" + value.TechnicalGraphName + "/";
-                    base.Context = value;
+                    base.GraphDescriptor = value;
                 }
             }
         }
 
         public GraphImageService(
-            IAssociativyContext associativyContext,
+            IAssociativyGraphDescriptor associativyGraphDescriptor,
             IStorageProvider storageProvider,
             ICacheManager cacheManager,
             IAssociativeGraphEventMonitor graphEventMonitor)
-            : base(associativyContext)
+            : base(associativyGraphDescriptor)
         {
             _storageProvider = storageProvider;
             _cacheManager = cacheManager;
             _graphEventMonitor = graphEventMonitor;
-            Context = associativyContext;
+            GraphDescriptor = associativyGraphDescriptor;
         }
 
         public virtual string ToSvg(IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
@@ -72,7 +72,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 
             return _cacheManager.Get("Associativy.GraphImages." + filePath, ctx =>
             {
-                _graphEventMonitor.MonitorChanged(ctx, Context);
+                _graphEventMonitor.MonitorChanged(ctx, GraphDescriptor);
 
                 // Since there is no method for checking the existance of a file, we use this ugly technique
                 try
