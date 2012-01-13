@@ -11,6 +11,6 @@ namespace Associativy.FrontendEngines.ViewModels
     [OrchardFeature("Associativy.FrontendEngines")]
     public abstract class GraphViewModelBase : IGraphViewModel
     {
-        public IUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; set; }
+        public IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; set; }
     }
 }

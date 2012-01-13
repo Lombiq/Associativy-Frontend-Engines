@@ -77,7 +77,7 @@ namespace Associativy.FrontendEngines.Controllers
             {
                 _orchardServices.WorkContext.Layout.Title = T("Associations for {0}", searchForm.As<SearchFormPart>().Terms).ToString();
 
-                IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
+                IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
                 if (TryGetGraph(searchForm, out graph, MakeDefaultMindSettings(), _setup.GraphQueryModifier))
                 {
                     return new ShapeResult(this, _frontendShapes.SearchResultShape(
@@ -119,7 +119,7 @@ namespace Associativy.FrontendEngines.Controllers
             ModelState.AddModelError(key, errorMessage.ToString());
         }
 
-        protected virtual dynamic GraphShape(IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph)
+        protected virtual dynamic GraphShape(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph)
         {
             return GraphShape((object)graph);
         }
@@ -134,7 +134,7 @@ namespace Associativy.FrontendEngines.Controllers
 
         protected virtual bool TryGetGraph(
             IContent searchForm,
-            out IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph,
+            out IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph,
             IMindSettings settings = null,
              Func<IContentQuery<ContentItem>, IContentQuery<ContentItem>> queryModifier = null)
         {

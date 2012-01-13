@@ -37,10 +37,9 @@ namespace Associativy.FrontendEngines.Engines.JIT.Controllers
             _setup = setup;
         }
 
-        protected override dynamic GraphShape(IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph)
+        protected override dynamic GraphShape(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph)
         {
-            // TODO: determine actual max zoom level as in GraphvizController
-            return GraphShape(new GraphViewModel() { Graph = graph, MaxZoomLevel = _setup.MaxZoomLevel });
+            return GraphShape(new GraphViewModel() { Graph = graph, MaxZoomLevel = _associativyServices.GraphService.CalculateZoomLevelCount(graph, _setup.MaxZoomLevel) });
         }
 
         public virtual JsonResult FetchAssociations(int zoomLevel = 0)
@@ -51,7 +50,7 @@ namespace Associativy.FrontendEngines.Engines.JIT.Controllers
             var settings = MakeDefaultMindSettings();
             settings.ZoomLevel = zoomLevel;
 
-            IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
+            IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
             if (ModelState.IsValid)
             {
                 if (!TryGetGraph(searchForm, out graph, settings, _setup.GraphQueryModifier))

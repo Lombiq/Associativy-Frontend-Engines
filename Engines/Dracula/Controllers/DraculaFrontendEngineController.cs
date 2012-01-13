@@ -34,7 +34,7 @@ namespace Associativy.FrontendEngines.Engines.Dracula.Controllers
             _setup = setup;
         }
 
-        protected override dynamic GraphShape(IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph)
+        protected override dynamic GraphShape(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph)
         {
             var nodes = new Dictionary<int, NodeViewModel>(graph.VertexCount);
 

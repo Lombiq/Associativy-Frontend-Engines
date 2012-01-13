@@ -9,6 +9,6 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 {
     public interface IGraphImageService : IAssociativyService, IDependency
     {
-        string ToSvg(IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization);
+        string ToSvg(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization);
     }
 }

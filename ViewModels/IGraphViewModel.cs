@@ -9,6 +9,6 @@ namespace Associativy.FrontendEngines.ViewModels
 {
     public interface IGraphViewModel
     {
-        IUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; set; }
+        IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; set; }
     }
 }

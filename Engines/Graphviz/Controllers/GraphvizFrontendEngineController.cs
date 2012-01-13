@@ -58,7 +58,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
             var sw = new Stopwatch();
             sw.Start();
 
-            var graphs = new IUndirectedGraph<IContent, IUndirectedEdge<IContent>>[count];
+            var graphs = new IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>[count];
             for (int i = 0; i < count; i++)
             {
                 graphs[i] = _mind.GetAllAssociations(settings, _setup.GraphQueryModifier);
@@ -68,11 +68,11 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
             var z = sw.ElapsedMilliseconds;
             sw.Restart();
 
-            var tasks = new Task<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>>[count];
+            var tasks = new Task<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>[count];
             for (int i = 0; i < count; i++)
             {
-                tasks[i] = Task<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>>.Factory.StartNew(
-                    _detachedDelegateBuilder.BuildBackgroundFunction<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>>(
+                tasks[i] = Task<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>.Factory.StartNew(
+                    _detachedDelegateBuilder.BuildBackgroundFunction<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>(
                         () => _mind.GetAllAssociations(settings, _setup.GraphQueryModifier)
                     )
                     );
@@ -115,7 +115,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
                             settings,
                             (currentSettings) =>
                             {
-                                IUndirectedGraph<IContent, IUndirectedEdge<IContent>> currentGraph;
+                                IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> currentGraph;
                                 TryGetGraph(searchForm, out currentGraph, settings, _setup.GraphQueryModifier);
                                 return currentGraph;
                             });
@@ -134,7 +134,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
             return Json(new { GraphImageUrls = graphImageUrls }, JsonRequestBehavior.AllowGet);
         }
 
-        protected virtual List<string> FetchZoomedGraphUrls(IMindSettings settings, Func<IMindSettings, IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
+        protected virtual List<string> FetchZoomedGraphUrls(IMindSettings settings, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
         {
             var graphImageUrls = new List<string>(settings.MaxZoomLevel);
 
