@@ -1,0 +1,8 @@
+﻿#associativy-graphviz-mapbox-viewport
+{
+    width: 700px;
+    height: 500px;
+    cursor: move;
+    margin: 20px auto;
+    overflow: hidden; /*keep map contents from spilling over if JS is disabled*/
+}

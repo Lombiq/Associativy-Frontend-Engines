@@ -1,0 +1,33 @@
+﻿/* Mapz*/
+#associativy-graphviz-mapz-container
+{
+    position: relative; /* The container should be smaller than the graph and not bigger as the smallest image */
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+}
+
+#associativy-graphviz-mapz-graph
+{
+    cursor: move; /* The graph should be larger than the container */
+    width: 650px;
+    height: 450px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#associativy-graphviz-mapz-layer
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    z-index: 10;
+}
+
+.associativy-graphviz-mapz-layer.current
+{
+    visibility: visible;
+    z-index: 20;
+}

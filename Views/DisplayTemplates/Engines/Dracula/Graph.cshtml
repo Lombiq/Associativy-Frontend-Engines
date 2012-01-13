@@ -1,0 +1,35 @@
+﻿@using Orchard.ContentManagement
+@model Associativy.FrontendEngines.Engines.Dracula.ViewModels.GraphViewModel
+           
+@{
+    Script.Require("Dracula").AtHead();
+
+    // Although this templating add flexibility, it's very slow (page load time goes up to 1 second with whole graph).
+    var addNodesShape = ((dynamic)ShapeFactory).DisplayTemplate(
+                            TemplateName: "Engines/Dracula/AddNodes",
+                            Model: Model,
+                            Prefix: null);
+
+    var addEdgesShape = ((dynamic)ShapeFactory).DisplayTemplate(
+                            TemplateName: "Engines/Dracula/AddEdges",
+                            Model: Model,
+                            Prefix: null);
+}
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var graph = new Graph();
+
+    @Display(addNodesShape)
+
+    @Display(addEdgesShape)
+	
+	var layouter = new Graph.Layout.Spring(graph);
+	layouter.layout();
+	 
+	var renderer = new Graph.Renderer.Raphael("canvas", graph, 900, 1000);
+	renderer.draw();
+});
+</script>
+<div id="canvas">
+</div>

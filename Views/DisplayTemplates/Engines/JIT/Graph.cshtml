@@ -1,0 +1,39 @@
+﻿@model Associativy.FrontendEngines.Engines.JIT.ViewModels.GraphViewModel
+@{
+    Script.Require("JIT").AtHead();
+    Style.Require("JIT");
+
+    var routeData = Html.ViewContext.RouteData.Values;
+}
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var graph;
+
+    var loadGraph = function(zoomLevel, redraw) {
+        $.getJSON("@Url.Action("FetchAssociations", routeData["controller"].ToString())?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
+            if (redraw == null) redraw = false;
+            if (!redraw) graph = $.jit.draw(graphData);
+            else $.jit.redraw(graph, graphData);
+        });
+    };
+
+    loadGraph(@Model.MaxZoomLevel);
+
+    $( "#associativy-jit-zoom-slider" ).slider({
+		orientation: "vertical",
+		range: "min",
+		min: 0,
+		max: @Model.MaxZoomLevel,
+		value: @Model.MaxZoomLevel,
+		slide: function(event, ui) {
+            loadGraph(ui.value, true);
+		}
+	});
+});
+</script>
+
+<div id="associativy-jit-zoom-slider"></div>
+
+<div id="associativy-jit-associations" style="width: 900px; height: 800px;">
+</div>

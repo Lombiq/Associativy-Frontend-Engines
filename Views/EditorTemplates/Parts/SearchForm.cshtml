@@ -1,0 +1,17 @@
+﻿@model Associativy.FrontendEngines.Models.SearchFormPart
+
+@{
+    Script.Require("AssociativyAutoComplete").AtHead();
+    Style.Require("jQueryUI_Orchard");
+    var routeData = Html.ViewContext.RouteData.Values;
+}
+
+<fieldset>
+    @Html.LabelFor(model => model.Terms, T("Search terms"))
+    @Html.TextBoxFor(model => model.Terms, new { @class = "text text-small" })
+    @Html.ValidationMessageFor(model => model.Terms)
+</fieldset>
+
+<script type="text/javascript">
+    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Terms)", "@Url.Action("FetchSimilarTerms", routeData["controller"].ToString())");
+</script>

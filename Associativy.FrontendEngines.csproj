@@ -1,0 +1,715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{78ACE1AE-F7AE-4342-A83F-8FAB64514F52}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Associativy.FrontendEngines</RootNamespace>
+    <AssemblyName>Associativy.FrontendEngines</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClaySharp">
+      <HintPath>..\..\bin\ClaySharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="QuickGraph">
+      <HintPath>..\Associativy\Libs\QuickGraph\QuickGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Data">
+      <HintPath>..\Associativy\Libs\QuickGraph\QuickGraph.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Graphviz">
+      <HintPath>..\Associativy\Libs\QuickGraph\QuickGraph.Graphviz.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Serialization">
+      <HintPath>..\Associativy\Libs\QuickGraph\QuickGraph.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\aspnetmvc\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\AssociativyAutoComplete.js" />
+    <Content Include="Scripts\Engines\Dracula\Curry-1.0.1.js" />
+    <Content Include="Scripts\Engines\Dracula\dracula_algorithms.js" />
+    <Content Include="Scripts\Engines\Dracula\dracula_graffle.js" />
+    <Content Include="Scripts\Engines\Dracula\dracula_graph.js" />
+    <Content Include="Scripts\Engines\Dracula\raphael-min.js" />
+    <Content Include="Scripts\Engines\Dracula\seedrandom.js" />
+    <Content Include="Scripts\Engines\Graphviz\jquery.mapbox.js" />
+    <Content Include="Scripts\Engines\Graphviz\jquery.mapquery.imageLayer.js" />
+    <Content Include="Scripts\Engines\Graphviz\jquery.mapz.js" />
+    <Content Include="Scripts\Engines\Graphviz\jquery.mousewheel.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\basic.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\bing.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\0\0\0.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\1\0\0.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\1\0\1.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\1\1\0.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\1\1\1.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\0\0.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\0\1.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\0\2.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\0\3.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\1\0.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\1\1.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\1\2.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\1\3.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\2\0.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\2\1.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\2\2.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\2\3.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\3\0.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\3\1.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\3\2.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\wmts\1.0.0\NE1_HR_LC_SR_W_DR\default\10m\2\3\3.jpg" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\google.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\reservates_json.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\style\style.css" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\widgets\mqFeatureInfo.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\widgets\mqLayerManager.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\widgets\mqMousePosition.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\widgets\mqOverviewMap.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\widgets\mqPopup.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\widgets\mqZoomButtons.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\widgets\mqZoomSlider.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\wms.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\wms28992.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\wms900913.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.core.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.legend.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqFeatureInfo.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqLayerControl.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqLayerManager.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqMousePosition.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqOverviewMap.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqPopup.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqZoomButtons.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.mqZoomSlider.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\src\jquery.mapquery.popup.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\index.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\jquery.simulate.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\jslint\config.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\jslint\js-14.jar" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\jslint\jslint.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\jslint\jslint4java-1.3.3.jar" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\qunit.css" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\qunit.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\core\core.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\core\testMapQuery.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\featureinfo\featureinfo.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\featureinfo\testFeatureInfo.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\index.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\layermanager\layermanager.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\layermanager\testLayerManager.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\mouseposition\mouseposition.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\mouseposition\testMousePosition.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\overviewmap\overviewmap.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\overviewmap\testOverviewmap.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\popup\popup.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\popup\testPopup.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\testsuite.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\zoombuttons\testZoombuttons.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\zoombuttons\zoombuttons.html" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\zoomslider\testZoomSlider.js" />
+    <Content Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\unit\zoomslider\zoomslider.html" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\arrows.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\layer-switcher-maximize.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\layer-switcher-minimize.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\marker.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\measuring-stick-off.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\measuring-stick-on.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\panning-hand-off.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\panning-hand-on.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\slider.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\zoom-world.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\art\zoombar.svg" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\blank.gif" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\cloud-popup-relative.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\drag-rectangle-off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\drag-rectangle-on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\east-mini.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\layer-switcher-maximize.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\layer-switcher-minimize.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\marker-blue.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\marker-gold.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\marker-green.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\marker.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\measuring-stick-off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\measuring-stick-on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\north-mini.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\panning-hand-off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\panning-hand-on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\slider.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\south-mini.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\west-mini.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\zoom-minus-mini.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\zoom-plus-mini.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\zoom-world-mini.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\img\zoombar.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\errorIcon.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\firebug.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\firebug.html" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\firebug.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\firebugx.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\infoIcon.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\license.txt" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\readme.txt" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Firebug\warningIcon.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Gears\gears_init.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Ajax.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes\Bounds.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes\Class.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes\Date.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes\Element.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes\LonLat.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes\Pixel.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\BaseTypes\Size.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Console.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ArgParser.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Attribution.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Button.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\DragFeature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\DragPan.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\DrawFeature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\EditingToolbar.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Geolocate.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\GetFeature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Graticule.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\KeyboardDefaults.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\LayerSwitcher.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Measure.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ModifyFeature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\MouseDefaults.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\MousePosition.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\MouseToolbar.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Navigation.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\NavigationHistory.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\NavToolbar.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\OverviewMap.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Pan.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Panel.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\PanPanel.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\PanZoom.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\PanZoomBar.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Permalink.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\PinchZoom.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Scale.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ScaleLine.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\SelectFeature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\SLDSelect.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Snapping.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\Split.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\TouchNavigation.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\TransformFeature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\WMSGetFeatureInfo.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\WMTSGetFeatureInfo.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ZoomBox.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ZoomIn.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ZoomOut.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ZoomPanel.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Control\ZoomToMaxExtent.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Events.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Feature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Feature\Vector.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Feature\WFS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Filter.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Filter\Comparison.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Filter\FeatureId.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Filter\Function.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Filter\Logical.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Filter\Spatial.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\ArcXML.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\ArcXML\Features.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\Atom.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\Context.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\CQL.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\CSWGetDomain.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\CSWGetDomain\v2_0_2.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\CSWGetRecords.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\CSWGetRecords\v2_0_2.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\Filter.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\Filter\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\Filter\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\Filter\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\GeoJSON.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\GeoRSS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\GML.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\GML\Base.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\GML\v2.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\GML\v3.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\GPX.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\JSON.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\KML.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OGCExceptionReport.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OSM.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OWSCommon.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OWSCommon\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OWSCommon\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OWSCommon\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OWSContext.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\OWSContext\v0_3_1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\QueryStringFilter.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\SLD.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\SLD\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\SLD\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\SOSCapabilities.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\SOSCapabilities\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\SOSGetFeatureOfInterest.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\SOSGetObservation.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\Text.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WCSGetCoverage.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFSCapabilities.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFSCapabilities\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFSCapabilities\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFSCapabilities\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFSDescribeFeatureType.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFST.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFST\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFST\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WFST\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WKT.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMC.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMC\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMC\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMC\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities\v1_1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities\v1_1_1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities\v1_1_1_WMSC.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities\v1_3.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSCapabilities\v1_3_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSDescribeLayer.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSDescribeLayer\v1_1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMSGetFeatureInfo.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMTSCapabilities.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WMTSCapabilities\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WPSCapabilities.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WPSCapabilities\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WPSDescribeProcess.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\WPSExecute.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\XLS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\XLS\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\XLS\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\XML.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Format\XML\VersionedOGC.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\Collection.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\Curve.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\LinearRing.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\LineString.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\MultiLineString.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\MultiPoint.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\MultiPolygon.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\Point.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\Polygon.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\Rectangle.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Geometry\Surface.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Box.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Click.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Drag.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Feature.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Hover.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Keyboard.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\MouseWheel.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Path.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Pinch.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Point.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\Polygon.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Handler\RegularPolygon.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Icon.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Kinetic.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\ar.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\be-tarask.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\bg.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\br.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\ca.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\cs-CZ.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\da-DK.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\de.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\el.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\en-CA.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\en.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\es.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\fi.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\fr.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\fur.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\gl.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\gsw.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\hr.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\hsb.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\hu.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\ia.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\id.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\io.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\is.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\it.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\ja.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\km.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\ksh.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\lt.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\nb.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\nds.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\nl.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\nn.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\oc.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\pt-BR.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\pt.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\ru.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\sk.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\sv-SE.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\te.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\vi.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\zh-CN.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Lang\zh-TW.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\ArcGIS93Rest.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\ArcGISCache.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\ArcIMS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Bing.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Boxes.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\EventPane.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\FixedZoomLevels.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\GeoRSS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\GML.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Google.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Google\v3.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Grid.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\HTTPRequest.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Image.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\KaMap.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\KaMapCache.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\MapGuide.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\MapServer.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\MapServer\Untiled.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Markers.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\MultiMap.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\PointGrid.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\PointTrack.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\SphericalMercator.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Text.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\TileCache.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\TMS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Vector.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Vector\RootContainer.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\VirtualEarth.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\WFS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\WMS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\WMS\Post.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\WMS\Untiled.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\WMTS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\WorldWind.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\XYZ.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Yahoo.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Layer\Zoomify.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Map.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Marker.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Marker\Box.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Popup.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Popup\Anchored.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Popup\AnchoredBubble.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Popup\Framed.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Popup\FramedCloud.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Projection.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\HTTP.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\Script.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\SOS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\SOS\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\SQL.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\SQL\Gears.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\WFS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\WFS\v1.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\WFS\v1_0_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Protocol\WFS\v1_1_0.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Renderer.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Renderer\Canvas.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Renderer\Elements.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Renderer\NG.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Renderer\SVG.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Renderer\SVG2.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Renderer\VML.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Request.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Request\XMLHttpRequest.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Rule.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\SingleFile.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy\BBOX.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy\Cluster.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy\Filter.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy\Fixed.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy\Paging.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy\Refresh.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Strategy\Save.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Style.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Style2.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\StyleMap.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Symbolizer.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Symbolizer\Line.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Symbolizer\Point.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Symbolizer\Polygon.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Symbolizer\Raster.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Symbolizer\Text.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Tile.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Tile\Image.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Tile\Image\IFrame.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Tile\WFS.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Tween.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\OpenLayers\Util.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Rico\Color.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\lib\Rico\Corner.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\license.txt" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\OpenLayers.js" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\readme.txt" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\release-license.txt" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\repository-license.txt" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\framedCloud.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\google.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\google.tidy.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\ie6-style.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\ie6-style.tidy.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\add_point_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\add_point_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\blank.gif" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\close.gif" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\drag-rectangle-off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\drag-rectangle-on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\draw_line_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\draw_line_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\draw_point_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\draw_point_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\draw_polygon_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\draw_polygon_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\editing_tool_bar.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\move_feature_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\move_feature_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\navigation_history.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\overview_replacement.gif" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\pan-panel-NOALPHA.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\pan-panel.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\panning-hand-off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\panning-hand-on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\pan_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\pan_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\remove_point_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\remove_point_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\ruler.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\save_features_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\save_features_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\view_next_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\view_next_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\view_previous_off.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\view_previous_on.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\zoom-panel-NOALPHA.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\img\zoom-panel.png" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\style.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\theme\default\style.tidy.css" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\jsmin.c" />
+    <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\README.txt" />
+    <Content Include="Scripts\Engines\JIT\JIT.custom.min.js" />
+    <Content Include="Scripts\Engines\JIT\JITDrawer.js" />
+    <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapbox.css" />
+    <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapz.css" />
+    <Content Include="Styles\Engines\JIT\associativy-jit.css" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Scripts\Web.config" />
+    <Content Include="Styles\Web.config" />
+    <Content Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Module.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2D1D92BB-4555-4CBE-8D0E-63563D6CE4C6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839C-39FC-4CEB-A5AF-89CA7E87119F}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Associativy\Associativy.csproj">
+      <Project>{A8EE4964-4880-4EE1-AC0A-75492D89BBE8}</Project>
+      <Name>Associativy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Piedone.HelpfulLibraries\Piedone.HelpfulLibraries.csproj">
+      <Project>{EA61AD10-39D6-41A9-B12B-227F50C54158}</Project>
+      <Name>Piedone.HelpfulLibraries</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Controllers\FrontendEngineControllerBase.cs" />
+    <Compile Include="Drivers\SearchFormPartDriver.cs" />
+    <Compile Include="Engines\Dracula\Controllers\DraculaFrontendEngineController.cs" />
+    <Compile Include="Engines\Dracula\Handlers\SearchFormHandler.cs" />
+    <Compile Include="Engines\Dracula\Models\DefaultDraculaSetup.cs" />
+    <Compile Include="Engines\Dracula\Models\DraculaContext.cs" />
+    <Compile Include="Engines\Dracula\Models\IDraculaSetup.cs" />
+    <Compile Include="Engines\Dracula\ResourceManifest.cs" />
+    <Compile Include="Engines\Dracula\ViewModels\GraphViewModel.cs" />
+    <Compile Include="Engines\Dracula\ViewModels\NodeViewModel.cs" />
+    <Compile Include="Engines\Graphviz\Controllers\GraphvizFrontendEngineController.cs" />
+    <Compile Include="Engines\Graphviz\Handlers\SearchFormHandler.cs" />
+    <Compile Include="Engines\Graphviz\Models\DefaultGraphvizSetup.cs" />
+    <Compile Include="Engines\Graphviz\Models\GraphvizContext.cs" />
+    <Compile Include="Engines\Graphviz\Models\IGraphvizSetup.cs" />
+    <Compile Include="Engines\Graphviz\ResourceManifest.cs" />
+    <Compile Include="Engines\Graphviz\Services\GraphImageService.cs" />
+    <Compile Include="Engines\Graphviz\Services\IGraphImageService.cs" />
+    <Compile Include="Engines\JIT\Controllers\JITFrontendEngineController.cs" />
+    <Compile Include="Engines\JIT\Handlers\SearchFormHandler.cs" />
+    <Compile Include="Engines\JIT\Models\DefaultJITSetup.cs" />
+    <Compile Include="Engines\JIT\Models\IJITSetup.cs" />
+    <Compile Include="Engines\JIT\Models\JITContext.cs" />
+    <Compile Include="Engines\JIT\ResourceManifest.cs" />
+    <Compile Include="Engines\JIT\ViewModels\GraphViewModel.cs" />
+    <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
+    <Compile Include="Handlers\SearchFormHandlerBase.cs" />
+    <Compile Include="Models\FrontendEngineSetupBase.cs" />
+    <Compile Include="Models\IFrontendEngineContext.cs" />
+    <Compile Include="Models\IFrontendEngineSetup.cs" />
+    <Compile Include="Models\SearchFormPart.cs" />
+    <Compile Include="ResourceManifest.cs" />
+    <Compile Include="Routes.cs" />
+    <Compile Include="FrontendRoutesBase.cs" />
+    <Compile Include="Shapes\FrontendShapes.cs" />
+    <Compile Include="Shapes\IFrontendShapes.cs" />
+    <Compile Include="ViewModels\GraphViewModelBase.cs" />
+    <Compile Include="ViewModels\IGraphViewModel.cs" />
+    <Compile Include="ViewModels\NodeViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Placement.info" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\AUTHORS" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\poly.json" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\poly2.json" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\reservate.json" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\lib\getdeps.sh" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\lib\openlayers.cfg" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\LICENSE" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\README.mdown" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\tests\jslint.sh" />
+    <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\THANKS" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\BeautifulSoup.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\branch.sh" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\closure.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\closure_ws.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\exampleparser.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\jsmin.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\mergejs.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\minimize.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\mkrelease.sh" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\oldot.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\rc.sh" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\release.sh" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\shrinksafe.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\toposort.py" />
+    <None Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\update_dev_dir.sh" />
+    <Content Include="Views\DisplayTemplates\Engines\Dracula\AddEdges.cshtml" />
+    <Content Include="Views\DisplayTemplates\Engines\Dracula\AddNodes.cshtml" />
+    <Content Include="Views\DisplayTemplates\Engines\Dracula\Graph.cshtml" />
+    <Content Include="Views\DisplayTemplates\Engines\Graphviz\Graph.Mapbox.cshtml" />
+    <Content Include="Views\DisplayTemplates\Engines\Graphviz\Graph.Mapz.cshtml" />
+    <Content Include="Views\DisplayTemplates\Engines\Graphviz\Graph.OpenLayers.cshtml" />
+    <Content Include="Views\DisplayTemplates\Engines\JIT\Graph.cshtml" />
+    <Content Include="Views\DisplayTemplates\NotFound.cshtml" />
+    <Content Include="Views\DisplayTemplates\SearchBox.cshtml" />
+    <Content Include="Views\DisplayTemplates\SearchResult.cshtml" />
+    <Content Include="Views\EditorTemplates\Parts\SearchForm.cshtml" />
+    <Content Include="Views\AssociativyBadgeOfHonor.cshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" DependsOnTargets="AfterBuildCompiler">
+    <PropertyGroup>
+      <AreasManifestDir>$(ProjectDir)\..\Manifests</AreasManifestDir>
+    </PropertyGroup>
+    <!-- If this is an area child project, uncomment the following line:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Child" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    -->
+    <!-- If this is an area parent project, uncomment the following lines:
+    <CreateAreaManifest AreaName="$(AssemblyName)" AreaType="Parent" AreaPath="$(ProjectDir)" ManifestPath="$(AreasManifestDir)" ContentFiles="@(Content)" />
+    <CopyAreaManifests ManifestPath="$(AreasManifestDir)" CrossCopy="false" RenameViews="true" />
+    -->
+  </Target>
+  <Target Name="AfterBuildCompiler" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)\..\$(ProjectName)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1839</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

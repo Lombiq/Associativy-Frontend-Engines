@@ -1,0 +1,13 @@
+Name: Associativy Frontend Engines
+AntiForgery: enabled
+Author: Piedone
+Website: http://orchardproject.net
+Version: 1.0
+OrchardVersion: 1.3
+Description: Associativy Frontend Engines
+Features:
+	Associativy.FrontendEngines:
+		Name: Associativy Frontend Engines
+        Description: Associativy Frontend Engines
+		Category: Associativy
+		Dependencies: Associativy, Piedone.HelpfulLibraries.Tasks

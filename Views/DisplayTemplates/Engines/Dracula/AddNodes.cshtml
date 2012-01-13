@@ -1,0 +1,7 @@
+﻿@using Orchard.ContentManagement
+@model Associativy.FrontendEngines.Engines.Dracula.ViewModels.GraphViewModel
+
+@foreach (var node in Model.Nodes)
+{
+    @Html.Raw("graph.addNode(\"" + node.Value.ContentItem.Id + "\", { label : \"" + node.Value.Label + "\" });")
+}
