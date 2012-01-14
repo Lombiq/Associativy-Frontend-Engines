@@ -40,7 +40,7 @@ namespace Associativy.FrontendEngines.Controllers
 
         public Localizer T { get; set; }
 
-        public FrontendEngineControllerBase(
+        protected FrontendEngineControllerBase(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
             IFrontendShapes frontendShapes,

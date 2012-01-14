@@ -12,7 +12,7 @@ namespace Associativy.FrontendEngines
         public string FrontendEngine { get; set; }
         abstract public string ModuleName { get; }
 
-        public FrontendRoutesBase()
+        protected FrontendRoutesBase()
         {
             FrontendEngine = "JIT";
         }

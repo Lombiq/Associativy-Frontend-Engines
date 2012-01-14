@@ -9,7 +9,7 @@ namespace Associativy.FrontendEngines.Handlers
     public abstract class SearchFormHandlerBase<TFrontendEngineContext> : ContentHandler
         where TFrontendEngineContext : IFrontendEngineContext, new()
     {
-        public SearchFormHandlerBase()
+        protected SearchFormHandlerBase()
         {
             var frontendEngineContext = new TFrontendEngineContext();
             Filters.Add(new ActivatingFilter<SearchFormPart>(frontendEngineContext.SearchFormContentType));
