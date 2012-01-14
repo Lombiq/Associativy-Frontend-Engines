@@ -1,5 +1,19 @@
-﻿#associativy-jit-zoom-slider 
+﻿#associativy-jit-zoom-slider-container
+{
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+#associativy-jit-zoom-slider 
 {
     height: 200px;
-    float: left;
+}
+
+#associativy-jit-zoom-slider-value
+{
+    display: inline-block;
+    margin: 10px auto 0 auto;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
 }

@@ -5,7 +5,6 @@
 
     var routeData = Html.ViewContext.RouteData.Values;
 }
-
 <script type="text/javascript">
 $(document).ready(function() {
     var graph;
@@ -28,12 +27,16 @@ $(document).ready(function() {
 		value: @Model.MaxZoomLevel,
 		stop: function(event, ui) {
             loadGraph(ui.value, true);
+            $("#associativy-jit-zoom-slider-value").text(ui.value);
 		}
 	});
+    $("#associativy-jit-zoom-slider-value").text($("#associativy-jit-zoom-slider").slider("value"));
 });
 </script>
-
-<div id="associativy-jit-zoom-slider"></div>
-
+<div id="associativy-jit-zoom-slider-container">
+    <div id="associativy-jit-zoom-slider">
+    </div>
+    <span id="associativy-jit-zoom-slider-value"></span>
+</div>
 <div id="associativy-jit-associations" style="width: 900px; height: 800px;">
 </div>
