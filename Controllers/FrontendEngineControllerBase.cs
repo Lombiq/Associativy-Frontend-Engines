@@ -106,7 +106,7 @@ namespace Associativy.FrontendEngines.Controllers
 
         public virtual JsonResult FetchSimilarTerms(string term)
         {
-            return Json(_nodeManager.GetSimilarTerms(term), JsonRequestBehavior.AllowGet);
+            return Json(_nodeManager.GetSimilarNodes(term).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
         }
 
         bool IUpdateModel.TryUpdateModel<TModel>(TModel model, string prefix, string[] includeProperties, string[] excludeProperties)
