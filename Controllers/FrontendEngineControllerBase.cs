@@ -146,17 +146,14 @@ namespace Associativy.FrontendEngines.Controllers
                 return false;
             }
 
-            var searched = new List<IContent>(searchFormPart.TermsArray.Length);
-            foreach (var term in searchFormPart.TermsArray)
+            var searched = _associativyServices.NodeManager.GetMany(searchFormPart.TermsArray);
+
+            if (searched.Count() != searchFormPart.TermsArray.Length)
             {
-                var node = _associativyServices.NodeManager.Get(term);
-                if (node == null)
-                {
-                    graph = null;
-                    return false;
-                }
-                searched.Add(node);
+                graph = null;
+                return false;
             }
+
             graph = _mind.MakeAssociations(searched, settings, queryModifier);
 
             return !graph.IsVerticesEmpty;
