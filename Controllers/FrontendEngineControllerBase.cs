@@ -104,11 +104,6 @@ namespace Associativy.FrontendEngines.Controllers
             }
         }
 
-        public virtual JsonResult FetchSimilarTerms(string term)
-        {
-            return Json(_nodeManager.GetSimilarNodes(term).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
-        }
-
         bool IUpdateModel.TryUpdateModel<TModel>(TModel model, string prefix, string[] includeProperties, string[] excludeProperties)
         {
             return TryUpdateModel(model, prefix, includeProperties, excludeProperties);
@@ -148,7 +143,7 @@ namespace Associativy.FrontendEngines.Controllers
 
             var searched = _associativyServices.NodeManager.GetMany(searchFormPart.TermsArray);
 
-            if (searched.Count() != searchFormPart.TermsArray.Length)
+            if (searched.Count() != searchFormPart.TermsArray.Length) // Some nodes were not found
             {
                 graph = null;
                 return false;

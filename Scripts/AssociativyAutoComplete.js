@@ -23,7 +23,7 @@
                 }).autocomplete({
                     source: function (request, response) {
                         $.getJSON(fetchUrl, {
-                            term: extractLast(request.term)
+                            LabelSnippet: extractLast(request.term)
                         }, response);
                     },
                     appendTo: textBox.parent(),

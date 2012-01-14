@@ -3,8 +3,8 @@
 @{
     Script.Require("AssociativyAutoComplete").AtHead();
     Style.Require("jQueryUI_Orchard");
-    var routeData = Html.ViewContext.RouteData.Values;
 }
+
 
 <fieldset>
     @Html.LabelFor(model => model.Terms, T("Search terms"))
@@ -13,5 +13,5 @@
 </fieldset>
 
 <script type="text/javascript">
-    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Terms)", "@Url.Action("FetchSimilarTerms", routeData["controller"].ToString())");
+    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Terms)", "@Url.Action("FetchSimilarLabels", new { Controller = "Json", Area = "Associativy.FrontendEngines", TechnicalGraphName = Model.GraphDescriptor.TechnicalGraphName })");
 </script>

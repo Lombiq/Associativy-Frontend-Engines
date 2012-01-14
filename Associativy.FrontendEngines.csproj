@@ -592,6 +592,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\FrontendEngineControllerBase.cs" />
     <Compile Include="Drivers\SearchFormPartDriver.cs" />
     <Compile Include="Engines\Dracula\Controllers\DraculaFrontendEngineController.cs" />

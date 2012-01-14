@@ -3,12 +3,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
+using Associativy.Models;
 
 namespace Associativy.FrontendEngines.Models
 {
     [OrchardFeature("Associativy.FrontendEngines")]
     public class SearchFormPart : ContentPart
     {
+        public IAssociativyGraphDescriptor GraphDescriptor { get; set; }
+
         [Required]
         public string Terms
         {
