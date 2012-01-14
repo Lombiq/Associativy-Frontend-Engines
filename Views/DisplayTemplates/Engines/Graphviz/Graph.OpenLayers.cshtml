@@ -7,7 +7,7 @@
 $(document).ready(function(){
 	$.getJSON("@Url.Action("Render", routeData["controller"].ToString())?" + $("#associativy-search-form").serialize(), function(response) {
         /// Native OpenLayers implementation
-        var map = new OpenLayers.Map("map");
+        var map = new OpenLayers.Map("associativy-graphviz-openlayers-map");
         var urls = response["GraphImageUrls"];
         var maxZoomLevelsPerLayer = 3;
         var layerCount = urls.length;
@@ -19,36 +19,8 @@ $(document).ready(function(){
                             urls[i],
                             new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
                             new OpenLayers.Size(600, 400),
-                            {numZoomLevels: maxZoomLevelsPerLayer + 1}
+                            {numZoomLevels: maxZoomLevelsPerLayer}
                         );
-            layer.events.on({
-                                moveend: function(e) {
-                                    if (e.zoomChanged) {
-                                        // This whole juggling with layerSwitched is because setBaseLayer() calls this event handler,
-                                        // with zoomChanged == true, twice!
-                                        if (layerSwitched != 0) {
-                                            layerSwitched--;
-                                            return;
-                                        }
-
-                                        var layer = e.object;
-                                        var map = layer.map;
-                                        var zoom = map.zoom;
-                                        var layerIndex = map.getLayerIndex(layer);
-
-                                        if(zoom == 0 && layerIndex != 0) {
-                                            layerSwitched = 2;
-                                            map.zoom = maxZoomLevelsPerLayer;
-                                            map.setBaseLayer(map.layers[layerIndex - 1]);
-                                        }
-                                        else if (zoom == maxZoomLevelsPerLayer && layerIndex + 1 < layerCount) {
-                                            layerSwitched = 2;
-                                            map.zoom = 0;
-                                            map.setBaseLayer(map.layers[layerIndex + 1]);
-                                        }
-                                    }
-                                }
-                        }); 
             map.addLayer(layer);
         }
 
@@ -70,7 +42,7 @@ $(document).ready(function(){
 //                options: {numZoomLevels: 3}};
 //        }
 
-//        var mapQuery = $("#map").mapQuery({
+//        var mapQuery = $("#associativy-graphviz-openlayers-map").mapQuery({
 //                maxExtent:[-180,-90,180,90],
 //                projection:'EPSG:4326',
 //                units:'degrees',
@@ -94,5 +66,5 @@ $(document).ready(function(){
     });
 });
 </script>
-<div id="map" class="smallmap" style="width: 600px; height: 400px;">
+<div id="associativy-graphviz-openlayers-map" class="smallmap" style="width: 900px; height: 600px;">
 </div>
