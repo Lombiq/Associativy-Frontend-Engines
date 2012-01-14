@@ -39,7 +39,7 @@ namespace Associativy.FrontendEngines.Engines.JIT.Controllers
 
         protected override dynamic GraphShape(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph)
         {
-            return GraphShape(new GraphViewModel() { Graph = graph, MaxZoomLevel = _associativyServices.GraphService.CalculateZoomLevelCount(graph, _setup.MaxZoomLevel) });
+            return GraphShape(new GraphViewModel() { Graph = graph, MaxZoomLevel = _associativyServices.GraphService.CalculateZoomLevelCount(graph, _setup.MaxZoomLevel) - 1 });
         }
 
         public virtual JsonResult FetchAssociations(int zoomLevel = 0)
