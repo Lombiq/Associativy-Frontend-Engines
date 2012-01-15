@@ -13,8 +13,9 @@ using QuickGraph.Graphviz;
 
 namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
-    public class GraphImageService : AssociativyServiceBase,  IGraphImageService
+    [OrchardFeature("Associativy")]
+    public class GraphImageService<TAssociativyGraphDescriptor> : AssociativyServiceBase, IGraphImageService<TAssociativyGraphDescriptor>
+        where TAssociativyGraphDescriptor : IAssociativyGraphDescriptor
     {
         protected readonly IStorageProvider _storageProvider;
         protected readonly ICacheManager _cacheManager;
@@ -36,7 +37,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
         }
 
         public GraphImageService(
-            IAssociativyGraphDescriptor associativyGraphDescriptor,
+            TAssociativyGraphDescriptor associativyGraphDescriptor,
             IStorageProvider storageProvider,
             ICacheManager cacheManager,
             IAssociativeGraphEventMonitor graphEventMonitor)
@@ -94,6 +95,19 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 
                 return _storageProvider.GetPublicUrl(filePath);
             });
+        }
+    }
+
+    [OrchardFeature("Associativy.FrontendEngines")]
+    public class GraphImageService : GraphImageService<IAssociativyGraphDescriptor>, IGraphImageService
+    {
+        public GraphImageService(
+            IAssociativyGraphDescriptor associativyGraphDescriptor,
+            IStorageProvider storageProvider,
+            ICacheManager cacheManager,
+            IAssociativeGraphEventMonitor graphEventMonitor)
+            : base(associativyGraphDescriptor, storageProvider, cacheManager, graphEventMonitor)
+        {
         }
     }
 }
