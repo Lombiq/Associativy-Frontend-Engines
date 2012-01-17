@@ -64,7 +64,7 @@ namespace Associativy.FrontendEngines.Controllers
 
             return new ShapeResult(this, _frontendShapes.SearchResultShape(
                     _frontendShapes.SearchBoxShape(_contentManager.New(FrontendEngineContext.SearchFormContentType)),
-                    GraphShape(_mind.GetAllAssociations(MakeDefaultMindSettings(), _setup.GraphQueryModifier)))
+                    GraphShape(_mind.GetAllAssociations(MakeDefaultMindSettings())))
                 );
         }
 
@@ -149,7 +149,7 @@ namespace Associativy.FrontendEngines.Controllers
                 return false;
             }
 
-            graph = _mind.MakeAssociations(searched, settings, queryModifier);
+            graph = _mind.MakeAssociations(searched, settings);
 
             return !graph.IsVerticesEmpty;
         }
@@ -159,7 +159,8 @@ namespace Associativy.FrontendEngines.Controllers
             return new MindSettings()
             {
                 ZoomLevel = _setup.MaxZoomLevel,
-                MaxZoomLevel = _setup.MaxZoomLevel
+                MaxZoomLevel = _setup.MaxZoomLevel,
+                QueryModifier = _setup.GraphQueryModifier
             };
         }
     }

@@ -53,14 +53,14 @@ namespace Associativy.FrontendEngines.Engines.JIT.Controllers
             IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
             if (ModelState.IsValid)
             {
-                if (!TryGetGraph(searchForm, out graph, settings, _setup.GraphQueryModifier))
+                if (!TryGetGraph(searchForm, out graph, settings))
                 {
                     return Json(null, JsonRequestBehavior.AllowGet);
                 }
             }
             else
             {
-                graph = _mind.GetAllAssociations(settings, _setup.GraphQueryModifier);
+                graph = _mind.GetAllAssociations(settings);
             }
 
 
