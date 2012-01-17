@@ -25,10 +25,10 @@ namespace Associativy.FrontendEngines.Controllers
     [OrchardFeature("Associativy.FrontendEngines")]
     public class JsonController : AssociativyControllerBase
     {
-        protected readonly IAssociativyGraphDescriptorLocator _graphDescriptorLocator;
+        protected readonly IGraphDescriptorLocator _graphDescriptorLocator;
 
         public JsonController(
-            IAssociativyServices associativyServices, IAssociativyGraphDescriptorLocator graphDescriptorLocator)
+            IAssociativyServices associativyServices, IGraphDescriptorLocator graphDescriptorLocator)
             : base(associativyServices)
         {
             _graphDescriptorLocator = graphDescriptorLocator;

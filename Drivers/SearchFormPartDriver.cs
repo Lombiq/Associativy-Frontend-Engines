@@ -9,21 +9,21 @@ namespace Associativy.FrontendEngines.Drivers
     [OrchardFeature("Associativy.FrontendEngines")]
     public class SearchFormPartDriver : ContentPartDriver<SearchFormPart>
     {
-        private readonly IAssociativyGraphDescriptor _associativyGraphDescriptor;
+        private readonly IGraphDescriptor _graphDescriptor;
 
         protected override string Prefix
         {
             get { return "Associativy.SearchForm"; }
         }
 
-        public SearchFormPartDriver(IAssociativyGraphDescriptor associativyGraphDescriptor)
+        public SearchFormPartDriver(IGraphDescriptor graphDescriptor)
         {
-            _associativyGraphDescriptor = associativyGraphDescriptor;
+            _graphDescriptor = graphDescriptor;
         }
 
         protected override DriverResult Display(SearchFormPart part, string displayType, dynamic shapeHelper)
         {
-            part.GraphDescriptor = _associativyGraphDescriptor;
+            part.GraphDescriptor = _graphDescriptor;
 
             return Editor(part, shapeHelper);
         }
@@ -31,7 +31,7 @@ namespace Associativy.FrontendEngines.Drivers
         // GET
         protected override DriverResult Editor(SearchFormPart part, dynamic shapeHelper)
         {
-            part.GraphDescriptor = _associativyGraphDescriptor;
+            part.GraphDescriptor = _graphDescriptor;
 
             return ContentShape("Parts_SearchForm",
                 () => shapeHelper.EditorTemplate(
@@ -43,7 +43,7 @@ namespace Associativy.FrontendEngines.Drivers
         // POST
         protected override DriverResult Editor(SearchFormPart part, IUpdateModel updater, dynamic shapeHelper)
         {
-            part.GraphDescriptor = _associativyGraphDescriptor;
+            part.GraphDescriptor = _graphDescriptor;
             
             updater.TryUpdateModel(part, Prefix, null, null);
 

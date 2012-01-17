@@ -14,17 +14,17 @@ using QuickGraph.Graphviz;
 namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 {
     [OrchardFeature("Associativy")]
-    public class GraphImageService<TAssociativyGraphDescriptor> : AssociativyServiceBase, IGraphImageService<TAssociativyGraphDescriptor>
-        where TAssociativyGraphDescriptor : IAssociativyGraphDescriptor
+    public class GraphImageService<TGraphDescriptor> : AssociativyServiceBase, IGraphImageService<TGraphDescriptor>
+        where TGraphDescriptor : IGraphDescriptor
     {
         protected readonly IStorageProvider _storageProvider;
         protected readonly ICacheManager _cacheManager;
-        protected readonly IAssociativeGraphEventMonitor _graphEventMonitor;
+        protected readonly IGraphEventMonitor _graphEventMonitor;
 
         protected string _storagePath;
 
         private object _graphDescriptorLocker = new object();
-        public override IAssociativyGraphDescriptor GraphDescriptor
+        public override IGraphDescriptor GraphDescriptor
         {
             set
             {
@@ -37,16 +37,16 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
         }
 
         public GraphImageService(
-            TAssociativyGraphDescriptor associativyGraphDescriptor,
+            TGraphDescriptor graphDescriptor,
             IStorageProvider storageProvider,
             ICacheManager cacheManager,
-            IAssociativeGraphEventMonitor graphEventMonitor)
-            : base(associativyGraphDescriptor)
+            IGraphEventMonitor graphEventMonitor)
+            : base(graphDescriptor)
         {
             _storageProvider = storageProvider;
             _cacheManager = cacheManager;
             _graphEventMonitor = graphEventMonitor;
-            GraphDescriptor = associativyGraphDescriptor;
+            GraphDescriptor = graphDescriptor;
         }
 
         public virtual string ToSvg(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
@@ -99,14 +99,14 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
     }
 
     [OrchardFeature("Associativy.FrontendEngines")]
-    public class GraphImageService : GraphImageService<IAssociativyGraphDescriptor>, IGraphImageService
+    public class GraphImageService : GraphImageService<IGraphDescriptor>, IGraphImageService
     {
         public GraphImageService(
-            IAssociativyGraphDescriptor associativyGraphDescriptor,
+            IGraphDescriptor graphDescriptor,
             IStorageProvider storageProvider,
             ICacheManager cacheManager,
-            IAssociativeGraphEventMonitor graphEventMonitor)
-            : base(associativyGraphDescriptor, storageProvider, cacheManager, graphEventMonitor)
+            IGraphEventMonitor graphEventMonitor)
+            : base(graphDescriptor, storageProvider, cacheManager, graphEventMonitor)
         {
         }
     }

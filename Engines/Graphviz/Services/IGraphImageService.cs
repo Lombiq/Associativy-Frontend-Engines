@@ -8,13 +8,13 @@ using Associativy.Models;
 
 namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 {
-    public interface IGraphImageService<TAssociativyGraphDescriptor> : IAssociativyService
-        where TAssociativyGraphDescriptor : IAssociativyGraphDescriptor
+    public interface IGraphImageService<TGraphDescriptor> : IAssociativyService
+        where TGraphDescriptor : IGraphDescriptor
     {
         string ToSvg(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization);
     }
 
-    public interface IGraphImageService : IGraphImageService<IAssociativyGraphDescriptor>, IDependency
+    public interface IGraphImageService : IGraphImageService<IGraphDescriptor>, IDependency
     {
     }
 }
