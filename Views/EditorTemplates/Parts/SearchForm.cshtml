@@ -13,5 +13,5 @@
 </fieldset>
 
 <script type="text/javascript">
-    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Terms)", "@Url.Action("FetchSimilarLabels", new { Controller = "Json", Area = "Associativy.FrontendEngines", TechnicalGraphName = Model.GraphDescriptor.TechnicalGraphName })");
+    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Terms)", "@Url.Action("FetchSimilarLabels", new { Controller = "Json" })");
 </script>

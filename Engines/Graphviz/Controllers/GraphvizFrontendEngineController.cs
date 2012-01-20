@@ -61,7 +61,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
             var graphs = new IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>[count];
             for (int i = 0; i < count; i++)
             {
-                graphs[i] = _mind.GetAllAssociations(settings);
+                graphs[i] = _mind.GetAllAssociations(GraphContext, settings);
             }
 
             sw.Stop();
@@ -73,7 +73,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
             {
                 tasks[i] = Task<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>.Factory.StartNew(
                     _detachedDelegateBuilder.BuildBackgroundFunction<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>(
-                        () => _mind.GetAllAssociations(settings)
+                        () => _mind.GetAllAssociations(GraphContext, settings)
                     )
                     );
             }
@@ -126,7 +126,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
                             settings,
                             (currentSettings) =>
                             {
-                                return _mind.GetAllAssociations(settings);
+                                return _mind.GetAllAssociations(GraphContext, settings);
                             });
             }
 
@@ -142,7 +142,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
                 (zoomLevel) =>
                 {
                     settings.ZoomLevel = zoomLevel;
-                    return _graphImageService.ToSvg(fetchGraph(settings), algorithm =>
+                    return _graphImageService.ToSvg(GraphContext, fetchGraph(settings), algorithm =>
                             {
                                 algorithm.FormatVertex += _setup.VertexFormatter;
                             });

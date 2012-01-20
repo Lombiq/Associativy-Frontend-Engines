@@ -18,6 +18,7 @@ using QuickGraph;
 using Associativy.FrontendEngines.Shapes;
 using System.Diagnostics;
 using Associativy.FrontendEngines.Models;
+using Associativy.GraphDiscovery;
 
 namespace Associativy.FrontendEngines.Controllers
 {
@@ -25,20 +26,17 @@ namespace Associativy.FrontendEngines.Controllers
     [OrchardFeature("Associativy.FrontendEngines")]
     public class JsonController : AssociativyControllerBase
     {
-        protected readonly IGraphDescriptorLocator _graphDescriptorLocator;
-
         public JsonController(
-            IAssociativyServices associativyServices, IGraphDescriptorLocator graphDescriptorLocator)
+            IAssociativyServices associativyServices)
             : base(associativyServices)
         {
-            _graphDescriptorLocator = graphDescriptorLocator;
         }
 
-        public virtual JsonResult FetchSimilarLabels(string technicalGraphName, string labelSnippet)
+        public virtual JsonResult FetchSimilarLabels(string graphContext, string labelSnippet)
         {
-            _associativyServices.GraphDescriptor = _graphDescriptorLocator.FindGraphDescriptor(technicalGraphName);
-
-            return Json(_nodeManager.GetSimilarNodes(labelSnippet).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
+            // graphContext deserialization
+            return null;
+            //return Json(_nodeManager.GetSimilarNodes(GraphContext, labelSnippet).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }

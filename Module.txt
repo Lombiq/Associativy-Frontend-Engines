@@ -10,4 +10,4 @@ Features:
 		Name: Associativy Frontend Engines
         Description: Associativy Frontend Engines
 		Category: Associativy
-		Dependencies: Associativy, Piedone.HelpfulLibraries.Tasks
+		Dependencies: Associativy, Piedone.HelpfulLibraries.Tasks, Piedone.HelpfulLibraries.Serialization

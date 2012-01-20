@@ -10,8 +10,6 @@ namespace Associativy.FrontendEngines.Models
     [OrchardFeature("Associativy.FrontendEngines")]
     public class SearchFormPart : ContentPart
     {
-        public IGraphDescriptor GraphDescriptor { get; set; }
-
         [Required]
         public string Terms
         {

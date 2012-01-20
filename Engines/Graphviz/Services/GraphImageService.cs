@@ -10,46 +10,28 @@ using Orchard.Environment.Extensions;
 using Orchard.FileSystems.Media;
 using QuickGraph;
 using QuickGraph.Graphviz;
+using Associativy.GraphDiscovery;
 
 namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 {
     [OrchardFeature("Associativy")]
-    public class GraphImageService<TGraphDescriptor> : AssociativyServiceBase, IGraphImageService<TGraphDescriptor>
-        where TGraphDescriptor : IGraphDescriptor
+    public class GraphImageService : IGraphImageService
     {
         protected readonly IStorageProvider _storageProvider;
         protected readonly ICacheManager _cacheManager;
         protected readonly IGraphEventMonitor _graphEventMonitor;
 
-        protected string _storagePath;
-
-        private object _graphDescriptorLocker = new object();
-        public override IGraphDescriptor GraphDescriptor
-        {
-            set
-            {
-                lock (_graphDescriptorLocker) // This is to ensure that used services also have the same graphDescriptor
-                {
-                    _storagePath = "Associativy/Graphs-" + value.TechnicalGraphName + "/";
-                    base.GraphDescriptor = value;
-                }
-            }
-        }
-
         public GraphImageService(
-            TGraphDescriptor graphDescriptor,
             IStorageProvider storageProvider,
             ICacheManager cacheManager,
             IGraphEventMonitor graphEventMonitor)
-            : base(graphDescriptor)
         {
             _storageProvider = storageProvider;
             _cacheManager = cacheManager;
             _graphEventMonitor = graphEventMonitor;
-            GraphDescriptor = graphDescriptor;
         }
 
-        public virtual string ToSvg(IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
+        public virtual string ToSvg(IGraphContext graphContext, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
         {
             //var stringBuilder = new StringBuilder();
             //using (var xmlWriter = XmlWriter.Create(stringBuilder))
@@ -69,11 +51,11 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
                 initialization(algorithm);
             });
 
-            var filePath = _storagePath + dotData.GetHashCode() + ".svg";
+            var filePath = "Associativy/Graphs-" + graphContext.GraphName + "/" + dotData.GetHashCode() + ".svg";
 
             return _cacheManager.Get("Associativy.GraphImages." + filePath, ctx =>
             {
-                _graphEventMonitor.MonitorChanged(ctx, GraphDescriptor);
+                _graphEventMonitor.MonitorChanged(graphContext, ctx);
 
                 // Since there is no method for checking the existance of a file, we use this ugly technique
                 try
@@ -95,19 +77,6 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Services
 
                 return _storageProvider.GetPublicUrl(filePath);
             });
-        }
-    }
-
-    [OrchardFeature("Associativy.FrontendEngines")]
-    public class GraphImageService : GraphImageService<IGraphDescriptor>, IGraphImageService
-    {
-        public GraphImageService(
-            IGraphDescriptor graphDescriptor,
-            IStorageProvider storageProvider,
-            ICacheManager cacheManager,
-            IGraphEventMonitor graphEventMonitor)
-            : base(graphDescriptor, storageProvider, cacheManager, graphEventMonitor)
-        {
         }
     }
 }

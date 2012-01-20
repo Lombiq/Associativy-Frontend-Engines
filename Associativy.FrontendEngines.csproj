@@ -592,6 +592,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Controllers\DynamicallyContextedControllerBase.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\FrontendEngineControllerBase.cs" />
     <Compile Include="Drivers\SearchFormPartDriver.cs" />
@@ -626,7 +627,7 @@
     <Compile Include="Models\SearchFormPart.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Routes.cs" />
-    <Compile Include="FrontendRoutesBase.cs" />
+    <Compile Include="FrontendEnginesRoutesBase.cs" />
     <Compile Include="Shapes\FrontendShapes.cs" />
     <Compile Include="Shapes\IFrontendShapes.cs" />
     <Compile Include="ViewModels\GraphViewModelBase.cs" />

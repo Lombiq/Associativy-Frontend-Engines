@@ -18,6 +18,7 @@ using QuickGraph;
 using Associativy.FrontendEngines.Shapes;
 using System.Diagnostics;
 using Associativy.FrontendEngines.Models;
+using Associativy.GraphDiscovery;
 
 namespace Associativy.FrontendEngines.Controllers
 {
@@ -26,7 +27,7 @@ namespace Associativy.FrontendEngines.Controllers
     /// </summary>
     [Themed]
     [OrchardFeature("Associativy.FrontendEngines")]
-    public abstract class FrontendEngineControllerBase : AssociativyControllerBase, IUpdateModel
+    public abstract class FrontendEngineControllerBase : DynamicallyContextedControllerBase, IUpdateModel
     {
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
@@ -34,6 +35,8 @@ namespace Associativy.FrontendEngines.Controllers
         protected readonly dynamic _shapeFactory;
         private readonly IFrontendEngineSetup _setup;
 
+        // Nem kell, Graph is part lesz csak!
+        // Partok handlerrel regisztrálva
         abstract protected IFrontendEngineContext FrontendEngineContext { get; }
 
         protected string _graphShapeTemplateName;
@@ -43,8 +46,8 @@ namespace Associativy.FrontendEngines.Controllers
         protected FrontendEngineControllerBase(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
-            IFrontendShapes frontendShapes,
-            IShapeFactory shapeFactory,
+            IFrontendShapes frontendShapes, // Nem kell, partokkal
+            IShapeFactory shapeFactory, // Ez sem fog kelleni
             IFrontendEngineSetup setup)
             : base(associativyServices)
         {
@@ -64,7 +67,7 @@ namespace Associativy.FrontendEngines.Controllers
 
             return new ShapeResult(this, _frontendShapes.SearchResultShape(
                     _frontendShapes.SearchBoxShape(_contentManager.New(FrontendEngineContext.SearchFormContentType)),
-                    GraphShape(_mind.GetAllAssociations(MakeDefaultMindSettings())))
+                    GraphShape(_mind.GetAllAssociations(GraphContext, MakeDefaultMindSettings())))
                 );
         }
 
@@ -141,7 +144,7 @@ namespace Associativy.FrontendEngines.Controllers
                 return false;
             }
 
-            var searched = _associativyServices.NodeManager.GetMany(searchFormPart.TermsArray);
+            var searched = _associativyServices.NodeManager.GetMany(GraphContext, searchFormPart.TermsArray);
 
             if (searched.Count() != searchFormPart.TermsArray.Length) // Some nodes were not found
             {
@@ -149,7 +152,7 @@ namespace Associativy.FrontendEngines.Controllers
                 return false;
             }
 
-            graph = _mind.MakeAssociations(searched, settings);
+            graph = _mind.MakeAssociations(GraphContext, searched, settings);
 
             return !graph.IsVerticesEmpty;
         }

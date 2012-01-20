@@ -60,7 +60,7 @@ namespace Associativy.FrontendEngines.Engines.JIT.Controllers
             }
             else
             {
-                graph = _mind.GetAllAssociations(settings);
+                graph = _mind.GetAllAssociations(GraphContext, settings);
             }
 
 
