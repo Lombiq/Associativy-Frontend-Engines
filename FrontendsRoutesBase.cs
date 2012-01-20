@@ -6,10 +6,10 @@ using Orchard.Mvc.Routes;
 using Associativy.Models;
 using Associativy.GraphDiscovery;
 
-namespace Associativy.FrontendEngines
+namespace Associativy.Frontends
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
-    public abstract class FrontendEnginesRoutesBase : IRouteProvider
+    [OrchardFeature("Associativy.Frontends")]
+    public abstract class FrontendsRoutesBase : IRouteProvider
     {
         private readonly List<RouteDescriptor> _routes = new List<RouteDescriptor>();
         abstract protected string ModuleName { get; }
@@ -22,13 +22,13 @@ namespace Associativy.FrontendEngines
                 new Route(
                         ModuleName + "/" + relativeUrl,
                         new RouteValueDictionary {
-                                                                {"area", "Associativy.FrontendEngines"},
+                                                                {"area", "Associativy.Frontends"},
                                                                 {"controller", frontendEngine + "FrontendEngine"},
                                                                 {"action", "Index"}
                                                             },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                                                                {"area", "Associativy.FrontendEngines"},
+                                                                {"area", "Associativy.Frontends"},
                                                             },
                         new MvcRouteHandler()));
         }

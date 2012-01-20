@@ -5,7 +5,7 @@ using System.Text;
 using QuickGraph;
 using Orchard.ContentManagement;
 
-namespace Associativy.FrontendEngines.ViewModels
+namespace Associativy.Frontends.ViewModels
 {
     public interface IGraphViewModel
     {

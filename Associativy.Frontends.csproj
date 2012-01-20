@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Associativy.FrontendEngines</RootNamespace>
-    <AssemblyName>Associativy.FrontendEngines</AssemblyName>
+    <RootNamespace>Associativy.Frontends</RootNamespace>
+    <AssemblyName>Associativy.Frontends</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
@@ -594,9 +594,9 @@
   <ItemGroup>
     <Compile Include="Controllers\DynamicallyContextedControllerBase.cs" />
     <Compile Include="Controllers\JsonController.cs" />
-    <Compile Include="Controllers\FrontendEngineControllerBase.cs" />
+    <Compile Include="Controllers\FrontendControllerBase.cs" />
     <Compile Include="Drivers\SearchFormPartDriver.cs" />
-    <Compile Include="Engines\Dracula\Controllers\DraculaFrontendEngineController.cs" />
+    <Compile Include="Engines\Dracula\Controllers\DraculaFrontendController.cs" />
     <Compile Include="Engines\Dracula\Handlers\SearchFormHandler.cs" />
     <Compile Include="Engines\Dracula\Models\DefaultDraculaSetup.cs" />
     <Compile Include="Engines\Dracula\Models\DraculaContext.cs" />
@@ -604,7 +604,7 @@
     <Compile Include="Engines\Dracula\ResourceManifest.cs" />
     <Compile Include="Engines\Dracula\ViewModels\GraphViewModel.cs" />
     <Compile Include="Engines\Dracula\ViewModels\NodeViewModel.cs" />
-    <Compile Include="Engines\Graphviz\Controllers\GraphvizFrontendEngineController.cs" />
+    <Compile Include="Engines\Graphviz\Controllers\GraphvizFrontendController.cs" />
     <Compile Include="Engines\Graphviz\Handlers\SearchFormHandler.cs" />
     <Compile Include="Engines\Graphviz\Models\DefaultGraphvizSetup.cs" />
     <Compile Include="Engines\Graphviz\Models\GraphvizContext.cs" />
@@ -612,7 +612,7 @@
     <Compile Include="Engines\Graphviz\ResourceManifest.cs" />
     <Compile Include="Engines\Graphviz\Services\GraphImageService.cs" />
     <Compile Include="Engines\Graphviz\Services\IGraphImageService.cs" />
-    <Compile Include="Engines\JIT\Controllers\JITFrontendEngineController.cs" />
+    <Compile Include="Engines\JIT\Controllers\JITFrontendController.cs" />
     <Compile Include="Engines\JIT\Handlers\SearchFormHandler.cs" />
     <Compile Include="Engines\JIT\Models\DefaultJITSetup.cs" />
     <Compile Include="Engines\JIT\Models\IJITSetup.cs" />
@@ -627,7 +627,7 @@
     <Compile Include="Models\SearchFormPart.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Routes.cs" />
-    <Compile Include="FrontendEnginesRoutesBase.cs" />
+    <Compile Include="FrontendsRoutesBase.cs" />
     <Compile Include="Shapes\FrontendShapes.cs" />
     <Compile Include="Shapes\IFrontendShapes.cs" />
     <Compile Include="ViewModels\GraphViewModelBase.cs" />

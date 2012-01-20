@@ -15,15 +15,15 @@ using Orchard.Localization;
 using Orchard.Mvc;
 using Orchard.Themes;
 using QuickGraph;
-using Associativy.FrontendEngines.Shapes;
+using Associativy.Frontends.Shapes;
 using System.Diagnostics;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 using Associativy.GraphDiscovery;
 
-namespace Associativy.FrontendEngines.Controllers
+namespace Associativy.Frontends.Controllers
 {
     // TODO: better name
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class JsonController : AssociativyControllerBase
     {
         public JsonController(

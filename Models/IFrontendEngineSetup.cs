@@ -5,7 +5,7 @@ using System.Text;
 using Orchard.ContentManagement;
 using Orchard;
 
-namespace Associativy.FrontendEngines.Models
+namespace Associativy.Frontends.Models
 {
     public interface IFrontendEngineSetup : IDependency
     {

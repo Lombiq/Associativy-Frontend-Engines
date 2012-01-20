@@ -6,9 +6,9 @@ using Orchard.ContentManagement;
 using Orchard.Core.Routable.Models;
 using Orchard.Environment.Extensions;
 
-namespace Associativy.FrontendEngines.Models
+namespace Associativy.Frontends.Models
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public abstract class FrontendEngineSetupBase : IFrontendEngineSetup
     {
         public virtual Func<IContentQuery<ContentItem>, IContentQuery<ContentItem>> GraphQueryModifier

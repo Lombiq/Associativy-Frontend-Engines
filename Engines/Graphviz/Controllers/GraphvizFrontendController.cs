@@ -4,8 +4,8 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Associativy.FrontendEngines.Controllers;
-using Associativy.FrontendEngines.Engines.Graphviz.Services;
+using Associativy.Frontends.Controllers;
+using Associativy.Frontends.Engines.Graphviz.Services;
 using Associativy.Models.Mind;
 using Associativy.Services;
 using Orchard;
@@ -15,14 +15,14 @@ using Orchard.DisplayManagement;
 using Orchard.Environment.Extensions;
 using Piedone.HelpfulLibraries.Tasks;
 using QuickGraph;
-using Associativy.FrontendEngines.Shapes;
-using Associativy.FrontendEngines.Engines.Graphviz.Models;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Shapes;
+using Associativy.Frontends.Engines.Graphviz.Models;
+using Associativy.Frontends.Models;
 
-namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
+namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
-    public class GraphvizFrontendEngineController : FrontendEngineControllerBase
+    [OrchardFeature("Associativy.Frontends")]
+    public class GraphvizFrontendController : FrontendControllerBase
     {
         protected readonly IGraphvizSetup _setup;
         protected readonly IDetachedDelegateBuilder _detachedDelegateBuilder;
@@ -33,7 +33,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
             get { return new GraphvizContext(); }
         }
 
-        public GraphvizFrontendEngineController(
+        public GraphvizFrontendController(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
             IFrontendShapes frontendShapes,
@@ -184,7 +184,7 @@ namespace Associativy.FrontendEngines.Engines.Graphviz.Controllers
         }
     }
 
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class RequireRequestValueAttribute : ActionMethodSelectorAttribute
     {
         public RequireRequestValueAttribute(string valueName)

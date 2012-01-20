@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 using Orchard.Environment.Extensions;
 using Orchard.ContentManagement;
 using QuickGraph.Graphviz;
 using Orchard.ContentManagement.Aspects;
 
-namespace Associativy.FrontendEngines.Engines.Graphviz.Models
+namespace Associativy.Frontends.Engines.Graphviz.Models
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class DefaultGraphvizSetup : FrontendEngineSetupBase, IGraphvizSetup
     {
         public FormatVertexEventHandler<IContent> VertexFormatter

@@ -8,9 +8,9 @@ using Associativy.Controllers;
 using Associativy.Services;
 using System.Web.Routing;
 
-namespace Associativy.FrontendEngines.Controllers
+namespace Associativy.Frontends.Controllers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public abstract class DynamicallyContextedControllerBase : AssociativyControllerBase
     {
         public IGraphContext GraphContext { get; set; }

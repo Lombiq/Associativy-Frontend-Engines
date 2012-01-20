@@ -15,19 +15,19 @@ using Orchard.Localization;
 using Orchard.Mvc;
 using Orchard.Themes;
 using QuickGraph;
-using Associativy.FrontendEngines.Shapes;
+using Associativy.Frontends.Shapes;
 using System.Diagnostics;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 using Associativy.GraphDiscovery;
 
-namespace Associativy.FrontendEngines.Controllers
+namespace Associativy.Frontends.Controllers
 {
     /// <summary>
     /// Base class for frontend engine controllers
     /// </summary>
     [Themed]
-    [OrchardFeature("Associativy.FrontendEngines")]
-    public abstract class FrontendEngineControllerBase : DynamicallyContextedControllerBase, IUpdateModel
+    [OrchardFeature("Associativy.Frontends")]
+    public abstract class FrontendControllerBase : DynamicallyContextedControllerBase, IUpdateModel
     {
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
@@ -43,7 +43,7 @@ namespace Associativy.FrontendEngines.Controllers
 
         public Localizer T { get; set; }
 
-        protected FrontendEngineControllerBase(
+        protected FrontendControllerBase(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
             IFrontendShapes frontendShapes, // Nem kell, partokkal

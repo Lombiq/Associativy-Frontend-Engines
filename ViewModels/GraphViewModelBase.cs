@@ -6,9 +6,9 @@ using QuickGraph;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 
-namespace Associativy.FrontendEngines.ViewModels
+namespace Associativy.Frontends.ViewModels
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public abstract class GraphViewModelBase : IGraphViewModel
     {
         public IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; set; }

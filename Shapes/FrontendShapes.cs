@@ -4,9 +4,9 @@ using Orchard.ContentManagement;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Extensions;
 
-namespace Associativy.FrontendEngines.Shapes
+namespace Associativy.Frontends.Shapes
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class FrontendShapes : IFrontendShapes
     {
         protected readonly IOrchardServices _orchardServices;

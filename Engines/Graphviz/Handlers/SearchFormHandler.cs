@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Orchard.Environment.Extensions;
-using Associativy.FrontendEngines.Handlers;
-using Associativy.FrontendEngines.Engines.Graphviz.Models;
+using Associativy.Frontends.Handlers;
+using Associativy.Frontends.Engines.Graphviz.Models;
 
-namespace Associativy.FrontendEngines.Engines.Graphviz.Handlers
+namespace Associativy.Frontends.Engines.Graphviz.Handlers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class SearchFormHandler : SearchFormHandlerBase<GraphvizContext>
     {
     }

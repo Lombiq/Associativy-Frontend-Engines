@@ -1,12 +1,12 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 using Associativy.Models;
 
-namespace Associativy.FrontendEngines.Drivers
+namespace Associativy.Frontends.Drivers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class SearchFormPartDriver : ContentPartDriver<SearchFormPart>
     {
         protected override string Prefix

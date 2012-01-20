@@ -7,7 +7,7 @@ using QuickGraph.Graphviz;
 using Associativy.Models;
 using Associativy.GraphDiscovery;
 
-namespace Associativy.FrontendEngines.Engines.Graphviz.Services
+namespace Associativy.Frontends.Engines.Graphviz.Services
 {
     public interface IGraphImageService
     {

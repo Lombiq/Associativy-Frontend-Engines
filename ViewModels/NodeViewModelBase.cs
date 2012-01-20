@@ -5,9 +5,9 @@ using System.Web;
 using Orchard.Environment.Extensions;
 using Orchard.ContentManagement;
 
-namespace Associativy.FrontendEngines.ViewModels
+namespace Associativy.Frontends.ViewModels
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public abstract class NodeViewModelBase
     {
         public IContent ContentItem { get; set; }

@@ -5,9 +5,9 @@ using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Associativy.Models;
 
-namespace Associativy.FrontendEngines.Models
+namespace Associativy.Frontends.Models
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class SearchFormPart : ContentPart
     {
         [Required]

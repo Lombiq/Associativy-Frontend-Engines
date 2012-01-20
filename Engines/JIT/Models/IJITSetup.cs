@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 using Orchard.ContentManagement;
-using Associativy.FrontendEngines.Engines.JIT.ViewModels;
+using Associativy.Frontends.Engines.JIT.ViewModels;
 
-namespace Associativy.FrontendEngines.Engines.JIT.Models
+namespace Associativy.Frontends.Engines.JIT.Models
 {
     public interface IJITSetup : IFrontendEngineSetup
     {

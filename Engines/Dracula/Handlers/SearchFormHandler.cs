@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Orchard.Environment.Extensions;
-using Associativy.FrontendEngines.Handlers;
-using Associativy.FrontendEngines.Engines.Dracula.Models;
+using Associativy.Frontends.Handlers;
+using Associativy.Frontends.Engines.Dracula.Models;
 
-namespace Associativy.FrontendEngines.Engines.Dracula.Handlers
+namespace Associativy.Frontends.Engines.Dracula.Handlers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class SearchFormHandler : SearchFormHandlerBase<DraculaContext>
     {
     }

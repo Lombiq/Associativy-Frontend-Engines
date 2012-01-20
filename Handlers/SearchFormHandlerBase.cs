@@ -1,11 +1,11 @@
 ﻿using Associativy.Models;
 using Orchard.ContentManagement.Handlers;
 using Orchard.Environment.Extensions;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 
-namespace Associativy.FrontendEngines.Handlers
+namespace Associativy.Frontends.Handlers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public abstract class SearchFormHandlerBase<TFrontendEngineContext> : ContentHandler
         where TFrontendEngineContext : IFrontendEngineContext, new()
     {

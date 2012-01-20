@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 using Orchard.Environment.Extensions;
-using Associativy.FrontendEngines.Engines.JIT.ViewModels;
+using Associativy.Frontends.Engines.JIT.ViewModels;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Aspects;
 
-namespace Associativy.FrontendEngines.Engines.JIT.Models
+namespace Associativy.Frontends.Engines.JIT.Models
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class DefaultJITSetup : FrontendEngineSetupBase, IJITSetup
     {
         public NodeViewModel SetViewModel(IContent node, NodeViewModel viewModel)

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Associativy.FrontendEngines.ViewModels;
+using Associativy.Frontends.ViewModels;
 
-namespace Associativy.FrontendEngines.Engines.Dracula.ViewModels
+namespace Associativy.Frontends.Engines.Dracula.ViewModels
 {
     public class NodeViewModel : NodeViewModelBase
     {

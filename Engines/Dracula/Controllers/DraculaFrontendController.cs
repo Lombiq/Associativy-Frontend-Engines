@@ -1,20 +1,20 @@
-﻿using Associativy.FrontendEngines.Controllers;
+﻿using Associativy.Frontends.Controllers;
 using Associativy.Services;
 using Orchard;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Extensions;
-using Associativy.FrontendEngines.Shapes;
-using Associativy.FrontendEngines.Engines.Dracula.Models;
+using Associativy.Frontends.Shapes;
+using Associativy.Frontends.Engines.Dracula.Models;
 using QuickGraph;
 using Orchard.ContentManagement;
-using Associativy.FrontendEngines.Engines.Dracula.ViewModels;
+using Associativy.Frontends.Engines.Dracula.ViewModels;
 using System.Collections.Generic;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Models;
 
-namespace Associativy.FrontendEngines.Engines.Dracula.Controllers
+namespace Associativy.Frontends.Engines.Dracula.Controllers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
-    public class DraculaFrontendEngineController : FrontendEngineControllerBase
+    [OrchardFeature("Associativy.Frontends")]
+    public class DraculaFrontendController : FrontendControllerBase
     {
         protected readonly IDraculaSetup _setup;
 
@@ -23,7 +23,7 @@ namespace Associativy.FrontendEngines.Engines.Dracula.Controllers
             get { return new DraculaContext(); }
         }
 
-        public DraculaFrontendEngineController(
+        public DraculaFrontendController(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
             IFrontendShapes frontendShapes,

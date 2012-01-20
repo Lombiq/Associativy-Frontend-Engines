@@ -12,7 +12,7 @@ using QuickGraph;
 using QuickGraph.Graphviz;
 using Associativy.GraphDiscovery;
 
-namespace Associativy.FrontendEngines.Engines.Graphviz.Services
+namespace Associativy.Frontends.Engines.Graphviz.Services
 {
     [OrchardFeature("Associativy")]
     public class GraphImageService : IGraphImageService

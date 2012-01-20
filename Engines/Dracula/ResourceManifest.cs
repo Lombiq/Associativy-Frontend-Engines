@@ -1,9 +1,9 @@
 using Orchard.Environment.Extensions;
 using Orchard.UI.Resources;
 
-namespace Associativy.FrontendEngines.Engines.Dracula
+namespace Associativy.Frontends.Engines.Dracula
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
+    [OrchardFeature("Associativy.Frontends")]
     public class ResourceManifest : IResourceManifestProvider
     {
         public void BuildManifests(ResourceManifestBuilder builder)

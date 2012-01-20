@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Associativy.FrontendEngines.Controllers;
+using Associativy.Frontends.Controllers;
 using Associativy.Models.Mind;
 using Associativy.Services;
 using Orchard;
@@ -9,15 +9,15 @@ using Orchard.ContentManagement.Aspects;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Extensions;
 using QuickGraph;
-using Associativy.FrontendEngines.Shapes;
-using Associativy.FrontendEngines.Engines.JIT.Models;
-using Associativy.FrontendEngines.Engines.JIT.ViewModels;
-using Associativy.FrontendEngines.Models;
+using Associativy.Frontends.Shapes;
+using Associativy.Frontends.Engines.JIT.Models;
+using Associativy.Frontends.Engines.JIT.ViewModels;
+using Associativy.Frontends.Models;
 
-namespace Associativy.FrontendEngines.Engines.JIT.Controllers
+namespace Associativy.Frontends.Engines.JIT.Controllers
 {
-    [OrchardFeature("Associativy.FrontendEngines")]
-    public class JITFrontendEngineController : FrontendEngineControllerBase
+    [OrchardFeature("Associativy.Frontends")]
+    public class JITFrontendController : FrontendControllerBase
     {
         protected readonly IJITSetup _setup;
 
@@ -26,7 +26,7 @@ namespace Associativy.FrontendEngines.Engines.JIT.Controllers
             get { return new JITContext(); }
         }
 
-        public JITFrontendEngineController(
+        public JITFrontendController(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
             IFrontendShapes frontendShapes,
