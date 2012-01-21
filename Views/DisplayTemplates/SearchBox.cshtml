@@ -1,9 +1,0 @@
-﻿@{
-    var routeData = Html.ViewContext.RouteData.Values;
-}
-
-@using (Html.BeginForm("ShowAssociations", routeData["controller"].ToString(), FormMethod.Get, new { @id = "associativy-search-form" }))
-{
-    @Display(Model.SearchFormShape())
-    <button type="submit">@T("Find associations")</button>
-}

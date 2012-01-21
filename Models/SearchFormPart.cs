@@ -11,29 +11,29 @@ namespace Associativy.Frontends.Models
     public class SearchFormPart : ContentPart
     {
         [Required]
-        public string Terms
+        public string Labels
         {
             get
             {
-                if (TermsArray == null) return "";
-                return String.Join(", ", TermsArray);
+                if (LabelsArray == null) return "";
+                return String.Join(", ", LabelsArray);
             }
 
             set
             {
                 if (value != null)
                 {
-                    TermsArray = value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    TermsArray = (from p in TermsArray where p.Trim() != "" select p.Trim()).ToArray();
+                    LabelsArray = value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    LabelsArray = (from p in LabelsArray where p.Trim() != "" select p.Trim()).ToArray();
                 }
             }
         }
 
-        public string[] TermsArray { get; private set; }
+        public string[] LabelsArray { get; private set; }
 
         public SearchFormPart()
         {
-            TermsArray = new string[0];
+            LabelsArray = new string[0];
         }
     }
 }

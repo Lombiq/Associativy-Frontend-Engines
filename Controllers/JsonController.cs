@@ -15,10 +15,10 @@ using Orchard.Localization;
 using Orchard.Mvc;
 using Orchard.Themes;
 using QuickGraph;
-using Associativy.Frontends.Shapes;
 using System.Diagnostics;
 using Associativy.Frontends.Models;
 using Associativy.GraphDiscovery;
+using Piedone.HelpfulLibraries.Serialization;
 
 namespace Associativy.Frontends.Controllers
 {
@@ -26,17 +26,19 @@ namespace Associativy.Frontends.Controllers
     [OrchardFeature("Associativy.Frontends")]
     public class JsonController : AssociativyControllerBase
     {
+        protected readonly ISimpleSerializer _simpleSerializer;
+
         public JsonController(
-            IAssociativyServices associativyServices)
+            IAssociativyServices associativyServices,
+            ISimpleSerializer simpleSerializer)
             : base(associativyServices)
         {
+            _simpleSerializer = simpleSerializer;
         }
 
-        public virtual JsonResult FetchSimilarLabels(string graphContext, string labelSnippet)
+        public virtual JsonResult FetchSimilarLabels(string graphContextBase64, string labelSnippet)
         {
-            // graphContext deserialization
-            return null;
-            //return Json(_nodeManager.GetSimilarNodes(GraphContext, labelSnippet).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
+            return Json(_nodeManager.GetSimilarNodes(_simpleSerializer.Base64Deserialize<IGraphContext>(graphContextBase64), labelSnippet).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }

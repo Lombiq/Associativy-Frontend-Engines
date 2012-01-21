@@ -25,7 +25,7 @@ namespace Associativy.Frontends.Controllers
             var dataTokens = requestContext.RouteData.DataTokens;
             if (dataTokens != null && dataTokens.ContainsKey("GraphContext"))
             {
-                GraphContext = dataTokens["GraphContext"] as IGraphContext;
+                GraphContext = (IGraphContext)dataTokens["GraphContext"];
             }
             else throw new InvalidOperationException("The graph context to use should be fed into the route's DataTokens dictionary with key \"GraphContext\".");
 

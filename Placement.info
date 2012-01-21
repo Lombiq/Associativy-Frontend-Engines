@@ -1,3 +1,4 @@
 ﻿<Placement>
-    <Place Parts_SearchForm="Content:1"/>
+  <Place AssociativySearchForm="Content:1"/>
+  <Place AssociativyGraph="Content:2"/>
 </Placement>

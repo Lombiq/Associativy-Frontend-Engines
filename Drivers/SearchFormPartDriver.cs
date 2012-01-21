@@ -22,11 +22,17 @@ namespace Associativy.Frontends.Drivers
         // GET
         protected override DriverResult Editor(SearchFormPart part, dynamic shapeHelper)
         {
-            return ContentShape("Parts_SearchForm",
-                () => shapeHelper.EditorTemplate(
-                        TemplateName: "Parts/SearchForm",
-                        Model: part,
-                        Prefix: Prefix));
+            //return ContentShape("Parts_SearchForm",
+            //            () => shapeHelper.EditorTemplate(
+            //                    TemplateName: "Parts/SearchForm",
+            //                    Model: part,
+            //                    Prefix: Prefix));
+
+            return ContentShape("AssociativySearchForm",
+                        () => shapeHelper.DisplayTemplate(
+                                TemplateName: "SearchForm",
+                                Model: part,
+                                Prefix: Prefix));
         }
 
         // POST

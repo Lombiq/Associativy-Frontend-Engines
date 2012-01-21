@@ -1,7 +1,7 @@
 ﻿@using Orchard.ContentManagement
-@model Associativy.Frontends.Engines.Dracula.ViewModels.GraphViewModel
-
-@foreach (var node in Model.Nodes)
+@model Associativy.Frontends.Models.GraphPart
+           
+@foreach (var node in Model.As<Associativy.Frontends.Engines.Dracula.Models.DraculaPart>().Nodes)
 {
     @Html.Raw("graph.addNode(\"" + node.Value.ContentItem.Id + "\", { label : \"" + node.Value.Label + "\" });")
 }

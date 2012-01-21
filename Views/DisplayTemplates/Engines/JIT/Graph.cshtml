@@ -1,8 +1,10 @@
-﻿@model Associativy.Frontends.Engines.JIT.ViewModels.GraphViewModel
+﻿@using Orchard.ContentManagement
+@model Associativy.Frontends.Models.GraphPart
 @{
     Script.Require("JIT").AtHead();
     Style.Require("JIT");
 
+    var maxZoomLevel = Model.ZoomLevelCount - 1;
     var routeData = Html.ViewContext.RouteData.Values;
 }
 <script type="text/javascript">
@@ -17,14 +19,14 @@ $(document).ready(function() {
         });
     };
 
-    loadGraph(@Model.MaxZoomLevel);
+    loadGraph(@maxZoomLevel);
 
     $( "#associativy-jit-zoom-slider" ).slider({
 		orientation: "vertical",
 		range: "min",
 		min: 0,
-		max: @Model.MaxZoomLevel,
-		value: @Model.MaxZoomLevel,
+		max: @maxZoomLevel,
+		value: @maxZoomLevel,
 		stop: function(event, ui) {
             loadGraph(ui.value, true);
             $("#associativy-jit-zoom-slider-value").text(ui.value);
@@ -40,3 +42,5 @@ $(document).ready(function() {
 </div>
 <div id="associativy-jit-associations" style="width: 900px; height: 800px;">
 </div>
+
+@Display.AssociativyBadgeOfHonor()

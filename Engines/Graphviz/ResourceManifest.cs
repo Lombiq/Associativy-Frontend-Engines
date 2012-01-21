@@ -3,7 +3,7 @@ using Orchard.UI.Resources;
 
 namespace Associativy.Frontends.Engines.Graphviz
 {
-    [OrchardFeature("Associativy.Frontends")]
+    [OrchardFeature("Associativy.Frontends.Graphviz")]
     public class ResourceManifest : IResourceManifestProvider
     {
         public void BuildManifests(ResourceManifestBuilder builder)

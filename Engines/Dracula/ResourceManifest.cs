@@ -3,7 +3,7 @@ using Orchard.UI.Resources;
 
 namespace Associativy.Frontends.Engines.Dracula
 {
-    [OrchardFeature("Associativy.Frontends")]
+    [OrchardFeature("Associativy.Frontends.Dracula")]
     public class ResourceManifest : IResourceManifestProvider
     {
         public void BuildManifests(ResourceManifestBuilder builder)

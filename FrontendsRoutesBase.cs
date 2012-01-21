@@ -23,7 +23,7 @@ namespace Associativy.Frontends
                         ModuleName + "/" + relativeUrl,
                         new RouteValueDictionary {
                                                                 {"area", "Associativy.Frontends"},
-                                                                {"controller", frontendEngine + "FrontendEngine"},
+                                                                {"controller", frontendEngine + "Engine"},
                                                                 {"action", "Index"}
                                                             },
                         new RouteValueDictionary(),

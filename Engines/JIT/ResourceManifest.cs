@@ -3,7 +3,7 @@ using Orchard.UI.Resources;
 
 namespace Associativy.Frontends.Engines.JIT
 {
-    [OrchardFeature("Associativy.Frontends")]
+    [OrchardFeature("Associativy.Frontends.JIT")]
     public class ResourceManifest : IResourceManifestProvider
     {
         public void BuildManifests(ResourceManifestBuilder builder)

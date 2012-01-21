@@ -13,11 +13,7 @@ namespace Associativy.Frontends
         {
             // This is to prohibit direct access to frontend engines with unpredictable results
             routeCollection.Ignore(
-                "Associativy.Frontends/{frontendEngineName}FrontendEngine/{action}"
-            );
-
-            routeCollection.Ignore(
-                "Associativy.Frontends/Json/{action}"
+                "Associativy.Frontends/{frontendEngineName}Frontend/{action}"
             );
         }
 

@@ -14,7 +14,7 @@ using Associativy.GraphDiscovery;
 
 namespace Associativy.Frontends.Engines.Graphviz.Services
 {
-    [OrchardFeature("Associativy")]
+    [OrchardFeature("Associativy.Frontends.Graphviz")]
     public class GraphImageService : IGraphImageService
     {
         protected readonly IStorageProvider _storageProvider;
