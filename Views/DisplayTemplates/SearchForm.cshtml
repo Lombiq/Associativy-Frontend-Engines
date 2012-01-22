@@ -18,6 +18,7 @@
     
     <button type="submit">@T("Find associations")</button>
 }
+
 <script type="text/javascript">
-    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Labels)", "@Url.Action("FetchSimilarLabels", new { Controller = "Json", GraphContextBase64 = Model.As<EngineCommonPart>().GraphContextBase64 })");
+    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphContextBase64 = Model.As<EngineCommonPart>().GraphContextBase64 })");
 </script>

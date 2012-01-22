@@ -599,7 +599,7 @@
     <Compile Include="ConfigurationDiscovery\IEngineConfigurationProvider.cs" />
     <Compile Include="ConfigurationDiscovery\ProviderFiltererExtensions.cs" />
     <Compile Include="Controllers\DynamicallyContextedControllerBase.cs" />
-    <Compile Include="Controllers\JsonController.cs" />
+    <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\EngineControllerBase.cs" />
     <Compile Include="Drivers\GraphPartDriver.cs" />
     <Compile Include="Drivers\SearchFormPartDriver.cs" />

@@ -23,7 +23,25 @@ namespace Associativy.Frontends
 
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
-            return new List<RouteDescriptor>();
+            return new[]
+            {
+                new RouteDescriptor
+                {
+                    Name = "Associativy.Frontends.AutoComplete.FetchSimilarLabels",
+                    Route = new Route(
+                        "Associativy.Frontends/AutoComplete/FetchSimilarLabels",
+                        new RouteValueDictionary {
+                                                    {"area", "Associativy.Frontends"},
+                                                    {"controller", "AutoComplete"},
+                                                    {"action", "FetchSimilarLabels"}
+                                                },
+                        new RouteValueDictionary(),
+                        new RouteValueDictionary {
+                                                    {"area", "Associativy.Frontends"}
+                                                },
+                        new MvcRouteHandler())
+                }
+            };
         }
     }
 }

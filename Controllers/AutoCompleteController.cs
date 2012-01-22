@@ -22,13 +22,12 @@ using Piedone.HelpfulLibraries.Serialization;
 
 namespace Associativy.Frontends.Controllers
 {
-    // TODO: better name
     [OrchardFeature("Associativy.Frontends")]
-    public class JsonController : AssociativyControllerBase
+    public class AutoCompleteController : AssociativyControllerBase
     {
         protected readonly ISimpleSerializer _simpleSerializer;
 
-        public JsonController(
+        public AutoCompleteController(
             IAssociativyServices associativyServices,
             ISimpleSerializer simpleSerializer)
             : base(associativyServices)
