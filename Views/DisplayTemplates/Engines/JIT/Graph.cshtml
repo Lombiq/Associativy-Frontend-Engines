@@ -19,14 +19,14 @@ $(document).ready(function() {
         });
     };
 
-    loadGraph(@maxZoomLevel);
+    loadGraph(0);
 
     $( "#associativy-jit-zoom-slider" ).slider({
 		orientation: "vertical",
 		range: "min",
 		min: 0,
 		max: @maxZoomLevel,
-		value: @maxZoomLevel,
+		value: 0,
 		stop: function(event, ui) {
             loadGraph(ui.value, true);
             $("#associativy-jit-zoom-slider-value").text(ui.value);

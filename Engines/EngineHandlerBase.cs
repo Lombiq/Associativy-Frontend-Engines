@@ -42,10 +42,6 @@ namespace Associativy.Frontends.Engines
         {
             AddPart<EngineCommonPart>(engineContext, contentTypes);
             AddPart<GraphPart>(engineContext, contentTypes);
-            OnActivated<GraphPart>((context, part) =>
-            {
-                part.ZoomLevelCountField.Loader(() => _associativyServices.GraphService.CalculateZoomLevelCount(part.As<GraphPart>().Graph, part.As<EngineCommonPart>().ConfigurationProvider.MaxZoomLevel));
-            });
             AddPart<SearchFormPart>(engineContext, contentTypes);
         }
 

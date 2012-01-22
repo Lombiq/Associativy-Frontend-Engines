@@ -74,10 +74,11 @@ namespace Associativy.Frontends.Controllers
 
             var page = NewPage("ShowWholeGraph");
 
-            page.As<GraphPart>().Graph = _mind.GetAllAssociations(GraphContext, ConfigurationProvider.MakeDefaultMindSettings());
-            
+            LoadGraphPart(page, (settings) => _mind.GetAllAssociations(GraphContext, settings));
+
             return new ShapeResult(this, BuildDisplay(page));
         }
+
         public virtual ActionResult ShowAssociations()
         {
             var page = NewPage("ShowAssociations");
@@ -88,7 +89,7 @@ namespace Associativy.Frontends.Controllers
             {
                 _orchardServices.WorkContext.Layout.Title = T("Associations for {0}", page.As<SearchFormPart>().Labels).ToString();
 
-                page.As<GraphPart>().Graph = RetrieveSearchedGraph(page);
+                LoadGraphPart(page, (settings) => RetrieveSearchedGraph(page, settings));
 
                 return new ShapeResult(
                     this,
@@ -156,6 +157,19 @@ namespace Associativy.Frontends.Controllers
             }
 
             return _mind.MakeAssociations(GraphContext, searched, settings);
+        }
+
+        protected virtual void LoadGraphPart(IContent page, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> retrieveGraph)
+        {
+            var graphPart = page.As<GraphPart>();
+            var settings = ConfigurationProvider.MakeDefaultMindSettings();
+            graphPart.Graph = retrieveGraph(settings);
+
+            graphPart.ZoomLevelCountField.Loader(() =>
+            {
+                settings.ZoomLevel = ConfigurationProvider.MaxZoomLevel;
+                return _associativyServices.GraphService.CalculateZoomLevelCount(retrieveGraph(settings), ConfigurationProvider.MaxZoomLevel);
+            });
         }
     }
 }

@@ -4,7 +4,6 @@
 @{
     Script.Require("Dracula").AtHead();
 
-    // Although this templating add flexibility, it's very slow (page load time goes up to 1 second with whole graph).
     var addNodesShape = ((dynamic)ShapeFactory).DisplayTemplate(
                             TemplateName: "Engines/Dracula/AddNodes",
                             Model: Model,

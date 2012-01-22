@@ -13,7 +13,7 @@ namespace Associativy.Frontends.Extensions
         {
             return new MindSettings()
             {
-                ZoomLevel = configurationProvider.MaxZoomLevel,
+                ZoomLevel = 0,
                 MaxZoomLevel = configurationProvider.MaxZoomLevel,
                 QueryModifier = configurationProvider.GraphQueryModifier
             };
