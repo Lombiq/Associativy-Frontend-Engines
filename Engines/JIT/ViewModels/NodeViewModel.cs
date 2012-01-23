@@ -14,6 +14,12 @@ namespace Associativy.Frontends.Engines.JIT.ViewModels
         public string id { get; set; }
         public string name { get; set; }
         public List<string> adjacencies { get; set; }
-        public IDictionary<string, string> data { get; set; }
+        public Dictionary<string, string> data { get; set; }
+
+        public NodeViewModel()
+        {
+            adjacencies = new List<string>();
+            data = new Dictionary<string, string>();
+        }
     }
 }

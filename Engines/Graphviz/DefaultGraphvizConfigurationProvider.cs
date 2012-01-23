@@ -28,9 +28,11 @@ namespace Associativy.Frontends.Engines.Graphviz
 
         public void FormatVertext(object sender, FormatVertexEventArgs<IContent> e)
         {
-            e.VertexFormatter.Label = e.Vertex.As<ITitleAspect>().Title;
+            // .Has<> doesn't work here
+            if (e.Vertex.As<ITitleAspect>() != null) e.VertexFormatter.Label = e.Vertex.As<ITitleAspect>().Title;
+            if (e.Vertex.As<IRoutableAspect>() != null) e.VertexFormatter.Url = e.Vertex.As<IRoutableAspect>().Path;
+
             e.VertexFormatter.Shape = QuickGraph.Graphviz.Dot.GraphvizVertexShape.Diamond;
-            e.VertexFormatter.Url = e.Vertex.As<IRoutableAspect>().Path;
         }
     }
 }

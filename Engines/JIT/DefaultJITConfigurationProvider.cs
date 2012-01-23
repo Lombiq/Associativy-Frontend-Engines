@@ -29,8 +29,9 @@ namespace Associativy.Frontends.Engines.JIT
         public virtual NodeViewModel ViewModelSetup(IContent node, NodeViewModel viewModel)
         {
             viewModel.id = node.Id.ToString();
-            viewModel.name = node.As<ITitleAspect>().Title;
-            viewModel.adjacencies = new List<string>();
+
+            // .Has<> doesn't work here
+            if (node.As<ITitleAspect>() != null) viewModel.name = node.As<ITitleAspect>().Title;
 
             return viewModel;
         }

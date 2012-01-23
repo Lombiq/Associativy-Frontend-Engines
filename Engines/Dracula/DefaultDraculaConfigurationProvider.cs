@@ -28,7 +28,8 @@ namespace Associativy.Frontends.Engines.Dracula
 
         public virtual NodeViewModel ViewModelSetup(IContent node, NodeViewModel viewModel)
         {
-            viewModel.Label = node.As<ITitleAspect>().Title;
+            // .Has<> doesn't work here
+            if (node.As<ITitleAspect>() != null) viewModel.Label = node.As<ITitleAspect>().Title;
 
             return viewModel;
         }
