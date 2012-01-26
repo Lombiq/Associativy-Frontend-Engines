@@ -626,7 +626,7 @@
     <Compile Include="Engines\JIT\IJITConfigurationProvider.cs" />
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
-    <Compile Include="Extensions\EngineConfigurationProviderExtensions.cs" />
+    <Compile Include="ConfigurationDiscovery\EngineConfigurationProviderExtensions.cs" />
     <Compile Include="Handlers\EngineCommonPartHandler.cs" />
     <Compile Include="Models\EngineCommonPart.cs" />
     <Compile Include="Models\GraphPart.cs" />

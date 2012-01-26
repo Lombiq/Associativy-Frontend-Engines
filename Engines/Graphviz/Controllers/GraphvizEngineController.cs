@@ -17,7 +17,6 @@ using Piedone.HelpfulLibraries.Tasks;
 using QuickGraph;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.ConfigurationDiscovery;
-using Associativy.Frontends.Extensions;
 
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {

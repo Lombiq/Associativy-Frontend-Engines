@@ -21,7 +21,6 @@ using Associativy.GraphDiscovery;
 using Associativy.Frontends.ConfigurationDiscovery;
 using Associativy.Frontends.Engines;
 using System.Web.Routing;
-using Associativy.Frontends.Extensions;
 
 namespace Associativy.Frontends.Controllers
 {

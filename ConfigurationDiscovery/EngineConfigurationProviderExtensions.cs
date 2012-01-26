@@ -5,7 +5,7 @@ using System.Web;
 using Associativy.Models.Mind;
 using Associativy.Frontends.ConfigurationDiscovery;
 
-namespace Associativy.Frontends.Extensions
+namespace Associativy.Frontends.ConfigurationDiscovery
 {
     public static class EngineConfigurationProviderExtensions
     {

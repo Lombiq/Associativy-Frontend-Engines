@@ -3,7 +3,6 @@ using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
 using Associativy.Frontends.Models;
 using Associativy.Models;
-using Associativy.Frontends.Extensions;
 using Associativy.Services;
 using System.Linq;
 
