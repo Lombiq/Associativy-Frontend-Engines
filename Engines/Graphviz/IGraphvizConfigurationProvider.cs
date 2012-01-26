@@ -10,6 +10,6 @@ namespace Associativy.Frontends.Engines.Graphviz
 {
     public interface IGraphvizConfigurationProvider : IEngineConfigurationProvider
     {
-        void FormatVertext(object sender, FormatVertexEventArgs<IContent> e);
+        Action<object, FormatVertexEventArgs<IContent>> VertexFormatter { get; }
     }
 }

@@ -10,6 +10,6 @@ namespace Associativy.Frontends.Engines.JIT
 {
     public interface IJITConfigurationProvider : IEngineConfigurationProvider
     {
-        NodeViewModel ViewModelSetup(IContent node, NodeViewModel viewModel);
+        Action<IContent, NodeViewModel> ViewModelSetup { get; }
     }
 }

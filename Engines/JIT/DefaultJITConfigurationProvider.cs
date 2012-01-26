@@ -20,20 +20,19 @@ namespace Associativy.Frontends.Engines.JIT
             get { return _describedEngineContext; }
         }
 
+        public Action<IContent, NodeViewModel> ViewModelSetup { get; protected set; }
+
         public DefaultJITConfigurationProvider()
         {
             GraphContext = new GraphContext();
             EngineContext = DescribedEngineContext;
-        }
 
-        public virtual NodeViewModel ViewModelSetup(IContent node, NodeViewModel viewModel)
-        {
-            viewModel.id = node.Id.ToString();
-
-            // .Has<> doesn't work here
-            if (node.As<ITitleAspect>() != null) viewModel.name = node.As<ITitleAspect>().Title;
-
-            return viewModel;
+            ViewModelSetup =
+                (node, viewModel) =>
+                {
+                    // .Has<> doesn't work here
+                    if (node.As<ITitleAspect>() != null) viewModel.name = node.As<ITitleAspect>().Title;
+                };
         }
     }
 }

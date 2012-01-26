@@ -35,7 +35,9 @@ namespace Associativy.Frontends.Engines.Dracula.Handlers
 
                         foreach (var node in graph.Vertices)
                         {
-                            nodes[node.Id] = configurationProvider.ViewModelSetup(node, new NodeViewModel() { ContentItem = node });
+                            var viewModel = new NodeViewModel { ContentItem = node };
+                            configurationProvider.ViewModelSetup(node, viewModel);
+                            nodes[node.Id] = viewModel;
                         }
 
                         return nodes;

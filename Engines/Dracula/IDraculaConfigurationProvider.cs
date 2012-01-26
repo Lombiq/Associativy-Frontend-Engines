@@ -10,6 +10,6 @@ namespace Associativy.Frontends.Engines.Dracula
 {
     public interface IDraculaConfigurationProvider : IEngineConfigurationProvider
     {
-        NodeViewModel ViewModelSetup(IContent node, NodeViewModel viewModel);
+        Action<IContent, NodeViewModel> ViewModelSetup { get; }
     }
 }

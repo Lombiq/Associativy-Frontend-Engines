@@ -20,19 +20,22 @@ namespace Associativy.Frontends.Engines.Graphviz
             get { return _describedEngineContext; }
         }
 
+        public Action<object, FormatVertexEventArgs<IContent>> VertexFormatter { get; protected set; }
+
         public DefaultGraphvizConfigurationProvider()
         {
             GraphContext = new GraphContext();
             EngineContext = DescribedEngineContext;
-        }
 
-        public void FormatVertext(object sender, FormatVertexEventArgs<IContent> e)
-        {
-            // .Has<> doesn't work here
-            if (e.Vertex.As<ITitleAspect>() != null) e.VertexFormatter.Label = e.Vertex.As<ITitleAspect>().Title;
-            if (e.Vertex.As<IRoutableAspect>() != null) e.VertexFormatter.Url = e.Vertex.As<IRoutableAspect>().Path;
+            VertexFormatter =
+                (sender, e) =>
+                {
+                    // .Has<> doesn't work here
+                    if (e.Vertex.As<ITitleAspect>() != null) e.VertexFormatter.Label = e.Vertex.As<ITitleAspect>().Title;
+                    if (e.Vertex.As<IRoutableAspect>() != null) e.VertexFormatter.Url = e.Vertex.As<IRoutableAspect>().Path;
 
-            e.VertexFormatter.Shape = QuickGraph.Graphviz.Dot.GraphvizVertexShape.Diamond;
+                    e.VertexFormatter.Shape = QuickGraph.Graphviz.Dot.GraphvizVertexShape.Diamond;
+                };
         }
     }
 }
