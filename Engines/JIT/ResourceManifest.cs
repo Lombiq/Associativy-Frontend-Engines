@@ -11,7 +11,7 @@ namespace Associativy.Frontends.Engines.JIT
             var manifest = builder.Add();
 
             manifest.DefineScript("JITEngine").SetUrl("Engines/JIT/JIT.custom.min.js");
-            manifest.DefineScript("JIT").SetUrl("Engines/JIT/JITDrawer.js").SetDependencies(new string[] { "jQueryUI", "JITEngine" });
+            manifest.DefineScript("JIT").SetUrl("Engines/JIT/JITDrawer.js").SetDependencies(new string[] { "jQueryUI_Slider", "JITEngine" });
 
             manifest.DefineStyle("JIT").SetUrl("Engines/JIT/associativy-jit.css");
         }
