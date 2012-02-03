@@ -11,16 +11,9 @@ namespace Associativy.Frontends.Drivers
     [OrchardFeature("Associativy.Frontends")]
     public class GraphPartDriver : ContentPartDriver<GraphPart>
     {
-        private readonly IAssociativyServices _associativyServices;
-
         protected override string Prefix
         {
             get { return "Associativy.Frontends.GraphPart"; }
-        }
-
-        public GraphPartDriver(IAssociativyServices associativyServices)
-        {
-            _associativyServices = associativyServices;
         }
 
         protected override DriverResult Display(GraphPart part, string displayType, dynamic shapeHelper)

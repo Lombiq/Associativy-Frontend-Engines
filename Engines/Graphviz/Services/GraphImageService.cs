@@ -66,13 +66,15 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
                 {
                 }
 
-                var wc = new WebClient();
-                var svgData = wc.UploadString("http://rise4fun.com/services.svc/ask/agl", dotData);
-
-                using (var stream = _storageProvider.CreateFile(filePath).OpenWrite())
+                using (var wc = new WebClient())
                 {
-                    var bytes = Encoding.UTF8.GetBytes(svgData);
-                    stream.Write(bytes, 0, bytes.Length);
+                    var svgData = wc.UploadString("http://rise4fun.com/services.svc/ask/agl", dotData);
+
+                    using (var stream = _storageProvider.CreateFile(filePath).OpenWrite())
+                    {
+                        var bytes = Encoding.UTF8.GetBytes(svgData);
+                        stream.Write(bytes, 0, bytes.Length);
+                    }
                 }
 
                 return _storageProvider.GetPublicUrl(filePath);

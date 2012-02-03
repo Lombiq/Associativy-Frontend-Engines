@@ -44,13 +44,13 @@ namespace Associativy.Frontends
                 });
         }
 
-        public virtual void GetRoutes(ICollection<RouteDescriptor> routes)
+        public void GetRoutes(ICollection<RouteDescriptor> routes)
         {
             foreach (var routeDescriptor in GetRoutes())
                 routes.Add(routeDescriptor);
         }
 
-        public virtual IEnumerable<RouteDescriptor> GetRoutes()
+        public IEnumerable<RouteDescriptor> GetRoutes()
         {
             return _routes;
         }

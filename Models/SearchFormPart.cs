@@ -24,7 +24,7 @@ namespace Associativy.Frontends.Models
                 if (value != null)
                 {
                     LabelsArray = value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    LabelsArray = (from p in LabelsArray where p.Trim() != "" select p.Trim()).ToArray();
+                    LabelsArray = (from p in LabelsArray where !String.IsNullOrEmpty(p.Trim()) select p.Trim()).ToArray();
                 }
             }
         }

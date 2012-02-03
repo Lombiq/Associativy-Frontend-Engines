@@ -13,9 +13,9 @@ namespace Associativy.Frontends.ConfigurationDiscovery
     [OrchardFeature("Associativy.Frontends")]
     public abstract class EngineConfigurationProviderBase : IEngineConfigurationProvider
     {
-        public virtual IEngineContext EngineContext { get; protected set; }
+        public IEngineContext EngineContext { get; protected set; }
 
-        public virtual IGraphContext GraphContext { get; protected set; }
+        public IGraphContext GraphContext { get; protected set; }
 
         public virtual Func<IContentQuery<ContentItem>, IContentQuery<ContentItem>> GraphQueryModifier
         {
