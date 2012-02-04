@@ -17,8 +17,7 @@
                 useGradients = nativeCanvasSupport;
                 animate = !(iStuff || !nativeCanvasSupport);
 
-                // init ForceDirected
-                var graph = new $jit.ForceDirected({
+                var graphSetup = {
                     //id of the visualization container
                     injectInto: "associativy-jit-associations",
                     //Enable zooming and panning
@@ -143,12 +142,17 @@
                         style.top = (top + 10) + "px";
                         style.display = "";
                     }
-                });
+                };
+
+                graphSetup = this.modifyGraphSetup(graphSetup);
+
+                var graph = new $jit.ForceDirected(graphSetup);
 
                 this.redraw(graph, json);
 
                 return graph;
             },
+
             redraw: function (graph, json) {
                 // load JSON data.
                 graph.loadJSON(json);
@@ -168,6 +172,11 @@
                         });
                     }
                 });
+            },
+
+            // Method to override
+            modifyGraphSetup: function (graphSetup) {
+                return graphSetup;
             }
         }
     });
