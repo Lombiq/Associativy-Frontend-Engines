@@ -627,14 +627,16 @@
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
     <Compile Include="ConfigurationDiscovery\EngineConfigurationProviderExtensions.cs" />
-    <Compile Include="Handlers\EngineCommonPartHandler.cs" />
+    <Compile Include="Extensions\ViewHelperExtensions.cs" />
     <Compile Include="Models\EngineCommonPart.cs" />
     <Compile Include="Models\GraphPart.cs" />
     <Compile Include="Models\SearchFormPart.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Routes.cs" />
-    <Compile Include="FrontendsRoutesBase.cs" />
+    <Compile Include="FrontendsRoutesProviderBase.cs" />
     <Compile Include="ConfigurationDiscovery\IEngineConfigurationManager.cs" />
+    <Compile Include="Services\GraphContextEncoder.cs" />
+    <Compile Include="Services\IGraphContextEncoder.cs" />
     <Compile Include="ViewModels\NodeViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

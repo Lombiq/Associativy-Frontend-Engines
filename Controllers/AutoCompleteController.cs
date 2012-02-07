@@ -19,25 +19,26 @@ using System.Diagnostics;
 using Associativy.Frontends.Models;
 using Associativy.GraphDiscovery;
 using Piedone.HelpfulLibraries.Serialization;
+using Associativy.Frontends.Services;
 
 namespace Associativy.Frontends.Controllers
 {
     [OrchardFeature("Associativy.Frontends")]
     public class AutoCompleteController : AssociativyControllerBase
     {
-        protected readonly ISimpleSerializer _simpleSerializer;
+        protected readonly IGraphContextEncoder _graphContextEncoder;
 
         public AutoCompleteController(
             IAssociativyServices associativyServices,
-            ISimpleSerializer simpleSerializer)
+            IGraphContextEncoder graphContextEncoder)
             : base(associativyServices)
         {
-            _simpleSerializer = simpleSerializer;
+            _graphContextEncoder = graphContextEncoder;
         }
 
-        public virtual JsonResult FetchSimilarLabels(string graphContextBase64, string labelSnippet)
+        public virtual JsonResult FetchSimilarLabels(string encodedGraphContext, string labelSnippet)
         {
-            return Json(_nodeManager.GetSimilarNodes(_simpleSerializer.Base64Deserialize<IGraphContext>(graphContextBase64), labelSnippet).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
+            return Json(_nodeManager.GetSimilarNodes(_graphContextEncoder.DecodeGraphContext(encodedGraphContext), labelSnippet).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }

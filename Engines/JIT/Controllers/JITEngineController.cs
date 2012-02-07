@@ -14,6 +14,7 @@ using Associativy.Frontends.Models;
 using Piedone.HelpfulLibraries.Serialization;
 using Associativy.GraphDiscovery;
 using Associativy.Frontends.ConfigurationDiscovery;
+using Associativy.Frontends.Services;
 
 namespace Associativy.Frontends.Engines.JIT.Controllers
 {

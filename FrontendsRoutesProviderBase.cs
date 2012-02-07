@@ -9,39 +9,44 @@ using Associativy.GraphDiscovery;
 namespace Associativy.Frontends
 {
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class FrontendsRoutesBase : IRouteProvider
+    public abstract class FrontendsRoutesProviderBase : IRouteProvider
     {
-        private readonly List<RouteDescriptor> _routes = new List<RouteDescriptor>();
-        abstract protected string ModuleName { get; }
+        protected readonly List<RouteDescriptor> _routes = new List<RouteDescriptor>();
 
-        protected void AddFrontendEngineRoute(IGraphContext graphContext, string relativeUrl, string frontendEngine)
+        protected void RegisterEngineRoute(string url, string frontendEngine, IGraphContext graphContext, string engineModule = "Associativy.Frontends")
         {
-            AddRoute(
-                ModuleName + " " + frontendEngine,
-                graphContext,
+            RegisterRoute(
+                graphContext.Stringify() + " " + frontendEngine,
                 new Route(
-                        ModuleName + "/" + relativeUrl,
+                        url,
                         new RouteValueDictionary {
-                                                                {"area", "Associativy.Frontends"},
+                                                                {"area", engineModule},
                                                                 {"controller", frontendEngine + "Engine"},
                                                                 {"action", "Index"}
                                                             },
                         new RouteValueDictionary(),
                         new RouteValueDictionary {
-                                                                {"area", "Associativy.Frontends"},
+                                                                {"area", engineModule},
                                                             },
-                        new MvcRouteHandler()));
+                        new MvcRouteHandler()),
+                 graphContext);
         }
 
-        protected void AddRoute(string name, IGraphContext graphContext, Route route)
+        protected void RegisterRoute(string name, Route route, IGraphContext graphContext)
         {
             route.DataTokens["GraphContext"] = graphContext;
+            route.DataTokens["RouteName"] = name;
 
             _routes.Add(new RouteDescriptor
-                {
-                    Name = name,
-                    Route = route
-                });
+            {
+                Name = name,
+                Route = route
+            });
+        }
+
+        protected void RegisterRoute(Route route, IGraphContext graphContext)
+        {
+            RegisterRoute(graphContext.Stringify() + route.Url, route, graphContext);
         }
 
         public void GetRoutes(ICollection<RouteDescriptor> routes)

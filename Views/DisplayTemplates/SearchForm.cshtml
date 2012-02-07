@@ -1,13 +1,13 @@
 ﻿@using Orchard.ContentManagement;
 @using Associativy.Frontends.Models
+@using Associativy.Frontends.Extensions
 @model Associativy.Frontends.Models.SearchFormPart
+           
 @{
     Script.Require("AssociativyAutoComplete").AtHead();
     Style.Require("jQueryUI_Orchard");
-
-    var routeData = Html.ViewContext.RouteData.Values;
 }
-@using (Html.BeginForm("ShowAssociations", routeData["controller"].ToString(), FormMethod.Get, new { @id = "associativy-search-form" }))
+@using (Html.BeginRouteToCurrentForm(Html.ViewContext.RouteData.Route, new { Action = "ShowAssociations" }, FormMethod.Get, new { @id = "associativy-search-form" }))
 {
     
     <fieldset>
@@ -20,5 +20,5 @@
 }
 
 <script type="text/javascript">
-    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphContextBase64 = Model.As<EngineCommonPart>().GraphContextBase64 })");
+    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { EncodedGraphContext = Html.EncodeGraphContext(Model.As<EngineCommonPart>().GraphContext) })");
 </script>

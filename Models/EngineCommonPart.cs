@@ -16,13 +16,6 @@ namespace Associativy.Frontends.Models
     {
         public IGraphContext GraphContext { get; set; }
 
-        private readonly LazyField<string> _graphContextBase64 = new LazyField<string>();
-        public LazyField<string> GraphContextBase64Field { get { return _graphContextBase64; } }
-        public string GraphContextBase64
-        {
-            get { return _graphContextBase64.Value; }
-        }
-
         public IEngineContext EngineContext { get; set; }
 
         public IEngineConfigurationProvider ConfigurationProvider { get; set; }

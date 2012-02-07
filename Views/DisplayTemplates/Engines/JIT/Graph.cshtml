@@ -1,18 +1,20 @@
-﻿@using Orchard.ContentManagement
+﻿@using Orchard.ContentManagement;
+@using Associativy.Frontends.Models
+@using Associativy.Frontends.Extensions
 @model Associativy.Frontends.Models.GraphPart
 @{
     Script.Require("JIT").AtHead();
     Style.Require("JIT");
 
     var maxZoomLevel = Model.ZoomLevelCount - 1;
-    var routeData = Html.ViewContext.RouteData.Values;
 }
+
 <script type="text/javascript">
 $(document).ready(function() {
     var graph;
 
     var loadGraph = function(zoomLevel, redraw) {
-        $.getJSON("@Url.Action("FetchAssociations", routeData["controller"].ToString())?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
+        $.getJSON("@Url.RouteToCurrent(Html.ViewContext.RouteData.Route, new { Action = "FetchAssociations" })?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
             if (redraw == null) redraw = false;
             if (!redraw) graph = $.jit.draw(graphData);
             else $.jit.redraw(graph, graphData);
