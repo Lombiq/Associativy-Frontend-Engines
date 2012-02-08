@@ -127,9 +127,6 @@
                     // on label creation and only for DOM labels (not native canvas ones).  
                     onCreateLabel: function (domElement, node) {
                         domElement.innerHTML = node.name;
-                        var style = domElement.style;
-                        style.fontSize = "0.8em";
-                        style.color = "#ddd";
                     },
                     // Change node styles when DOM labels are placed
                     // or moved.
