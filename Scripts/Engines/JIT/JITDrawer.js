@@ -17,6 +17,8 @@
                 useGradients = nativeCanvasSupport;
                 animate = !(iStuff || !nativeCanvasSupport);
 
+                labelType = "HTML"; // This may need revision
+
                 var graphSetup = {
                     //id of the visualization container
                     injectInto: "associativy-jit-associations",
@@ -126,7 +128,12 @@
                     // This method is only triggered  
                     // on label creation and only for DOM labels (not native canvas ones).  
                     onCreateLabel: function (domElement, node) {
-                        domElement.innerHTML = node.name;
+                        if (!node.data["url"]) {
+                            domElement.innerHTML = node.name;
+                            return;
+                        }
+
+                        domElement.innerHTML = "<a href='" + node.data["url"] + "'>" + node.name + "</a>";
                     },
                     // Change node styles when DOM labels are placed
                     // or moved.

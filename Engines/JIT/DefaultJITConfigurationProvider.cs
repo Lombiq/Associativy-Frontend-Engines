@@ -32,6 +32,7 @@ namespace Associativy.Frontends.Engines.JIT
                 {
                     // .Has<> doesn't work here
                     if (node.As<ITitleAspect>() != null) viewModel.name = node.As<ITitleAspect>().Title;
+                    if (node.As<IRoutableAspect>() != null) viewModel.data["url"] = node.As<IRoutableAspect>().Path; // May need revision after 1.4
                 };
         }
     }
