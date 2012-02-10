@@ -12,7 +12,7 @@ using Orchard.ContentManagement.Aspects;
 namespace Associativy.Frontends.Engines.JIT
 {
     [OrchardFeature("Associativy.Frontends.JIT")]
-    public class DefaultJITConfigurationProvider : EngineConfigurationProviderBase, IJITConfigurationProvider
+    public class DefaultJITConfigurationProvider : EngineConfigurationProviderBase<JITConfigurationDescriptor>
     {
         private static readonly IEngineContext _describedEngineContext = new EngineContext { EngineName = "JIT" };
         public static IEngineContext DescribedEngineContext
@@ -20,19 +20,17 @@ namespace Associativy.Frontends.Engines.JIT
             get { return _describedEngineContext; }
         }
 
-        public Action<IContent, NodeViewModel> ViewModelSetup { get; protected set; }
-
-        public DefaultJITConfigurationProvider()
+        public override void Describe(JITConfigurationDescriptor descriptor)
         {
-            GraphContext = new GraphContext();
-            EngineContext = DescribedEngineContext;
+            base.Describe(descriptor);
 
-            ViewModelSetup =
+            descriptor.EngineContext = DescribedEngineContext;
+            descriptor.ViewModelSetup =
                 (node, viewModel) =>
                 {
                     // .Has<> doesn't work here
                     if (node.As<ITitleAspect>() != null) viewModel.name = node.As<ITitleAspect>().Title;
-                    if (node.As<IRoutableAspect>() != null) viewModel.data["url"] = node.As<IRoutableAspect>().Path; // May need revision after 1.4
+                    if (node.As<IRoutableAspect>() != null) viewModel.data["url"] = node.As<IRoutableAspect>().Path; // Needs revision after 1.4
                 };
         }
     }

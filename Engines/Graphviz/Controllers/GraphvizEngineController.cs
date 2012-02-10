@@ -21,7 +21,7 @@ using Associativy.Frontends.ConfigurationDiscovery;
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {
     [OrchardFeature("Associativy.Frontends.Graphviz")]
-    public class GraphvizEngineController : EngineControllerBase<IGraphvizConfigurationProvider>
+    public class GraphvizEngineController : EngineControllerBase<GraphvizConfigurationDescriptor>
     {
         protected readonly IDetachedDelegateBuilder _detachedDelegateBuilder;
         protected readonly IGraphImageService _graphImageService;
@@ -35,18 +35,18 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
             IEngineConfigurationManager configurationManager,
-            IDetachedDelegateBuilder detachedDelegateBuilder,
+            //IDetachedDelegateBuilder detachedDelegateBuilder,
             IGraphImageService graphImageService)
             : base(associativyServices, orchardServices, configurationManager)
         {
-            _detachedDelegateBuilder = detachedDelegateBuilder;
+            //_detachedDelegateBuilder = detachedDelegateBuilder;
             _graphImageService = graphImageService;
         }
 
         public void Index()
         {
             var count = 2;
-            var settings = ConfigurationProvider.MakeDefaultMindSettings();
+            var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
 
             var sw = new Stopwatch();
             sw.Start();
@@ -82,7 +82,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             var page = NewPage("Render");
             _contentManager.UpdateEditor(page, this);
 
-            var settings = ConfigurationProvider.MakeDefaultMindSettings();
+            var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
 
             List<string> graphImageUrls;
 
@@ -119,7 +119,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                     settings.ZoomLevel = zoomLevel;
                     return _graphImageService.ToSvg(GraphContext, fetchGraph(settings), algorithm =>
                             {
-                                algorithm.FormatVertex += ConfigurationProvider.VertexFormatter.Invoke;
+                                algorithm.FormatVertex += ConfigurationDescriptor.VertexFormatter.Invoke;
                             });
                 };
 

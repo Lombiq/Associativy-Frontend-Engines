@@ -13,7 +13,7 @@ using Associativy.Frontends.ConfigurationDiscovery;
 namespace Associativy.Frontends.Engines.Dracula.Controllers
 {
     [OrchardFeature("Associativy.Frontends.Dracula")]
-    public class DraculaEngineController : EngineControllerBase<IDraculaConfigurationProvider>
+    public class DraculaEngineController : EngineControllerBase<DraculaConfigurationDescriptor>
     {
         protected override IEngineContext EngineContext
         {

@@ -10,10 +10,10 @@ namespace Associativy.Frontends.ConfigurationDiscovery
 {
     public interface IEngineConfigurationManager : IDependency
     {
-        TConfigurationProvider FindLastProvider<TConfigurationProvider>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationProvider : IEngineConfigurationProvider;
+        TConfigurationDescriptor FindConfiguration<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
+            where TConfigurationDescriptor : EngineConfigurationDescriptor, new();
 
-        IEnumerable<TConfigurationProvider> FindProviders<TConfigurationProvider>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationProvider : IEngineConfigurationProvider;
+        IEnumerable<TConfigurationDescriptor> FindConfigurations<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
+            where TConfigurationDescriptor : EngineConfigurationDescriptor, new();
     }
 }

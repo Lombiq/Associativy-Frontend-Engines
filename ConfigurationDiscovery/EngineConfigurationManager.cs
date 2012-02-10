@@ -13,34 +13,50 @@ namespace Associativy.Frontends.ConfigurationDiscovery
     public class EngineConfigurationManager : IEngineConfigurationManager
     {
         private readonly IEnumerable<IEngineConfigurationProvider> _registeredProviders;
-        private readonly IProviderFilterer _providerFilterer;
+        private readonly IDescriptorFilterer _providerFilterer;
+        private Dictionary<string, List<EngineConfigurationDescriptor>> _descriptors;
 
         public EngineConfigurationManager(
             IEnumerable<IEngineConfigurationProvider> registeredProviders,
-            IProviderFilterer providerFilterer)
+            IDescriptorFilterer providerFilterer)
         {
             _registeredProviders = registeredProviders;
             _providerFilterer = providerFilterer;
+            _descriptors = new Dictionary<string, List<EngineConfigurationDescriptor>>();
         }
 
-        public TConfigurationProvider FindLastProvider<TConfigurationProvider>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationProvider : IEngineConfigurationProvider
+        public TConfigurationDescriptor FindConfiguration<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
+            where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
         {
-            return FindProviders<TConfigurationProvider>(engineContext, graphContext).LastOrDefault();
+            return FindConfigurations<TConfigurationDescriptor>(engineContext, graphContext).LastOrDefault();
         }
 
-        public IEnumerable<TConfigurationProvider> FindProviders<TConfigurationProvider>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationProvider : IEngineConfigurationProvider
+        public IEnumerable<TConfigurationDescriptor> FindConfigurations<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
+            where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
         {
-            // That's very fast (~50 ticks), so there's no point in caching anything.
-            // If it gets heavy, could be stored in an instance cache.
-            var providerList = new List<TConfigurationProvider>();
-            foreach (var provider in _registeredProviders.Where(provider => typeof(TConfigurationProvider).IsAssignableFrom(provider.GetType())))
+            return _providerFilterer.FilterByMatchingGraphContext(ProduceDescriptors<TConfigurationDescriptor>(), graphContext);
+        }
+
+        private IEnumerable<TConfigurationDescriptor> ProduceDescriptors<TConfigurationDescriptor>()
+            where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+        {
+            var typeName = typeof(TConfigurationDescriptor).FullName;
+            if (!_descriptors.ContainsKey(typeName))
             {
-                providerList.Add((TConfigurationProvider)provider);
+                _descriptors[typeName] = new List<EngineConfigurationDescriptor>();
+
+                var providerType = typeof(IEngineConfigurationProvider<TConfigurationDescriptor>);
+
+                foreach (var provider in _registeredProviders.Where(provider => providerType.IsAssignableFrom(provider.GetType())))
+                {
+                    var descriptor = new TConfigurationDescriptor();
+                    ((IEngineConfigurationProvider<TConfigurationDescriptor>)provider).Describe(descriptor);
+                    descriptor.Freeze();
+                    _descriptors[typeName].Add(descriptor);
+                }
             }
 
-            return _providerFilterer.FilterByMatchingGraphContext(providerList.AsEnumerable(), graphContext);
+            return _descriptors[typeName].Cast<TConfigurationDescriptor>();
         }
     }
 }

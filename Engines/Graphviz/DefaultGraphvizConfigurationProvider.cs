@@ -12,7 +12,7 @@ using QuickGraph.Graphviz;
 namespace Associativy.Frontends.Engines.Graphviz
 {
     [OrchardFeature("Associativy.Frontends.Graphviz")]
-    public class DefaultGraphvizConfigurationProvider : EngineConfigurationProviderBase, IGraphvizConfigurationProvider
+    public class DefaultGraphvizConfigurationProvider : EngineConfigurationProviderBase<GraphvizConfigurationDescriptor>
     {
         private static readonly IEngineContext _describedEngineContext = new EngineContext { EngineName = "Graphviz" };
         public static IEngineContext DescribedEngineContext
@@ -20,19 +20,17 @@ namespace Associativy.Frontends.Engines.Graphviz
             get { return _describedEngineContext; }
         }
 
-        public Action<object, FormatVertexEventArgs<IContent>> VertexFormatter { get; protected set; }
-
-        public DefaultGraphvizConfigurationProvider()
+        public override void Describe(GraphvizConfigurationDescriptor descriptor)
         {
-            GraphContext = new GraphContext();
-            EngineContext = DescribedEngineContext;
+            base.Describe(descriptor);
 
-            VertexFormatter =
+            descriptor.EngineContext = DescribedEngineContext;
+            descriptor.VertexFormatter =
                 (sender, e) =>
                 {
                     // .Has<> doesn't work here
                     if (e.Vertex.As<ITitleAspect>() != null) e.VertexFormatter.Label = e.Vertex.As<ITitleAspect>().Title;
-                    if (e.Vertex.As<IRoutableAspect>() != null) e.VertexFormatter.Url = e.Vertex.As<IRoutableAspect>().Path;
+                    if (e.Vertex.As<IRoutableAspect>() != null) e.VertexFormatter.Url = e.Vertex.As<IRoutableAspect>().Path; // Needs revision after 1.4
 
                     e.VertexFormatter.Shape = QuickGraph.Graphviz.Dot.GraphvizVertexShape.Diamond;
                 };

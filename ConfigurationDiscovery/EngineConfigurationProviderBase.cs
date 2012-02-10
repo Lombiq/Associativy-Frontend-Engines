@@ -11,20 +11,15 @@ using Orchard.Core.Routable.Models;
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class EngineConfigurationProviderBase : IEngineConfigurationProvider
+    public abstract class EngineConfigurationProviderBase<TConfigurationDescriptor> : IEngineConfigurationProvider<TConfigurationDescriptor>
+        where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
     {
-        public IEngineContext EngineContext { get; protected set; }
-
-        public IGraphContext GraphContext { get; protected set; }
-
-        public virtual Func<IContentQuery<ContentItem>, IContentQuery<ContentItem>> GraphQueryModifier
+        public virtual void Describe(TConfigurationDescriptor descriptor)
         {
-            get { return (query) => query.Join<RoutePartRecord>(); }
-        }
-
-        public virtual int MaxZoomLevel
-        {
-            get { return 10; }
+            // Setting defaults
+            descriptor.GraphContext = new GraphContext();
+            descriptor.GraphQueryModifier = (query) => query.Join<RoutePartRecord>();
+            descriptor.MaxZoomLevel = 10;
         }
     }
 }

@@ -9,11 +9,13 @@ using Orchard.ContentManagement;
 
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
-    public interface IEngineConfigurationProvider : IAssociativyProvider
+    public interface IEngineConfigurationProvider : IDependency
     {
-        IGraphContext GraphContext { get; }
-        IEngineContext EngineContext { get; }
-        Func<IContentQuery<ContentItem>, IContentQuery<ContentItem>> GraphQueryModifier { get; }
-        int MaxZoomLevel { get; }
+    }
+
+    public interface IEngineConfigurationProvider<TConfigurationDescriptor> : IEngineConfigurationProvider
+        where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+    {
+        void Describe(TConfigurationDescriptor descriptor);
     }
 }

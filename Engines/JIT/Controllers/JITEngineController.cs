@@ -19,7 +19,7 @@ using Associativy.Frontends.Services;
 namespace Associativy.Frontends.Engines.JIT.Controllers
 {
     [OrchardFeature("Associativy.Frontends.JIT")]
-    public class JITEngineController : EngineControllerBase<IJITConfigurationProvider>
+    public class JITEngineController : EngineControllerBase<JITConfigurationDescriptor>
     {
         protected override IEngineContext EngineContext
         {
@@ -40,7 +40,7 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
 
             _contentManager.UpdateEditor(page, this);
 
-            var settings = ConfigurationProvider.MakeDefaultMindSettings();
+            var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
             settings.ZoomLevel = zoomLevel;
 
             IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
@@ -59,7 +59,7 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
             {
                 // Setting the ContentItem causes "A circular reference was detected while serializing an object of type 'Orchard.ContentManagement.Records.ContentItemRecord'."
                 var viewModel = new NodeViewModel { id = vertex.Id.ToString() };
-                ConfigurationProvider.ViewModelSetup(vertex, viewModel);
+                ConfigurationDescriptor.ViewModelSetup(vertex, viewModel);
                 viewNodes[vertex.Id] = viewModel;
             }
 

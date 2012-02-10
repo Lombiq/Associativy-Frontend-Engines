@@ -12,7 +12,7 @@ using Associativy.Frontends.Engines.Dracula.ViewModels;
 namespace Associativy.Frontends.Engines.Dracula
 {
     [OrchardFeature("Associativy.Frontends.Dracula")]
-    public class DefaultDraculaConfigurationProvider : EngineConfigurationProviderBase, IDraculaConfigurationProvider
+    public class DefaultDraculaConfigurationProvider : EngineConfigurationProviderBase<DraculaConfigurationDescriptor>
     {
         private static readonly IEngineContext _describedEngineContext = new EngineContext { EngineName = "Dracula" };
         public static IEngineContext DescribedEngineContext
@@ -20,14 +20,12 @@ namespace Associativy.Frontends.Engines.Dracula
             get { return _describedEngineContext; }
         }
 
-        public Action<IContent, NodeViewModel> ViewModelSetup { get; protected set; }
-
-        public DefaultDraculaConfigurationProvider()
+        public override void Describe(DraculaConfigurationDescriptor descriptor)
         {
-            GraphContext = new GraphContext();
-            EngineContext = DescribedEngineContext;
+            base.Describe(descriptor);
 
-            ViewModelSetup =
+            descriptor.EngineContext = DescribedEngineContext;
+            descriptor.ViewModelSetup =
                 (node, viewModel) =>
                 {
                     // .Has<> doesn't work here

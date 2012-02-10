@@ -29,8 +29,8 @@ namespace Associativy.Frontends.Controllers
     /// </summary>
     [Themed]
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class EngineControllerBase<TConfigurationProvider> : DynamicallyContextedControllerBase, IUpdateModel
-        where TConfigurationProvider : IEngineConfigurationProvider
+    public abstract class EngineControllerBase<TConfigurationDescriptor> : DynamicallyContextedControllerBase, IUpdateModel
+        where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
     {
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
@@ -38,17 +38,17 @@ namespace Associativy.Frontends.Controllers
 
         abstract protected IEngineContext EngineContext { get; }
 
-        private TConfigurationProvider _configurationProvider;
-        protected virtual TConfigurationProvider ConfigurationProvider
+        private TConfigurationDescriptor _configurationDescriptor;
+        protected virtual TConfigurationDescriptor ConfigurationDescriptor
         {
             get
             {
-                if (_configurationProvider == null)
+                if (_configurationDescriptor == null)
                 {
-                    _configurationProvider = _configurationManager.FindLastProvider<TConfigurationProvider>(EngineContext, GraphContext);
+                    _configurationDescriptor = _configurationManager.FindConfiguration<TConfigurationDescriptor>(EngineContext, GraphContext);
                 }
 
-                return _configurationProvider;
+                return _configurationDescriptor;
             }
         }
 
@@ -125,7 +125,7 @@ namespace Associativy.Frontends.Controllers
             var page = _contentManager.New(EngineContext.EngineName + pageName);
 
             var engineCommonPart = page.As<EngineCommonPart>();
-            engineCommonPart.ConfigurationProvider = ConfigurationProvider;
+            engineCommonPart.ConfigurationDescriptor = ConfigurationDescriptor;
             engineCommonPart.GraphContext = GraphContext;
             engineCommonPart.EngineContext = EngineContext;
 
@@ -152,7 +152,7 @@ namespace Associativy.Frontends.Controllers
 
             if (settings == null)
             {
-                settings = ConfigurationProvider.MakeDefaultMindSettings();
+                settings = ConfigurationDescriptor.MakeDefaultMindSettings();
             }
 
             return _mind.MakeAssociations(GraphContext, searched, settings);
@@ -161,13 +161,13 @@ namespace Associativy.Frontends.Controllers
         protected virtual void LoadGraphPart(IContent page, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> retrieveGraph)
         {
             var graphPart = page.As<GraphPart>();
-            var settings = ConfigurationProvider.MakeDefaultMindSettings();
+            var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
             graphPart.Graph = retrieveGraph(settings);
 
             graphPart.ZoomLevelCountField.Loader(() =>
             {
-                settings.ZoomLevel = ConfigurationProvider.MaxZoomLevel;
-                return _associativyServices.GraphService.CalculateZoomLevelCount(retrieveGraph(settings), ConfigurationProvider.MaxZoomLevel);
+                settings.ZoomLevel = ConfigurationDescriptor.MaxZoomLevel;
+                return _associativyServices.GraphService.CalculateZoomLevelCount(retrieveGraph(settings), ConfigurationDescriptor.MaxZoomLevel);
             });
         }
     }

@@ -594,10 +594,13 @@
     <Folder Include="Views\EditorTemplates\Parts\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engines\Dracula\DraculaConfigurationDescriptor.cs" />
+    <Compile Include="Engines\Graphviz\GraphvizConfigurationDescriptor.cs" />
+    <Compile Include="ConfigurationDiscovery\EngineConfigurationDescriptor.cs" />
     <Compile Include="ConfigurationDiscovery\EngineConfigurationManager.cs" />
     <Compile Include="ConfigurationDiscovery\EngineConfigurationProviderBase.cs" />
     <Compile Include="ConfigurationDiscovery\IEngineConfigurationProvider.cs" />
-    <Compile Include="ConfigurationDiscovery\ProviderFiltererExtensions.cs" />
+    <Compile Include="ConfigurationDiscovery\DescriptorFiltererExtensions.cs" />
     <Compile Include="Controllers\DynamicallyContextedControllerBase.cs" />
     <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\EngineControllerBase.cs" />
@@ -606,7 +609,6 @@
     <Compile Include="Engines\Dracula\Controllers\DraculaEngineController.cs" />
     <Compile Include="Engines\Dracula\DefaultDraculaConfigurationProvider.cs" />
     <Compile Include="Engines\Dracula\Handlers\DraculaHandler.cs" />
-    <Compile Include="Engines\Dracula\IDraculaConfigurationProvider.cs" />
     <Compile Include="Engines\Dracula\Models\DraculaPart.cs" />
     <Compile Include="Engines\Dracula\ResourceManifest.cs" />
     <Compile Include="Engines\Dracula\ViewModels\NodeViewModel.cs" />
@@ -615,7 +617,6 @@
     <Compile Include="Engines\Graphviz\Controllers\GraphvizEngineController.cs" />
     <Compile Include="Engines\Graphviz\DefaultGraphvizConfigurationProvider.cs" />
     <Compile Include="Engines\Graphviz\Handlers\GraphvizHandler.cs" />
-    <Compile Include="Engines\Graphviz\IGraphvizConfigurationProvider.cs" />
     <Compile Include="Engines\Graphviz\ResourceManifest.cs" />
     <Compile Include="Engines\Graphviz\Services\GraphImageService.cs" />
     <Compile Include="Engines\Graphviz\Services\IGraphImageService.cs" />
@@ -623,10 +624,10 @@
     <Compile Include="Engines\JIT\Controllers\JITEngineController.cs" />
     <Compile Include="Engines\JIT\DefaultJITConfigurationProvider.cs" />
     <Compile Include="Engines\JIT\Handlers\JITHandler.cs" />
-    <Compile Include="Engines\JIT\IJITConfigurationProvider.cs" />
+    <Compile Include="Engines\JIT\JITConfigurationDescriptor.cs" />
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
-    <Compile Include="ConfigurationDiscovery\EngineConfigurationProviderExtensions.cs" />
+    <Compile Include="ConfigurationDiscovery\EngineConfigurationDescriptorExtensions.cs" />
     <Compile Include="Extensions\ViewHelperExtensions.cs" />
     <Compile Include="Models\EngineCommonPart.cs" />
     <Compile Include="Models\GraphPart.cs" />

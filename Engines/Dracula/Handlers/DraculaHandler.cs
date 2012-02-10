@@ -29,14 +29,14 @@ namespace Associativy.Frontends.Engines.Dracula.Handlers
                 part.NodesField.Loader(() =>
                     {
                         var graph = part.As<GraphPart>().Graph;
-                        var configurationProvider = (IDraculaConfigurationProvider)part.As<EngineCommonPart>().ConfigurationProvider;
+                        var configurationDescriptor = (DraculaConfigurationDescriptor)part.As<EngineCommonPart>().ConfigurationDescriptor;
 
                         var nodes = new Dictionary<int, NodeViewModel>(graph.VertexCount);
 
                         foreach (var node in graph.Vertices)
                         {
                             var viewModel = new NodeViewModel { ContentItem = node };
-                            configurationProvider.ViewModelSetup(node, viewModel);
+                            configurationDescriptor.ViewModelSetup(node, viewModel);
                             nodes[node.Id] = viewModel;
                         }
 
