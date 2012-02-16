@@ -34,8 +34,8 @@ namespace Associativy.Frontends.ConfigurationDiscovery
             }
         }
 
-        private Func<IContentQuery<ContentItem>, IContentQuery<ContentItem>> _graphQueryModifier;
-        public Func<IContentQuery<ContentItem>, IContentQuery<ContentItem>> GraphQueryModifier
+        private Action<IContentQuery<ContentItem>> _graphQueryModifier;
+        public Action<IContentQuery<ContentItem>> GraphQueryModifier
         {
             get { return _graphQueryModifier; }
             set
