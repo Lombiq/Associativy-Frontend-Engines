@@ -6,7 +6,7 @@ using Orchard.Environment.Extensions;
 using Associativy.Frontends.Engines;
 using Associativy.GraphDiscovery;
 using Orchard.ContentManagement;
-using Orchard.Core.Routable.Models;
+using Orchard.Core.Title.Models;
 
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
@@ -18,7 +18,7 @@ namespace Associativy.Frontends.ConfigurationDiscovery
         {
             // Setting defaults
             descriptor.GraphContext = new GraphContext();
-            descriptor.GraphQueryModifier = (query) => query.Join<RoutePartRecord>();
+            descriptor.GraphQueryModifier = (query) => query.Join<TitlePartRecord>();
             descriptor.MaxZoomLevel = 10;
         }
     }
