@@ -641,7 +641,7 @@
     <Compile Include="ViewModels\NodeViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Placement.info" />
+    <Content Include="Placement.info" />
     <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\AUTHORS" />
     <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\poly.json" />
     <None Include="Scripts\Engines\Graphviz\Mapquery-0.1\demo\data\poly2.json" />
