@@ -12,14 +12,16 @@ namespace Associativy.Frontends.Engines.Dracula
     [OrchardFeature("Associativy.Frontends.Dracula")]
     public class DraculaConfigurationDescriptor : EngineConfigurationDescriptor
     {
-        private Action<IContent, NodeViewModel> _viewModelSetup;
-        public Action<IContent, NodeViewModel> ViewModelSetup
+        public delegate void ViewModelSetup(IContent contentItem, NodeViewModel viewModel);
+
+        private ViewModelSetup _setupViewModel;
+        public ViewModelSetup SetupViewModel
         {
-            get { return _viewModelSetup; }
+            get { return _setupViewModel; }
             set
             {
                 ThrowIfFrozen();
-                _viewModelSetup = value;
+                _setupViewModel = value;
             }
         }
     }

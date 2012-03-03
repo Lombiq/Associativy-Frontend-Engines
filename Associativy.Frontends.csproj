@@ -627,7 +627,6 @@
     <Compile Include="Engines\JIT\JITConfigurationDescriptor.cs" />
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
-    <Compile Include="ConfigurationDiscovery\EngineConfigurationDescriptorExtensions.cs" />
     <Compile Include="Extensions\ViewHelperExtensions.cs" />
     <Compile Include="Models\EngineCommonPart.cs" />
     <Compile Include="Models\GraphPart.cs" />

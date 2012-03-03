@@ -25,7 +25,7 @@ namespace Associativy.Frontends.Engines.JIT
             base.Describe(descriptor);
 
             descriptor.EngineContext = DescribedEngineContext;
-            descriptor.ViewModelSetup =
+            descriptor.SetupViewModel =
                 (node, viewModel) =>
                 {
                     // .Has<> doesn't work here

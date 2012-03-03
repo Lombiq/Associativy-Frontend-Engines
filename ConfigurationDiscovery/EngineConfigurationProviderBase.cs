@@ -18,7 +18,7 @@ namespace Associativy.Frontends.ConfigurationDiscovery
         {
             // Setting defaults
             descriptor.GraphContext = new GraphContext();
-            descriptor.GraphQueryModifier = (query) => query.Join<TitlePartRecord>();
+            descriptor.ModifyGraphQuery = (query) => query.Join<TitlePartRecord>();
             descriptor.MaxZoomLevel = 10;
         }
     }

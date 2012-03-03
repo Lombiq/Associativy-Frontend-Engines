@@ -12,14 +12,16 @@ namespace Associativy.Frontends.Engines.Graphviz
     [OrchardFeature("Associativy.Frontends.Graphviz")]
     public class GraphvizConfigurationDescriptor : EngineConfigurationDescriptor
     {
-        private Action<object, FormatVertexEventArgs<IContent>> _vertexFormatter;
-        public Action<object, FormatVertexEventArgs<IContent>> VertexFormatter
+        public delegate void VertexFormatter(object sender, FormatVertexEventArgs<IContent> e);
+
+        private VertexFormatter _formatVertex;
+        public VertexFormatter FormatVertex
         {
-            get { return _vertexFormatter; }
+            get { return _formatVertex; }
             set
             {
                 ThrowIfFrozen();
-                _vertexFormatter = value;
+                _formatVertex = value;
             }
         }
     }

@@ -6,6 +6,7 @@ using Orchard.Environment.Extensions;
 using Associativy.GraphDiscovery;
 using Associativy.Frontends.Engines;
 using Orchard.ContentManagement;
+using Associativy.Models.Mind;
 
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
@@ -34,14 +35,16 @@ namespace Associativy.Frontends.ConfigurationDiscovery
             }
         }
 
-        private Action<IContentQuery<ContentItem>> _graphQueryModifier;
-        public Action<IContentQuery<ContentItem>> GraphQueryModifier
+        public delegate void GraphQueryModifier(IContentQuery<ContentItem> query);
+
+        private GraphQueryModifier _modifyGraphQuery;
+        public GraphQueryModifier ModifyGraphQuery
         {
-            get { return _graphQueryModifier; }
+            get { return _modifyGraphQuery; }
             set
             {
                 ThrowIfFrozen();
-                _graphQueryModifier = value;
+                _modifyGraphQuery = value;
             }
         }
 
@@ -54,6 +57,20 @@ namespace Associativy.Frontends.ConfigurationDiscovery
                 ThrowIfFrozen();
                 _maxZoomLevel = value;
             }
+        }
+    }
+
+    [OrchardFeature("Associativy.Frontends")]
+    public static class EngineConfigurationDescriptorExtensions
+    {
+        public static IMindSettings MakeDefaultMindSettings(this EngineConfigurationDescriptor configurationDescriptor)
+        {
+            return new MindSettings()
+            {
+                ZoomLevel = 0,
+                MaxZoomLevel = configurationDescriptor.MaxZoomLevel,
+                ModifyQuery = configurationDescriptor.ModifyGraphQuery.Invoke
+            };
         }
     }
 }

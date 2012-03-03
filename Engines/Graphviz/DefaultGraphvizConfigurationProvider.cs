@@ -25,7 +25,7 @@ namespace Associativy.Frontends.Engines.Graphviz
             base.Describe(descriptor);
 
             descriptor.EngineContext = DescribedEngineContext;
-            descriptor.VertexFormatter =
+            descriptor.FormatVertex =
                 (sender, e) =>
                 {
                     // .Has<> doesn't work here

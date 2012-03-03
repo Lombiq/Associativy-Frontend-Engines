@@ -119,7 +119,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                     settings.ZoomLevel = zoomLevel;
                     return _graphImageService.ToSvg(GraphContext, fetchGraph(settings), algorithm =>
                             {
-                                algorithm.FormatVertex += ConfigurationDescriptor.VertexFormatter.Invoke;
+                                algorithm.FormatVertex += ConfigurationDescriptor.FormatVertex.Invoke;
                             });
                 };
 
