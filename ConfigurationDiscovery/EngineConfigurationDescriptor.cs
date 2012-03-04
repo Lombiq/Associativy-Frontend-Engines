@@ -7,11 +7,12 @@ using Associativy.GraphDiscovery;
 using Associativy.Frontends.Engines;
 using Orchard.ContentManagement;
 using Associativy.Models.Mind;
+using Piedone.HelpfulLibraries.Utilities;
 
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class EngineConfigurationDescriptor : Freezable
+    public abstract class EngineConfigurationDescriptor : FreezableBase
     {
         private IEngineContext _engineContext;
         public IEngineContext EngineContext
