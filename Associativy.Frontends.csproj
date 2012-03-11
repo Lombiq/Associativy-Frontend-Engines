@@ -590,9 +590,7 @@
       <Name>Piedone.HelpfulLibraries</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\EditorTemplates\Parts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Engines\Dracula\DraculaConfigurationDescriptor.cs" />
     <Compile Include="Engines\Graphviz\GraphvizConfigurationDescriptor.cs" />
