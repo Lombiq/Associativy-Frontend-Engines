@@ -12,15 +12,15 @@ namespace Associativy.Frontends.ConfigurationDiscovery
     [OrchardFeature("Associativy.Frontends")]
     public class ConfigurationManager : IConfigurationManager
     {
-        private readonly IEnumerable<IConfigurationProvider> _registeredProviders;
+        private readonly IEnumerable<IConfigurationProvider> _configurationProviders;
         private readonly IDescriptorFilterer _providerFilterer;
         private Dictionary<string, List<ConfigurationDescriptor>> _descriptors;
 
         public ConfigurationManager(
-            IEnumerable<IConfigurationProvider> registeredProviders,
+            IEnumerable<IConfigurationProvider> configurationProviders,
             IDescriptorFilterer providerFilterer)
         {
-            _registeredProviders = registeredProviders;
+            _configurationProviders = configurationProviders;
             _providerFilterer = providerFilterer;
             _descriptors = new Dictionary<string, List<ConfigurationDescriptor>>();
         }
@@ -47,7 +47,7 @@ namespace Associativy.Frontends.ConfigurationDiscovery
 
                 var providerType = typeof(IEngineConfigurationProvider<TConfigurationDescriptor>);
 
-                foreach (var provider in _registeredProviders.Where(provider => providerType.IsAssignableFrom(provider.GetType())))
+                foreach (var provider in _configurationProviders.Where(provider => providerType.IsAssignableFrom(provider.GetType())))
                 {
                     var descriptor = new TConfigurationDescriptor();
                     ((IEngineConfigurationProvider<TConfigurationDescriptor>)provider).Describe(descriptor);
