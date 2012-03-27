@@ -10,7 +10,7 @@ using Orchard.ContentManagement;
 namespace Associativy.Frontends.Engines.Graphviz
 {
     [OrchardFeature("Associativy.Frontends.Graphviz")]
-    public class GraphvizConfigurationDescriptor : EngineConfigurationDescriptor
+    public class GraphvizConfigurationDescriptor : ConfigurationDescriptor
     {
         public delegate void VertexFormatter(object sender, FormatVertexEventArgs<IContent> e);
 

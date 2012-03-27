@@ -29,11 +29,11 @@ namespace Associativy.Frontends.Controllers
     [Themed]
     [OrchardFeature("Associativy.Frontends")]
     public abstract class EngineControllerBase<TConfigurationDescriptor> : DynamicallyContextedControllerBase, IUpdateModel
-        where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+        where TConfigurationDescriptor : ConfigurationDescriptor, new()
     {
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
-        protected readonly IEngineConfigurationManager _configurationManager;
+        protected readonly IConfigurationManager _configurationManager;
 
         abstract protected IEngineContext EngineContext { get; }
 
@@ -56,7 +56,7 @@ namespace Associativy.Frontends.Controllers
         protected EngineControllerBase(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
-            IEngineConfigurationManager configurationManager)
+            IConfigurationManager configurationManager)
             : base(associativyServices)
         {
             _orchardServices = orchardServices;

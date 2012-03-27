@@ -594,10 +594,10 @@
   <ItemGroup>
     <Compile Include="Engines\Dracula\DraculaConfigurationDescriptor.cs" />
     <Compile Include="Engines\Graphviz\GraphvizConfigurationDescriptor.cs" />
-    <Compile Include="ConfigurationDiscovery\EngineConfigurationDescriptor.cs" />
-    <Compile Include="ConfigurationDiscovery\EngineConfigurationManager.cs" />
-    <Compile Include="ConfigurationDiscovery\EngineConfigurationProviderBase.cs" />
-    <Compile Include="ConfigurationDiscovery\IEngineConfigurationProvider.cs" />
+    <Compile Include="ConfigurationDiscovery\ConfigurationDescriptor.cs" />
+    <Compile Include="ConfigurationDiscovery\ConfigurationManager.cs" />
+    <Compile Include="ConfigurationDiscovery\ConfigurationProviderBase.cs" />
+    <Compile Include="ConfigurationDiscovery\IConfigurationProvider.cs" />
     <Compile Include="ConfigurationDiscovery\DescriptorFiltererExtensions.cs" />
     <Compile Include="Controllers\DynamicallyContextedControllerBase.cs" />
     <Compile Include="Controllers\AutoCompleteController.cs" />
@@ -632,7 +632,7 @@
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="FrontendsRoutesProviderBase.cs" />
-    <Compile Include="ConfigurationDiscovery\IEngineConfigurationManager.cs" />
+    <Compile Include="ConfigurationDiscovery\IConfigurationManager.cs" />
     <Compile Include="Services\GraphContextEncoder.cs" />
     <Compile Include="Services\IGraphContextEncoder.cs" />
     <Compile Include="ViewModels\NodeViewModelBase.cs" />

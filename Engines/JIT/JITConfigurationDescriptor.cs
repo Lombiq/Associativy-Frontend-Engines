@@ -10,7 +10,7 @@ using Orchard.ContentManagement;
 namespace Associativy.Frontends.Engines.JIT
 {
     [OrchardFeature("Associativy.Frontends.JIT")]
-    public class JITConfigurationDescriptor : EngineConfigurationDescriptor
+    public class JITConfigurationDescriptor : ConfigurationDescriptor
     {
         public delegate void ViewModelSetup(IContent contentItem, NodeViewModel viewModel);
 

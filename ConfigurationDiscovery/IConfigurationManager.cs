@@ -8,12 +8,12 @@ using Associativy.Frontends.Engines;
 
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
-    public interface IEngineConfigurationManager : IDependency
+    public interface IConfigurationManager : IDependency
     {
         TConfigurationDescriptor FindConfiguration<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationDescriptor : EngineConfigurationDescriptor, new();
+            where TConfigurationDescriptor : ConfigurationDescriptor, new();
 
         IEnumerable<TConfigurationDescriptor> FindConfigurations<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationDescriptor : EngineConfigurationDescriptor, new();
+            where TConfigurationDescriptor : ConfigurationDescriptor, new();
     }
 }

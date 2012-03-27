@@ -18,6 +18,6 @@ namespace Associativy.Frontends.Models
 
         public IEngineContext EngineContext { get; set; }
 
-        public EngineConfigurationDescriptor ConfigurationDescriptor { get; set; }
+        public ConfigurationDescriptor ConfigurationDescriptor { get; set; }
     }
 }

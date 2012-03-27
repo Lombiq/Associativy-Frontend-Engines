@@ -11,8 +11,8 @@ using Orchard.Core.Title.Models;
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class EngineConfigurationProviderBase<TConfigurationDescriptor> : IEngineConfigurationProvider<TConfigurationDescriptor>
-        where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+    public abstract class ConfigurationProviderBase<TConfigurationDescriptor> : IEngineConfigurationProvider<TConfigurationDescriptor>
+        where TConfigurationDescriptor : ConfigurationDescriptor, new()
     {
         public virtual void Describe(TConfigurationDescriptor descriptor)
         {

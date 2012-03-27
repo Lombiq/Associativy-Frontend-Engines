@@ -23,7 +23,7 @@ namespace Associativy.Frontends.Engines.Dracula.Controllers
         public DraculaEngineController(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices,
-            IEngineConfigurationManager configurationManager)
+            IConfigurationManager configurationManager)
             : base(associativyServices, orchardServices, configurationManager)
         {
         }

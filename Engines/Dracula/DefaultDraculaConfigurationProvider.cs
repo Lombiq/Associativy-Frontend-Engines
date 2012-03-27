@@ -12,7 +12,7 @@ using Associativy.Frontends.Engines.Dracula.ViewModels;
 namespace Associativy.Frontends.Engines.Dracula
 {
     [OrchardFeature("Associativy.Frontends.Dracula")]
-    public class DefaultDraculaConfigurationProvider : EngineConfigurationProviderBase<DraculaConfigurationDescriptor>
+    public class DefaultDraculaConfigurationProvider : ConfigurationProviderBase<DraculaConfigurationDescriptor>
     {
         private static readonly IEngineContext _describedEngineContext = new EngineContext { EngineName = "Dracula" };
         public static IEngineContext DescribedEngineContext

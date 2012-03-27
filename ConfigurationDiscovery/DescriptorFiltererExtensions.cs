@@ -14,7 +14,7 @@ namespace Associativy.Frontends.ConfigurationDiscovery
             this IDescriptorFilterer providerFilterer, 
             IEnumerable<TConfigurationDescriptor> descriptors, 
             IGraphContext graphContext)
-            where TConfigurationDescriptor : EngineConfigurationDescriptor
+            where TConfigurationDescriptor : ConfigurationDescriptor
         {
             return providerFilterer.FilterByMatchingGraphContext(descriptors, graphContext, (descriptor) => descriptor.GraphContext.GraphName, (provider) => provider.GraphContext.ContentTypes);
         }

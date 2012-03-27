@@ -10,7 +10,7 @@ using Orchard.ContentManagement;
 namespace Associativy.Frontends.Engines.Dracula
 {
     [OrchardFeature("Associativy.Frontends.Dracula")]
-    public class DraculaConfigurationDescriptor : EngineConfigurationDescriptor
+    public class DraculaConfigurationDescriptor : ConfigurationDescriptor
     {
         public delegate void ViewModelSetup(IContent contentItem, NodeViewModel viewModel);
 

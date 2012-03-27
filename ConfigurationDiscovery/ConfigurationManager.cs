@@ -10,40 +10,40 @@ using System.Diagnostics;
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class EngineConfigurationManager : IEngineConfigurationManager
+    public class ConfigurationManager : IConfigurationManager
     {
-        private readonly IEnumerable<IEngineConfigurationProvider> _registeredProviders;
+        private readonly IEnumerable<IConfigurationProvider> _registeredProviders;
         private readonly IDescriptorFilterer _providerFilterer;
-        private Dictionary<string, List<EngineConfigurationDescriptor>> _descriptors;
+        private Dictionary<string, List<ConfigurationDescriptor>> _descriptors;
 
-        public EngineConfigurationManager(
-            IEnumerable<IEngineConfigurationProvider> registeredProviders,
+        public ConfigurationManager(
+            IEnumerable<IConfigurationProvider> registeredProviders,
             IDescriptorFilterer providerFilterer)
         {
             _registeredProviders = registeredProviders;
             _providerFilterer = providerFilterer;
-            _descriptors = new Dictionary<string, List<EngineConfigurationDescriptor>>();
+            _descriptors = new Dictionary<string, List<ConfigurationDescriptor>>();
         }
 
         public TConfigurationDescriptor FindConfiguration<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+            where TConfigurationDescriptor : ConfigurationDescriptor, new()
         {
             return FindConfigurations<TConfigurationDescriptor>(engineContext, graphContext).LastOrDefault();
         }
 
         public IEnumerable<TConfigurationDescriptor> FindConfigurations<TConfigurationDescriptor>(IEngineContext engineContext, IGraphContext graphContext)
-            where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+            where TConfigurationDescriptor : ConfigurationDescriptor, new()
         {
             return _providerFilterer.FilterByMatchingGraphContext(ProduceDescriptors<TConfigurationDescriptor>(), graphContext);
         }
 
         private IEnumerable<TConfigurationDescriptor> ProduceDescriptors<TConfigurationDescriptor>()
-            where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+            where TConfigurationDescriptor : ConfigurationDescriptor, new()
         {
             var typeName = typeof(TConfigurationDescriptor).FullName;
             if (!_descriptors.ContainsKey(typeName))
             {
-                _descriptors[typeName] = new List<EngineConfigurationDescriptor>();
+                _descriptors[typeName] = new List<ConfigurationDescriptor>();
 
                 var providerType = typeof(IEngineConfigurationProvider<TConfigurationDescriptor>);
 

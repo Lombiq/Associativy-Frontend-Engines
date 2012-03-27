@@ -12,7 +12,7 @@ using Piedone.HelpfulLibraries.Utilities;
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class EngineConfigurationDescriptor : FreezableBase
+    public abstract class ConfigurationDescriptor : FreezableBase
     {
         private IEngineContext _engineContext;
         public IEngineContext EngineContext
@@ -64,7 +64,7 @@ namespace Associativy.Frontends.ConfigurationDiscovery
     [OrchardFeature("Associativy.Frontends")]
     public static class EngineConfigurationDescriptorExtensions
     {
-        public static IMindSettings MakeDefaultMindSettings(this EngineConfigurationDescriptor configurationDescriptor)
+        public static IMindSettings MakeDefaultMindSettings(this ConfigurationDescriptor configurationDescriptor)
         {
             return new MindSettings()
             {

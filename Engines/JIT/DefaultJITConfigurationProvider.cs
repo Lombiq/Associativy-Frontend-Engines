@@ -12,7 +12,7 @@ using Orchard.ContentManagement.Aspects;
 namespace Associativy.Frontends.Engines.JIT
 {
     [OrchardFeature("Associativy.Frontends.JIT")]
-    public class DefaultJITConfigurationProvider : EngineConfigurationProviderBase<JITConfigurationDescriptor>
+    public class DefaultJITConfigurationProvider : ConfigurationProviderBase<JITConfigurationDescriptor>
     {
         private static readonly IEngineContext _describedEngineContext = new EngineContext { EngineName = "JIT" };
         public static IEngineContext DescribedEngineContext

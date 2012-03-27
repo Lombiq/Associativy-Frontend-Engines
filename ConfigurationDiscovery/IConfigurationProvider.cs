@@ -9,12 +9,12 @@ using Orchard.ContentManagement;
 
 namespace Associativy.Frontends.ConfigurationDiscovery
 {
-    public interface IEngineConfigurationProvider : IDependency
+    public interface IConfigurationProvider : IDependency
     {
     }
 
-    public interface IEngineConfigurationProvider<TConfigurationDescriptor> : IEngineConfigurationProvider
-        where TConfigurationDescriptor : EngineConfigurationDescriptor, new()
+    public interface IEngineConfigurationProvider<TConfigurationDescriptor> : IConfigurationProvider
+        where TConfigurationDescriptor : ConfigurationDescriptor, new()
     {
         void Describe(TConfigurationDescriptor descriptor);
     }
