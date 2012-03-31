@@ -37,7 +37,7 @@ namespace Associativy.Frontends.Controllers
 
         public virtual JsonResult FetchSimilarLabels(string encodedGraphContext, string labelSnippet)
         {
-            return Json(_nodeManager.GetSimilarNodes(_graphContextEncoder.DecodeGraphContext(encodedGraphContext), labelSnippet).Select(node => node.As<AssociativyNodeLabelPart>().Label), JsonRequestBehavior.AllowGet);
+            return Json(_nodeManager.GetSimilarNodes(_graphContextEncoder.DecodeGraphContext(encodedGraphContext), labelSnippet).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }
