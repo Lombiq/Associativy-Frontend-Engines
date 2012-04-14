@@ -19,7 +19,7 @@ namespace Associativy.Frontends.Engines.JIT.Handlers
             var engineContext = DefaultJITConfigurationProvider.DescribedEngineContext;
 
             AddCommonPartsToBasicContentTypes(engineContext);
-            AddPart<SearchFormPart>(engineContext, "FetchAssociations");
+            AddPart<AssociativySearchFormPart>(engineContext, "FetchAssociations");
             AddPart<EngineCommonPart>(engineContext, "FetchAssociations");
         }
     }

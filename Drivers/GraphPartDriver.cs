@@ -25,7 +25,7 @@ namespace Associativy.Frontends.Drivers
                             {
                                 return shapeHelper.DisplayTemplate(
                                         TemplateName: "NotFound",
-                                        Model: part.As<SearchFormPart>(),
+                                        Model: part.As<AssociativySearchFormPart>(),
                                         Prefix: Prefix);
                             }
 

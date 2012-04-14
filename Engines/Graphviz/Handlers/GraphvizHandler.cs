@@ -19,7 +19,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Handlers
             var engineContext = DefaultGraphvizConfigurationProvider.DescribedEngineContext;
 
             AddCommonPartsToBasicContentTypes(engineContext);
-            AddPart<SearchFormPart>(engineContext, "Render");
+            AddPart<AssociativySearchFormPart>(engineContext, "Render");
             AddPart<EngineCommonPart>(engineContext, "Render");
         }
     }

@@ -13,14 +13,24 @@ namespace Associativy.Frontends
     {
         protected readonly List<RouteDescriptor> _routes = new List<RouteDescriptor>();
 
-        protected void RegisterEngineRoute(string url, string frontendEngine, IGraphContext graphContext, string engineModule = "Associativy.Frontends")
+        protected void RegisterDefaultEngineRoute(string instanceModule, string frontendEngine, IGraphContext graphContext, string engineModule = "Associativy.Frontends")
+        {
+            RegisterEngineRoute(instanceModule + "/" + frontendEngine + "Engine/{action}", instanceModule, frontendEngine, graphContext, engineModule);
+        }
+
+        protected void RegisterAnyEngineRoute(string instanceModule, string frontendEngine, IGraphContext graphContext, string engineModule = "Associativy.Frontends")
+        {
+            RegisterEngineRoute(instanceModule + "/{controller}/{action}", instanceModule, frontendEngine, graphContext, engineModule);
+        }
+
+        protected void RegisterEngineRoute(string url, string instanceModule, string frontendEngine, IGraphContext graphContext, string engineModule = "Associativy.Frontends")
         {
             RegisterRoute(
                 graphContext.Stringify() + " " + frontendEngine,
                 new Route(
                         url,
                         new RouteValueDictionary {
-                                                                {"area", engineModule},
+                                                                {"area", instanceModule},
                                                                 {"controller", frontendEngine + "Engine"},
                                                                 {"action", "Index"}
                                                             },
@@ -35,7 +45,6 @@ namespace Associativy.Frontends
         protected void RegisterRoute(string name, Route route, IGraphContext graphContext)
         {
             route.DataTokens["GraphContext"] = graphContext;
-            route.DataTokens["RouteName"] = name;
 
             _routes.Add(new RouteDescriptor
             {

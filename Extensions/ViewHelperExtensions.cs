@@ -17,15 +17,5 @@ namespace Associativy.Frontends.Extensions
         {
             return html.ViewContext.RequestContext.GetWorkContext().Resolve<IGraphContextEncoder>().EncodeGraphContext(graphContext);
         }
-
-        public static MvcForm BeginRouteToCurrentForm(this HtmlHelper html, RouteBase currentRoute, object routeValues, FormMethod method, object htmlAttributes)
-        {
-            return html.BeginRouteForm(((Route)currentRoute).DataTokens["RouteName"].ToString(), routeValues, method, htmlAttributes);
-        }
-
-        public static string RouteToCurrent(this UrlHelper url, RouteBase currentRoute, object routeValues)
-        {
-            return url.RouteUrl(((Route)currentRoute).DataTokens["RouteName"].ToString(), routeValues);
-        }
     }
 }

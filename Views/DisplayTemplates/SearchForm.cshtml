@@ -1,15 +1,15 @@
 ﻿@using Orchard.ContentManagement;
 @using Associativy.Frontends.Models
 @using Associativy.Frontends.Extensions
-@model Associativy.Frontends.Models.SearchFormPart
+@model Associativy.Frontends.Models.AssociativySearchFormPart
            
 @{
     Script.Require("AssociativyAutoComplete").AtHead();
     Style.Require("jQueryUI_Orchard");
 }
-@using (Html.BeginRouteToCurrentForm(Html.ViewContext.RouteData.Route, new { Action = "ShowAssociations" }, FormMethod.Get, new { @id = "associativy-search-form" }))
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { @id = "associativy-search-form", action = Url.Action("ShowAssociations", ViewContext.RouteData.Values) }))
 {
-    
     <fieldset>
         @Html.LabelFor(model => model.Labels, T("Search terms"))
         @Html.TextBoxFor(model => model.Labels, new { @class = "text text-small" })

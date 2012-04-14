@@ -85,7 +85,7 @@ namespace Associativy.Frontends.Controllers
 
             if (ModelState.IsValid)
             {
-                _orchardServices.WorkContext.Layout.Title = T("Associations for {0}", page.As<SearchFormPart>().Labels).ToString();
+                _orchardServices.WorkContext.Layout.Title = T("Associations for {0}", page.As<AssociativySearchFormPart>().Labels).ToString();
 
                 LoadGraphPart(page, (settings) => RetrieveSearchedGraph(page, settings));
 
@@ -135,7 +135,7 @@ namespace Associativy.Frontends.Controllers
             IContent page,
             IMindSettings settings = null)
         {
-            var searchFormPart = page.As<SearchFormPart>();
+            var searchFormPart = page.As<AssociativySearchFormPart>();
 
             if (searchFormPart.LabelsArray.Length == 0)
             {

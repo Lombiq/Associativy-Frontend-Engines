@@ -8,7 +8,7 @@ using Associativy.Models;
 namespace Associativy.Frontends.Models
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class SearchFormPart : ContentPart
+    public class AssociativySearchFormPart : ContentPart
     {
         [Required]
         public string Labels
@@ -31,7 +31,7 @@ namespace Associativy.Frontends.Models
 
         public string[] LabelsArray { get; private set; }
 
-        public SearchFormPart()
+        public AssociativySearchFormPart()
         {
             LabelsArray = new string[0];
         }

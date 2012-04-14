@@ -42,7 +42,7 @@ namespace Associativy.Frontends.Engines
         {
             AddPart<EngineCommonPart>(engineContext, contentTypes);
             AddPart<GraphPart>(engineContext, contentTypes);
-            AddPart<SearchFormPart>(engineContext, contentTypes);
+            AddPart<AssociativySearchFormPart>(engineContext, contentTypes);
         }
 
         protected virtual void AddPart<TPart>(IEngineContext engineContext, params string[] contentTypes)

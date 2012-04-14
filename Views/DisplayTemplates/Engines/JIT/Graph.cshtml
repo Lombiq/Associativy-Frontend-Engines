@@ -1,6 +1,5 @@
 ﻿@using Orchard.ContentManagement;
 @using Associativy.Frontends.Models
-@using Associativy.Frontends.Extensions
 @model Associativy.Frontends.Models.GraphPart
 @{
     Script.Require("JIT").AtHead();
@@ -14,7 +13,7 @@ $(document).ready(function() {
     var graph;
 
     var loadGraph = function(zoomLevel, redraw) {
-        $.getJSON("@Url.RouteToCurrent(Html.ViewContext.RouteData.Route, new { Action = "FetchAssociations" })?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
+        $.getJSON("@Url.Action("FetchAssociations", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
             if (redraw == null) redraw = false;
             if (!redraw) graph = $.jit.draw(graphData);
             else $.jit.redraw(graph, graphData);

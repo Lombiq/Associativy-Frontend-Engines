@@ -603,7 +603,7 @@
     <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\EngineControllerBase.cs" />
     <Compile Include="Drivers\GraphPartDriver.cs" />
-    <Compile Include="Drivers\SearchFormPartDriver.cs" />
+    <Compile Include="Drivers\AssociativySearchFormPartDriver.cs" />
     <Compile Include="Engines\Dracula\Controllers\DraculaEngineController.cs" />
     <Compile Include="Engines\Dracula\DefaultDraculaConfigurationProvider.cs" />
     <Compile Include="Engines\Dracula\Handlers\DraculaHandler.cs" />
@@ -628,12 +628,14 @@
     <Compile Include="Extensions\ViewHelperExtensions.cs" />
     <Compile Include="Models\EngineCommonPart.cs" />
     <Compile Include="Models\GraphPart.cs" />
-    <Compile Include="Models\SearchFormPart.cs" />
+    <Compile Include="Models\AssociativySearchFormPart.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="FrontendsRoutesProviderBase.cs" />
     <Compile Include="ConfigurationDiscovery\IConfigurationManager.cs" />
     <Compile Include="Services\GraphContextEncoder.cs" />
+    <Compile Include="Services\IFrontendContextAccessor.cs" />
+    <Compile Include="Services\IFrontendServices.cs" />
     <Compile Include="Services\IGraphContextEncoder.cs" />
     <Compile Include="ViewModels\NodeViewModelBase.cs" />
   </ItemGroup>
