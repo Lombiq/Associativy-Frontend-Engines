@@ -11,12 +11,12 @@ namespace Associativy.Frontends.ConfigurationDiscovery
     public static class DescriptorFiltererExtensions
     {
         public static IEnumerable<TConfigurationDescriptor> FilterByMatchingGraphContext<TConfigurationDescriptor>(
-            this IDescriptorFilterer providerFilterer, 
+            this IDescriptorFilterer descriptorFilterer, 
             IEnumerable<TConfigurationDescriptor> descriptors, 
             IGraphContext graphContext)
             where TConfigurationDescriptor : ConfigurationDescriptor
         {
-            return providerFilterer.FilterByMatchingGraphContext(descriptors, graphContext, (descriptor) => descriptor.GraphContext.GraphName, (provider) => provider.GraphContext.ContentTypes);
+            return descriptorFilterer.FilterByMatchingGraphContext(descriptors, graphContext, (descriptor) => descriptor.GraphContext.GraphName, (provider) => provider.GraphContext.ContentTypes);
         }
     }
 }

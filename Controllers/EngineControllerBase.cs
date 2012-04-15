@@ -20,6 +20,7 @@ using Associativy.GraphDiscovery;
 using Associativy.Frontends.ConfigurationDiscovery;
 using Associativy.Frontends.Engines;
 using System.Web.Routing;
+using Associativy.Frontends.Services;
 
 namespace Associativy.Frontends.Controllers
 {
@@ -44,7 +45,7 @@ namespace Associativy.Frontends.Controllers
             {
                 if (_configurationDescriptor == null)
                 {
-                    _configurationDescriptor = _configurationManager.FindConfiguration<TConfigurationDescriptor>(EngineContext, GraphContext);
+                    _configurationDescriptor = _frontendServices.ConfigurationManager.FindConfiguration<TConfigurationDescriptor>(EngineContext, GraphContext);
                 }
 
                 return _configurationDescriptor;
@@ -55,13 +56,13 @@ namespace Associativy.Frontends.Controllers
 
         protected EngineControllerBase(
             IAssociativyServices associativyServices,
-            IOrchardServices orchardServices,
-            IConfigurationManager configurationManager)
-            : base(associativyServices)
+            IFrontendServices frontendServices,
+            IOrchardServices orchardServices)
+            : base(associativyServices, frontendServices)
         {
             _orchardServices = orchardServices;
             _contentManager = orchardServices.ContentManager;
-            _configurationManager = configurationManager;
+            
 
             T = NullLocalizer.Instance;
         }

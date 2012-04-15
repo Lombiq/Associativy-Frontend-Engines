@@ -28,9 +28,9 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
 
         public JITEngineController(
             IAssociativyServices associativyServices,
-            IOrchardServices orchardServices,
-            IConfigurationManager configurationManager)
-            : base(associativyServices, orchardServices, configurationManager)
+            IFrontendServices frontendServices,
+            IOrchardServices orchardServices)
+            : base(associativyServices, frontendServices, orchardServices)
         {
         }
 

@@ -8,6 +8,8 @@
     Style.Require("jQueryUI_Orchard");
 }
 
+@Url.Action("ShowAssociations")
+
 @using (Html.BeginForm(null, null, FormMethod.Get, new { @id = "associativy-search-form", action = Url.Action("ShowAssociations", ViewContext.RouteData.Values) }))
 {
     <fieldset>

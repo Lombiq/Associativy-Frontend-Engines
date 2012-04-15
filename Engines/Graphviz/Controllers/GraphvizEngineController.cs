@@ -17,6 +17,7 @@ using Piedone.HelpfulLibraries.Tasks;
 using QuickGraph;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.ConfigurationDiscovery;
+using Associativy.Frontends.Services;
 
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {
@@ -33,11 +34,11 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
 
         public GraphvizEngineController(
             IAssociativyServices associativyServices,
+            IFrontendServices frontendServices,
             IOrchardServices orchardServices,
-            IConfigurationManager configurationManager,
             //IDetachedDelegateBuilder detachedDelegateBuilder,
             IGraphImageService graphImageService)
-            : base(associativyServices, orchardServices, configurationManager)
+            : base(associativyServices, frontendServices, orchardServices)
         {
             //_detachedDelegateBuilder = detachedDelegateBuilder;
             _graphImageService = graphImageService;

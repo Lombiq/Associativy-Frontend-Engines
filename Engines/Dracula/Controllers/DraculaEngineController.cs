@@ -9,6 +9,7 @@ using Associativy.Frontends.Engines.Dracula.ViewModels;
 using System.Collections.Generic;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.ConfigurationDiscovery;
+using Associativy.Frontends.Services;
 
 namespace Associativy.Frontends.Engines.Dracula.Controllers
 {
@@ -22,9 +23,9 @@ namespace Associativy.Frontends.Engines.Dracula.Controllers
 
         public DraculaEngineController(
             IAssociativyServices associativyServices,
-            IOrchardServices orchardServices,
-            IConfigurationManager configurationManager)
-            : base(associativyServices, orchardServices, configurationManager)
+            IFrontendServices frontendServices,
+            IOrchardServices orchardServices)
+            : base(associativyServices, frontendServices, orchardServices)
         {
         }
     }

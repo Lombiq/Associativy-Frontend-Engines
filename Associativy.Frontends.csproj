@@ -592,6 +592,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Compile Include="Controllers\FrontendControllerBase.cs" />
+    <Compile Include="Controllers\IDynamicallyContextedController.cs" />
     <Compile Include="Engines\Dracula\DraculaConfigurationDescriptor.cs" />
     <Compile Include="Engines\Graphviz\GraphvizConfigurationDescriptor.cs" />
     <Compile Include="ConfigurationDiscovery\ConfigurationDescriptor.cs" />
@@ -633,6 +635,8 @@
     <Compile Include="Routes.cs" />
     <Compile Include="FrontendsRoutesProviderBase.cs" />
     <Compile Include="ConfigurationDiscovery\IConfigurationManager.cs" />
+    <Compile Include="Services\FrontendContextAccessor.cs" />
+    <Compile Include="Services\FrontendServices.cs" />
     <Compile Include="Services\GraphContextEncoder.cs" />
     <Compile Include="Services\IFrontendContextAccessor.cs" />
     <Compile Include="Services\IFrontendServices.cs" />

@@ -7,33 +7,36 @@ using Associativy.GraphDiscovery;
 using Associativy.Controllers;
 using Associativy.Services;
 using System.Web.Routing;
+using Associativy.Frontends.Services;
 
 namespace Associativy.Frontends.Controllers
 {
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class DynamicallyContextedControllerBase : AssociativyControllerBase
+    public abstract class DynamicallyContextedControllerBase : FrontendControllerBase, IDynamicallyContextedController
     {
-        public IGraphContext GraphContext { get; set; }
-
-        protected DynamicallyContextedControllerBase(IAssociativyServices associativyServices)
-            : base(associativyServices)
+        private IGraphContext _graphContext;
+        public IGraphContext GraphContext
         {
+            get
+            {
+                if (_graphContext == null)
+                {
+                    _graphContext = _frontendServices.FrontendContextAccessor.GetCurrentGraphContext();
+                    if (_graphContext == null)
+                    {
+                        throw new InvalidOperationException("The graph context was not set for the current request.");
+                    }
+                }
+
+                return _graphContext;
+            }
         }
 
-        protected override void Initialize(RequestContext requestContext)
+        protected DynamicallyContextedControllerBase(
+            IAssociativyServices associativyServices,
+            IFrontendServices frontendServices)
+            : base(associativyServices, frontendServices)
         {
-            var dataTokens = requestContext.RouteData.DataTokens;
-            if (dataTokens != null && dataTokens.ContainsKey("GraphContext"))
-            {
-                GraphContext = (IGraphContext)dataTokens["GraphContext"];
-            }
-            else if (!String.IsNullOrEmpty(requestContext.HttpContext.Request.QueryString["graph"]))
-            {
-                GraphContext = new GraphContext { GraphName = requestContext.HttpContext.Request.QueryString["graph"] };
-            }
-            else throw new InvalidOperationException("The graph context to use should be fed into the route's DataTokens dictionary with key \"GraphContext\" or the graph's name should be set in the \"Graph\" query string.");
-
-            base.Initialize(requestContext);
         }
     }
 }
