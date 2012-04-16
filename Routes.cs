@@ -40,22 +40,6 @@ namespace Associativy.Frontends
                                                     {"area", "Associativy.Frontends"}
                                                 },
                         new MvcRouteHandler())
-                },
-                new RouteDescriptor
-                {
-                    Name = "Associativy.Frontends.DefaultGraphs",
-                    Route = new Route(
-                        "AssociativyGraphs/{graph}/{controller}/{action}",
-                        new RouteValueDictionary {
-                                                    {"area", "Associativy.Frontends"},
-                                                    {"controller", "JITEngine"}/*,
-                                                    {"action", "ShowWholeGraph"}*/
-                                                },
-                        new RouteValueDictionary(),
-                        new RouteValueDictionary {
-                                                    {"area", "Associativy.Frontends"}
-                                                },
-                        new MvcRouteHandler())
                 }
             };
         }

@@ -24,9 +24,9 @@ namespace Associativy.Frontends.Services
             {
                 return (IGraphContext)dataTokens["GraphContext"];
             }
-            else if (!String.IsNullOrEmpty((string)request.RequestContext.RouteData.Values["graph"]))
+            else if (!String.IsNullOrEmpty((string)request.RequestContext.RouteData.Values["GraphName"]))
             {
-                return new GraphContext { GraphName = (string)request.RequestContext.RouteData.Values["graph"] };
+                return new GraphContext { GraphName = (string)request.RequestContext.RouteData.Values["GraphName"] };
             }
 
             return null;
