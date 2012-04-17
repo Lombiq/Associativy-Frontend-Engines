@@ -69,7 +69,7 @@ namespace Associativy.Frontends.ConfigurationDiscovery
             return new MindSettings()
             {
                 ZoomLevel = 0,
-                MaxZoomLevel = configurationDescriptor.MaxZoomLevel,
+                ZoomLevelCount = configurationDescriptor.MaxZoomLevel,
                 ModifyQuery = configurationDescriptor.ModifyGraphQuery.Invoke
             };
         }

@@ -112,7 +112,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
 
         protected virtual List<string> FetchZoomedGraphUrls(IMindSettings settings, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
         {
-            var graphImageUrls = new List<string>(settings.MaxZoomLevel);
+            var graphImageUrls = new List<string>(settings.ZoomLevelCount);
 
             Func<int, string> getImageUrl =
                 (zoomLevel) =>
@@ -128,7 +128,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
 
             var currentImageUrl = getImageUrl(1);
             int i = 1;
-            while (i < settings.MaxZoomLevel && graphImageUrls[i - 1] != currentImageUrl)
+            while (i < settings.ZoomLevelCount && graphImageUrls[i - 1] != currentImageUrl)
             {
                 graphImageUrls.Add(currentImageUrl);
                 i++;
