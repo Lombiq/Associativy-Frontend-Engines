@@ -69,7 +69,7 @@ namespace Associativy.Frontends.Controllers
 
         public virtual ActionResult ShowWholeGraph()
         {
-            _orchardServices.WorkContext.Layout.Title = T("The whole graph").ToString();
+            _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", GetGraphDescriptorForContext().DisplayGraphName).ToString();
 
             var page = NewPage("ShowWholeGraph");
 
@@ -86,7 +86,7 @@ namespace Associativy.Frontends.Controllers
 
             if (ModelState.IsValid)
             {
-                _orchardServices.WorkContext.Layout.Title = T("Associations for {0}", page.As<AssociativySearchFormPart>().Labels).ToString();
+                _orchardServices.WorkContext.Layout.Title = T("Associations for {0} - {1}", page.As<AssociativySearchFormPart>().Labels, GetGraphDescriptorForContext().DisplayGraphName).ToString();
 
                 LoadGraphPart(page, (settings) => RetrieveSearchedGraph(page, settings));
 
@@ -169,6 +169,11 @@ namespace Associativy.Frontends.Controllers
                 settings.ZoomLevel = ConfigurationDescriptor.MaxZoomLevel;
                 return _associativyServices.GraphService.CalculateZoomLevelCount(retrieveGraph(settings), ConfigurationDescriptor.MaxZoomLevel);
             });
+        }
+
+        protected GraphDescriptor GetGraphDescriptorForContext()
+        {
+            return _graphManager.FindGraph(GraphContext);
         }
     }
 }
