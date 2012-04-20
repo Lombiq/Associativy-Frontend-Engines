@@ -140,14 +140,14 @@ namespace Associativy.Frontends.Controllers
 
             if (searchFormPart.LabelsArray.Length == 0)
             {
-                return _associativyServices.GraphService.GraphFactory();
+                return _associativyServices.GraphEditor.GraphFactory();
             }
 
             var searched = _associativyServices.NodeManager.GetMany(GraphContext, searchFormPart.LabelsArray);
 
             if (searched.Count() != searchFormPart.LabelsArray.Length) // Some nodes were not found
             {
-                return _associativyServices.GraphService.GraphFactory();
+                return _associativyServices.GraphEditor.GraphFactory();
             }
 
             if (settings == null)
@@ -167,7 +167,7 @@ namespace Associativy.Frontends.Controllers
             graphPart.ZoomLevelCountField.Loader(() =>
             {
                 settings.ZoomLevel = ConfigurationDescriptor.MaxZoomLevel;
-                return _associativyServices.GraphService.CalculateZoomLevelCount(retrieveGraph(settings), ConfigurationDescriptor.MaxZoomLevel);
+                return _associativyServices.GraphEditor.CalculateZoomLevelCount(retrieveGraph(settings), ConfigurationDescriptor.MaxZoomLevel);
             });
         }
 
