@@ -57,7 +57,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
             {
                 _graphEventMonitor.MonitorChanged(graphContext, ctx);
 
-                // Since there is no method for checking the existance of a file, we use this ugly technique
+                // Since there is no method for checking the existence of a file, we use this ugly technique
                 try
                 {
                     _storageProvider.DeleteFile(filePath);
