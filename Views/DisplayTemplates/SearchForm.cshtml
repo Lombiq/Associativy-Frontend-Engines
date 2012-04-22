@@ -1,6 +1,5 @@
 ﻿@using Orchard.ContentManagement;
 @using Associativy.Frontends.Models
-@using Associativy.Frontends.Extensions
 @model Associativy.Frontends.Models.AssociativySearchFormPart
            
 @{
@@ -20,5 +19,5 @@
 }
 
 <script type="text/javascript">
-    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { EncodedGraphContext = Html.EncodeGraphContext(Model.As<EngineCommonPart>().GraphContext) })");
+    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<EngineCommonPart>().GraphContext.GraphName })");
 </script>

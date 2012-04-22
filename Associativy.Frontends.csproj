@@ -627,7 +627,6 @@
     <Compile Include="Engines\JIT\JITConfigurationDescriptor.cs" />
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
-    <Compile Include="Extensions\ViewHelperExtensions.cs" />
     <Compile Include="Models\EngineCommonPart.cs" />
     <Compile Include="Models\GraphPart.cs" />
     <Compile Include="Models\AssociativySearchFormPart.cs" />
@@ -637,10 +636,8 @@
     <Compile Include="ConfigurationDiscovery\IConfigurationManager.cs" />
     <Compile Include="Services\FrontendContextAccessor.cs" />
     <Compile Include="Services\FrontendServices.cs" />
-    <Compile Include="Services\GraphContextEncoder.cs" />
     <Compile Include="Services\IFrontendContextAccessor.cs" />
     <Compile Include="Services\IFrontendServices.cs" />
-    <Compile Include="Services\IGraphContextEncoder.cs" />
     <Compile Include="ViewModels\NodeViewModelBase.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,19 +25,14 @@ namespace Associativy.Frontends.Controllers
     [OrchardFeature("Associativy.Frontends")]
     public class AutoCompleteController : AssociativyControllerBase
     {
-        protected readonly IGraphContextEncoder _graphContextEncoder;
-
-        public AutoCompleteController(
-            IAssociativyServices associativyServices,
-            IGraphContextEncoder graphContextEncoder)
+        public AutoCompleteController(IAssociativyServices associativyServices)
             : base(associativyServices)
         {
-            _graphContextEncoder = graphContextEncoder;
         }
 
-        public virtual JsonResult FetchSimilarLabels(string encodedGraphContext, string labelSnippet)
+        public virtual JsonResult FetchSimilarLabels(string graphName, string labelSnippet)
         {
-            return Json(_nodeManager.GetSimilarNodes(_graphContextEncoder.DecodeGraphContext(encodedGraphContext), labelSnippet).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
+            return Json(_nodeManager.GetSimilarNodes(new GraphContext { GraphName = graphName }, labelSnippet).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }
