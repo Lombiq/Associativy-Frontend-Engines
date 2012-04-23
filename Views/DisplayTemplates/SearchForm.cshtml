@@ -7,7 +7,7 @@
     Style.Require("jQueryUI_Orchard");
 }
 
-@using (Html.BeginForm(null, null, FormMethod.Get, new { @id = "associativy-search-form", action = Url.Action("ShowAssociations", ViewContext.RouteData.Values) }))
+@using (Html.BeginForm(null, null, FormMethod.Get, new { @id = "associativy-search-form", action = Url.Action("Associations", ViewContext.RouteData.Values) }))
 {
     <fieldset>
         @Html.LabelFor(model => model.Labels, T("Search terms"))

@@ -22,8 +22,8 @@ namespace Associativy.Frontends.Engines
 
             _basicContentTypes = new List<string>
             {
-                "ShowWholeGraph",
-                "ShowAssociations"
+                "WholeGraph",
+                "Associations"
             };
         }
 

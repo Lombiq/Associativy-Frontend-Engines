@@ -67,20 +67,20 @@ namespace Associativy.Frontends.Controllers
             T = NullLocalizer.Instance;
         }
 
-        public virtual ActionResult ShowWholeGraph()
+        public virtual ActionResult WholeGraph()
         {
             _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", GetGraphDescriptorForContext().DisplayGraphName).ToString();
 
-            var page = NewPage("ShowWholeGraph");
+            var page = NewPage("WholeGraph");
 
             LoadGraphPart(page, (settings) => _mind.GetAllAssociations(GraphContext, settings));
 
             return new ShapeResult(this, BuildDisplay(page));
         }
 
-        public virtual ActionResult ShowAssociations()
+        public virtual ActionResult Associations()
         {
-            var page = NewPage("ShowAssociations");
+            var page = NewPage("Associations");
 
             _contentManager.UpdateEditor(page, this);
 
@@ -160,6 +160,8 @@ namespace Associativy.Frontends.Controllers
 
         protected virtual void LoadGraphPart(IContent page, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> retrieveGraph)
         {
+            if (!page.Has<GraphPart>()) return;
+
             var graphPart = page.As<GraphPart>();
             var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
             graphPart.Graph = retrieveGraph(settings);
