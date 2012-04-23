@@ -1,14 +1,13 @@
-﻿using Orchard.ContentManagement;
+﻿using System.Linq;
+using Associativy.Frontends.Models;
+using Associativy.Models.Mind;
+using Associativy.Services;
+using Orchard;
+using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
-using Associativy.Frontends.Models;
-using Associativy.Models;
-using Associativy.Services;
-using System.Linq;
-using Associativy.Models.Mind;
-using QuickGraph;
-using Orchard;
 using Orchard.Localization;
+using QuickGraph;
 
 namespace Associativy.Frontends.Drivers
 {

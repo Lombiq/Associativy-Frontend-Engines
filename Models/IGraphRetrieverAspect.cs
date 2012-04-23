@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Associativy.Models.Mind;
 using Orchard.ContentManagement;
 using QuickGraph;
-using Associativy.Models.Mind;
 
 namespace Associativy.Frontends.Models
 {

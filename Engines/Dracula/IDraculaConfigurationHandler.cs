@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Orchard.Events;
-using Orchard.ContentManagement;
-using Associativy.Frontends.Engines.Dracula.ViewModels;
+﻿using Associativy.Frontends.Engines.Dracula.ViewModels;
 using Associativy.GraphDiscovery;
+using Orchard.ContentManagement;
+using Orchard.Events;
 
 namespace Associativy.Frontends.Engines.Dracula
 {

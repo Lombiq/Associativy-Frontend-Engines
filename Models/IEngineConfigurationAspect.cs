@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Orchard.ContentManagement;
-using Associativy.Models.Mind;
-using Associativy.Frontends.Engines;
+﻿using Associativy.Frontends.Engines;
 using Associativy.GraphDiscovery;
+using Associativy.Models.Mind;
+using Orchard.ContentManagement;
 
 namespace Associativy.Frontends.Models
 {

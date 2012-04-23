@@ -3,8 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
-using Associativy.Models;
-using Orchard.Core.Common.Utilities;
 
 namespace Associativy.Frontends.Models
 {

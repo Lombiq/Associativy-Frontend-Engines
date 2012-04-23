@@ -1,10 +1,7 @@
-﻿using Orchard.ContentManagement;
+﻿using Associativy.Frontends.Models;
+using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
-using Associativy.Frontends.Models;
-using Associativy.Models;
-using Associativy.Services;
-using System.Linq;
 
 namespace Associativy.Frontends.Drivers
 {

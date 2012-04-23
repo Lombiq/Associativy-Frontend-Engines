@@ -2,15 +2,13 @@
 using System.Net;
 using System.Text;
 using Associativy.EventHandlers;
-using Associativy.Models;
-using Associativy.Services;
+using Associativy.GraphDiscovery;
 using Orchard.Caching;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Orchard.FileSystems.Media;
 using QuickGraph;
 using QuickGraph.Graphviz;
-using Associativy.GraphDiscovery;
 
 namespace Associativy.Frontends.Engines.Graphviz.Services
 {

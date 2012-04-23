@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Orchard.Environment.Extensions;
-using QuickGraph.Graphviz;
+﻿using System.Web.Mvc;
+using Orchard;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Aspects;
+using Orchard.Environment.Extensions;
+using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
-using Orchard;
-using System.Web.Mvc;
 
 namespace Associativy.Frontends.Engines.Graphviz
 {

@@ -1,20 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Associativy.Frontends.Controllers;
-using Associativy.Models.Mind;
+using Associativy.Frontends.Engines.JIT.ViewModels;
+using Associativy.Frontends.EventHandlers;
+using Associativy.Frontends.Models;
+using Associativy.Frontends.Services;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
-using Orchard.ContentManagement.Aspects;
-using Orchard.DisplayManagement;
 using Orchard.Environment.Extensions;
 using QuickGraph;
-using Associativy.Frontends.Engines.JIT.ViewModels;
-using Associativy.Frontends.Models;
-using Piedone.HelpfulLibraries.Serialization;
-using Associativy.GraphDiscovery;
-using Associativy.Frontends.Services;
-using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.JIT.Controllers
 {

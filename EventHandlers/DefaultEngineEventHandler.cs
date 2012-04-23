@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Orchard.ContentManagement;
-using Associativy.Frontends.Models;
+﻿using Associativy.Frontends.Engines;
 using Associativy.Frontends.Extensions;
-using Associativy.Frontends.Engines;
+using Associativy.Frontends.Models;
 using Associativy.GraphDiscovery;
-using Orchard.Localization;
-using Orchard;
-using Associativy.Services;
 using Associativy.Models.Mind;
-using QuickGraph;
+using Associativy.Services;
+using Orchard;
+using Orchard.ContentManagement;
 using Orchard.Core.Title.Models;
 using Orchard.Environment.Extensions;
+using Orchard.Localization;
 
 namespace Associativy.Frontends.EventHandlers
 {
