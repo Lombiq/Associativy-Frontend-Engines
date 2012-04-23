@@ -23,8 +23,11 @@ namespace Associativy.Frontends.Engines.Graphviz
             // .Has<> doesn't work here
             if (e.Vertex.As<ITitleAspect>() != null) e.VertexFormatter.Label = e.Vertex.As<ITitleAspect>().Title;
 
-            e.VertexFormatter.Url = new UrlHelper(_orchardServices.WorkContext.HttpContext.Request.RequestContext)
-                                        .RouteUrl(_orchardServices.ContentManager.GetItemMetadata(e.Vertex).DisplayRouteValues);
+            if (e.Vertex.As<IAliasAspect>() != null)
+            {
+                e.VertexFormatter.Url = new UrlHelper(_orchardServices.WorkContext.HttpContext.Request.RequestContext)
+                                    .RouteUrl(_orchardServices.ContentManager.GetItemMetadata(e.Vertex).DisplayRouteValues); 
+            }
 
             e.VertexFormatter.Shape = GraphvizVertexShape.Diamond;
         }

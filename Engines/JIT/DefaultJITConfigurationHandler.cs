@@ -23,8 +23,11 @@ namespace Associativy.Frontends.Engines.JIT
             // .Has<> doesn't work here
             if (node.As<ITitleAspect>() != null) viewModel.name = node.As<ITitleAspect>().Title;
 
-            viewModel.data["url"] = new UrlHelper(_orchardServices.WorkContext.HttpContext.Request.RequestContext)
-                                        .RouteUrl(_orchardServices.ContentManager.GetItemMetadata(node).DisplayRouteValues);
+            if (node.As<IAliasAspect>() != null)
+            {
+                viewModel.data["url"] = new UrlHelper(_orchardServices.WorkContext.HttpContext.Request.RequestContext)
+                                            .RouteUrl(_orchardServices.ContentManager.GetItemMetadata(node).DisplayRouteValues);
+            }
         }
     }
 }
