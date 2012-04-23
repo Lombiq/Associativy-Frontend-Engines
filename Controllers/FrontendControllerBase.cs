@@ -11,6 +11,7 @@ namespace Associativy.Frontends.Controllers
     public abstract class FrontendControllerBase : AssociativyControllerBase
     {
         protected readonly IFrontendServices _frontendServices;
+        protected readonly IFrontendContextAccessor _frontendContextAccessor;
 
         protected FrontendControllerBase(
             IAssociativyServices associativyServices,
@@ -18,6 +19,7 @@ namespace Associativy.Frontends.Controllers
             : base(associativyServices)
         {
             _frontendServices = frontendServices;
+            _frontendContextAccessor = frontendServices.FrontendContextAccessor;
         }
     }
 }

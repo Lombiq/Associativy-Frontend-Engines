@@ -11,7 +11,7 @@ using Orchard.Core.Common.Utilities;
 namespace Associativy.Frontends.Models
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class GraphPart : ContentPart
+    public class GraphPart : ContentPart, IGraphAspect
     {
         public IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; set; }
 

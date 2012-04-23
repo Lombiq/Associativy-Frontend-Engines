@@ -13,96 +13,63 @@ using Orchard.ContentManagement;
 using Orchard.ContentManagement.Aspects;
 using Orchard.DisplayManagement;
 using Orchard.Environment.Extensions;
-using Piedone.HelpfulLibraries.Tasks;
 using QuickGraph;
 using Associativy.Frontends.Models;
-using Associativy.Frontends.ConfigurationDiscovery;
 using Associativy.Frontends.Services;
+using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {
     [OrchardFeature("Associativy.Frontends.Graphviz")]
-    public class GraphvizEngineController : EngineControllerBase<GraphvizConfigurationDescriptor>
+    public class GraphvizEngineController : EngineControllerBase
     {
-        protected readonly IDetachedDelegateBuilder _detachedDelegateBuilder;
-        protected readonly IGraphImageService _graphImageService;
+        private readonly IGraphvizConfigurationHandler _configurationHandler;
+        private readonly IGraphImageService _graphImageService;
 
+        private readonly IEngineContext _engineContext = new EngineContext { EngineName = "Graphviz" };
         protected override IEngineContext EngineContext
         {
-            get { return DefaultGraphvizConfigurationProvider.DescribedEngineContext; }
+            get { return _engineContext; }
         }
 
         public GraphvizEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
+            IFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices,
-            //IDetachedDelegateBuilder detachedDelegateBuilder,
+            IGraphvizConfigurationHandler configurationHandler,
             IGraphImageService graphImageService)
-            : base(associativyServices, frontendServices, orchardServices)
+            : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {
-            //_detachedDelegateBuilder = detachedDelegateBuilder;
+            _configurationHandler = configurationHandler;
             _graphImageService = graphImageService;
         }
-
-        //public void Index()
-        //{
-        //    var count = 2;
-        //    var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
-
-        //    var sw = new Stopwatch();
-        //    sw.Start();
-
-        //    var graphs = new IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>[count];
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        graphs[i] = _mind.GetAllAssociations(GraphContext, settings);
-        //    }
-
-        //    sw.Stop();
-        //    var z = sw.ElapsedMilliseconds;
-        //    sw.Restart();
-
-        //    var tasks = new Task<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>[count];
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        tasks[i] = Task<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>.Factory.StartNew(
-        //            _detachedDelegateBuilder.BuildBackgroundFunction<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>(
-        //                () => _mind.GetAllAssociations(GraphContext, settings)
-        //            )
-        //            );
-        //    }
-        //    Task.WaitAll(tasks);
-
-        //    sw.Stop();
-        //    var y = sw.ElapsedMilliseconds;
-        //    int ze = 5 + 5;
-        //}
 
         public virtual JsonResult Render()
         {
             var page = NewPage("Render");
             _contentManager.UpdateEditor(page, this);
 
-            var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
+            var mindSettings = page.As<IEngineConfigurationAspect>().MindSettings;
 
             List<string> graphImageUrls;
 
             if (ModelState.IsValid)
             {
                 graphImageUrls = FetchZoomedGraphUrls(
-                            settings,
+                            mindSettings,
                             (currentSettings) =>
                             {
-                                return RetrieveSearchedGraph(page, settings);
+                                return page.As<IGraphRetrieverAspect>().RetrieveGraph(mindSettings);
                             });
             }
             else
             {
                 graphImageUrls = FetchZoomedGraphUrls(
-                            settings,
+                            mindSettings,
                             (currentSettings) =>
                             {
-                                return _mind.GetAllAssociations(GraphContext, settings);
+                                return _mind.GetAllAssociations(GraphContext, mindSettings);
                             });
             }
 
@@ -120,7 +87,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                     settings.ZoomLevel = zoomLevel;
                     return _graphImageService.ToSvg(GraphContext, fetchGraph(settings), algorithm =>
                             {
-                                algorithm.FormatVertex += ConfigurationDescriptor.FormatVertex.Invoke;
+                                algorithm.FormatVertex += _configurationHandler.FormatVertex;
                             });
                 };
 

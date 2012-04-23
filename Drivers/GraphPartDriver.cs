@@ -21,33 +21,24 @@ namespace Associativy.Frontends.Drivers
             return ContentShape("AssociativyGraph",
                         () =>
                         {
-                            if (part.Graph == null || part.Graph.IsVerticesEmpty)
+                            if (part.Graph == null)
+                            {
+                                part.Graph = part.As<IGraphRetrieverAspect>().RetrieveGraph(part.As<IEngineConfigurationAspect>().MindSettings);
+                            }
+
+                            if (part.Graph.IsVerticesEmpty)
                             {
                                 return shapeHelper.DisplayTemplate(
                                         TemplateName: "NotFound",
-                                        Model: part.As<AssociativySearchFormPart>(),
+                                        Model: part,
                                         Prefix: Prefix);
                             }
 
                             return shapeHelper.DisplayTemplate(
-                                        TemplateName: "Engines/" + part.As<EngineCommonPart>().EngineContext.EngineName + "/Graph",
+                                        TemplateName: "Engines/" + part.As<IEngineConfigurationAspect>().EngineContext.EngineName + "/Graph",
                                         Model: part,
                                         Prefix: Prefix);
                         });
-        }
-
-        // GET
-        protected override DriverResult Editor(GraphPart part, dynamic shapeHelper)
-        {
-            return Display(part, "", shapeHelper);
-        }
-
-        // POST
-        protected override DriverResult Editor(GraphPart part, IUpdateModel updater, dynamic shapeHelper)
-        {
-            updater.TryUpdateModel(part, Prefix, null, null);
-
-            return Editor(part, shapeHelper);
         }
     }
 }

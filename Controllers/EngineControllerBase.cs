@@ -17,10 +17,11 @@ using QuickGraph;
 using System.Diagnostics;
 using Associativy.Frontends.Models;
 using Associativy.GraphDiscovery;
-using Associativy.Frontends.ConfigurationDiscovery;
 using Associativy.Frontends.Engines;
 using System.Web.Routing;
 using Associativy.Frontends.Services;
+using Associativy.Frontends.Extensions;
+using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Controllers
 {
@@ -29,37 +30,24 @@ namespace Associativy.Frontends.Controllers
     /// </summary>
     [Themed]
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class EngineControllerBase<TConfigurationDescriptor> : DynamicallyContextedControllerBase, IUpdateModel
-        where TConfigurationDescriptor : ConfigurationDescriptor, new()
+    public abstract class EngineControllerBase : DynamicallyContextedControllerBase, IUpdateModel
     {
+        protected readonly IFrontendEngineEventHandler _eventHandler;
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
-        protected readonly IConfigurationManager _configurationManager;
 
         abstract protected IEngineContext EngineContext { get; }
-
-        private TConfigurationDescriptor _configurationDescriptor;
-        protected virtual TConfigurationDescriptor ConfigurationDescriptor
-        {
-            get
-            {
-                if (_configurationDescriptor == null)
-                {
-                    _configurationDescriptor = _frontendServices.ConfigurationManager.FindConfiguration<TConfigurationDescriptor>(EngineContext, GraphContext);
-                }
-
-                return _configurationDescriptor;
-            }
-        }
 
         public Localizer T { get; set; }
 
         protected EngineControllerBase(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
+            IFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices, frontendServices)
         {
+            _eventHandler = eventHandler;
             _orchardServices = orchardServices;
             _contentManager = orchardServices.ContentManager;
             
@@ -69,13 +57,11 @@ namespace Associativy.Frontends.Controllers
 
         public virtual ActionResult WholeGraph()
         {
-            _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", GetGraphDescriptorForContext().DisplayGraphName).ToString();
-
             var page = NewPage("WholeGraph");
 
-            LoadGraphPart(page, (settings) => _mind.GetAllAssociations(GraphContext, settings));
+            _eventHandler.OnPageBuilt(EngineContext, GraphContext, page);
 
-            return new ShapeResult(this, BuildDisplay(page));
+            return new ShapeResult(this, _contentManager.BuildEnginePageDisplay(GraphContext, page));
         }
 
         public virtual ActionResult Associations()
@@ -86,13 +72,11 @@ namespace Associativy.Frontends.Controllers
 
             if (ModelState.IsValid)
             {
-                _orchardServices.WorkContext.Layout.Title = T("Associations for {0} - {1}", page.As<AssociativySearchFormPart>().Labels, GetGraphDescriptorForContext().DisplayGraphName).ToString();
-
-                LoadGraphPart(page, (settings) => RetrieveSearchedGraph(page, settings));
+                _eventHandler.OnPageBuilt(EngineContext, GraphContext, page);
 
                 return new ShapeResult(
                     this,
-                    BuildDisplay(page));
+                    _contentManager.BuildEnginePageDisplay(GraphContext, page));
             }
             else
             {
@@ -115,67 +99,14 @@ namespace Associativy.Frontends.Controllers
             ModelState.AddModelError(key, errorMessage.ToString());
         }
 
-        protected virtual dynamic BuildDisplay(IContent page)
-        {
-            return _contentManager.BuildDisplay(page, GraphContext.GraphName);
-        }
-
         protected virtual IContent NewPage(string pageName)
         {
-            var page = _contentManager.New(EngineContext.EngineName + pageName);
+            var page = _contentManager.NewEnginePage(EngineContext, pageName);
 
-            var engineCommonPart = page.As<EngineCommonPart>();
-            engineCommonPart.ConfigurationDescriptor = ConfigurationDescriptor;
-            engineCommonPart.GraphContext = GraphContext;
-            engineCommonPart.EngineContext = EngineContext;
+            _eventHandler.OnPageInitializing(EngineContext, GraphContext, page);
+            _eventHandler.OnPageInitialized(EngineContext, GraphContext, page);
 
             return page;
-        }
-
-        protected virtual IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> RetrieveSearchedGraph(
-            IContent page,
-            IMindSettings settings = null)
-        {
-            var searchFormPart = page.As<AssociativySearchFormPart>();
-
-            if (searchFormPart.LabelsArray.Length == 0)
-            {
-                return _associativyServices.GraphEditor.GraphFactory();
-            }
-
-            var searched = _associativyServices.NodeManager.GetMany(GraphContext, searchFormPart.LabelsArray);
-
-            if (searched.Count() != searchFormPart.LabelsArray.Length) // Some nodes were not found
-            {
-                return _associativyServices.GraphEditor.GraphFactory();
-            }
-
-            if (settings == null)
-            {
-                settings = ConfigurationDescriptor.MakeDefaultMindSettings();
-            }
-
-            return _mind.MakeAssociations(GraphContext, searched, settings);
-        }
-
-        protected virtual void LoadGraphPart(IContent page, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> retrieveGraph)
-        {
-            if (!page.Has<GraphPart>()) return;
-
-            var graphPart = page.As<GraphPart>();
-            var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
-            graphPart.Graph = retrieveGraph(settings);
-
-            graphPart.ZoomLevelCountField.Loader(() =>
-            {
-                settings.ZoomLevel = ConfigurationDescriptor.MaxZoomLevel;
-                return _associativyServices.GraphEditor.CalculateZoomLevelCount(retrieveGraph(settings), ConfigurationDescriptor.MaxZoomLevel);
-            });
-        }
-
-        protected GraphDescriptor GetGraphDescriptorForContext()
-        {
-            return _graphManager.FindGraph(GraphContext);
         }
     }
 }

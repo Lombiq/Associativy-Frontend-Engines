@@ -13,44 +13,51 @@ using Associativy.Frontends.Engines.JIT.ViewModels;
 using Associativy.Frontends.Models;
 using Piedone.HelpfulLibraries.Serialization;
 using Associativy.GraphDiscovery;
-using Associativy.Frontends.ConfigurationDiscovery;
 using Associativy.Frontends.Services;
+using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.JIT.Controllers
 {
     [OrchardFeature("Associativy.Frontends.JIT")]
-    public class JITEngineController : EngineControllerBase<JITConfigurationDescriptor>
+    public class JITEngineController : EngineControllerBase
     {
+        private readonly IJITConfigurationHandler _configurationHandler;
+
+        private readonly IEngineContext _engineContext = new EngineContext { EngineName = "JIT" };
         protected override IEngineContext EngineContext
         {
-            get { return DefaultJITConfigurationProvider.DescribedEngineContext; }
+            get { return _engineContext; }
         }
 
         public JITEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IOrchardServices orchardServices)
-            : base(associativyServices, frontendServices, orchardServices)
+            IFrontendEngineEventHandler eventHandler,
+            IOrchardServices orchardServices,
+            IJITConfigurationHandler configurationHandler)
+            : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {
+            _configurationHandler = configurationHandler;
         }
 
         public virtual JsonResult FetchAssociations(int zoomLevel = 0)
         {
             var page = NewPage("FetchAssociations");
 
+            var mindSettings = page.As<IEngineConfigurationAspect>().MindSettings;
+            mindSettings.ZoomLevel = zoomLevel;
+
             _contentManager.UpdateEditor(page, this);
 
-            var settings = ConfigurationDescriptor.MakeDefaultMindSettings();
-            settings.ZoomLevel = zoomLevel;
-
             IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
+
             if (ModelState.IsValid)
             {
-                graph = RetrieveSearchedGraph(page, settings);
+                graph = page.As<IGraphRetrieverAspect>().RetrieveGraph(mindSettings);
             }
             else
             {
-                graph = _mind.GetAllAssociations(GraphContext, settings);
+                graph = _mind.GetAllAssociations(GraphContext, mindSettings);
             }
 
             var viewNodes = new Dictionary<int, NodeViewModel>(graph.VertexCount);
@@ -59,7 +66,7 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
             {
                 // Setting the ContentItem causes "A circular reference was detected while serializing an object of type 'Orchard.ContentManagement.Records.ContentItemRecord'."
                 var viewModel = new NodeViewModel { id = vertex.Id.ToString() };
-                ConfigurationDescriptor.SetupViewModel(vertex, viewModel);
+                _configurationHandler.SetupViewModel(EngineContext, GraphContext, vertex, viewModel);
                 viewNodes[vertex.Id] = viewModel;
             }
 

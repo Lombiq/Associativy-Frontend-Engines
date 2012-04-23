@@ -4,11 +4,12 @@ using System.Linq;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Associativy.Models;
+using Orchard.Core.Common.Utilities;
 
 namespace Associativy.Frontends.Models
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class AssociativySearchFormPart : ContentPart
+    public class AssociativySearchFormPart : ContentPart, IGraphRetrieverAspect
     {
         [Required]
         public string Labels
@@ -34,6 +35,12 @@ namespace Associativy.Frontends.Models
         public AssociativySearchFormPart()
         {
             LabelsArray = new string[0];
+        }
+
+        public GraphRetriever GraphRetrieverField { get; set; }
+        public GraphRetriever RetrieveGraph
+        {
+            get { return GraphRetrieverField; }
         }
     }
 }
