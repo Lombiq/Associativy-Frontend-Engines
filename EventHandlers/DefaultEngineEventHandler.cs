@@ -10,6 +10,7 @@ using Orchard.ContentManagement;
 using Orchard.Core.Title.Models;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
+using Orchard.Core.Common.Models;
 
 namespace Associativy.Frontends.EventHandlers
 {
@@ -38,7 +39,14 @@ namespace Associativy.Frontends.EventHandlers
             engineCommonPart.EngineContext = engineContext;
             engineCommonPart.MindSettings = new MindSettings
                 {
-                    ModifyQuery = (query) => query.Join<TitlePartRecord>()
+                    ModifyQuery = (query) =>
+                        {
+                            var recordQuery = query.Where<CommonPartRecord>(r => true);
+                            foreach (var contentType in _associativyServices.GraphManager.FindGraph(graphContext).ContentTypes)
+                            {
+                                recordQuery.WithQueryHintsFor(contentType);
+                            }
+                        }
                 };
 
             page.ContentItem.Weld(engineCommonPart);
