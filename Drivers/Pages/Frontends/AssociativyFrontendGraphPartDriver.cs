@@ -16,7 +16,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
 
         protected override DriverResult Display(AssociativyFrontendGraphPart part, string displayType, dynamic shapeHelper)
         {
-            return ContentShape("Page_AssociativyFrontendGraph",
+            return ContentShape("Pages_AssociativyFrontendGraph",
                         () =>
                         {
                             if (part.Graph == null)
