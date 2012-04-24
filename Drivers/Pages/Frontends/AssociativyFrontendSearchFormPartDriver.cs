@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Associativy.Frontends.Models;
+using Associativy.Frontends.Models.Pages.Frontends;
 using Associativy.Models.Mind;
 using Associativy.Services;
 using Orchard;
@@ -8,7 +9,6 @@ using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using QuickGraph;
-using Associativy.Frontends.Models.Pages.Frontends;
 
 namespace Associativy.Frontends.Drivers.Pages.Frontends
 {

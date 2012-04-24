@@ -1,6 +1,7 @@
 ﻿using Associativy.Frontends.Engines;
 using Associativy.Frontends.Extensions;
 using Associativy.Frontends.Models;
+using Associativy.Frontends.Models.Pages.Frontends;
 using Associativy.GraphDiscovery;
 using Associativy.Models.Mind;
 using Associativy.Services;
@@ -9,7 +10,6 @@ using Orchard.ContentManagement;
 using Orchard.Core.Title.Models;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
-using Associativy.Frontends.Models.Pages.Frontends;
 
 namespace Associativy.Frontends.EventHandlers
 {

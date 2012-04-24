@@ -1,8 +1,8 @@
 ﻿using Associativy.Frontends.Models;
+using Associativy.Frontends.Models.Pages.Frontends;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
-using Associativy.Frontends.Models.Pages.Frontends;
 
 namespace Associativy.Frontends.Drivers.Pages.Frontends
 {
