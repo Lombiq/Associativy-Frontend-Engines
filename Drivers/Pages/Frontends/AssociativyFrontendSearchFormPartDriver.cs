@@ -43,7 +43,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
         // GET
         protected override DriverResult Editor(AssociativyFrontendSearchFormPart part, dynamic shapeHelper)
         {
-            return ContentShape("AssociativySearchForm",
+            return ContentShape("Page_AssociativyFrontendSearchForm",
                         () => shapeHelper.DisplayTemplate(
                                 TemplateName: "Pages/Frontends/FrontendSearchForm",
                                 Model: part,
