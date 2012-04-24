@@ -9,6 +9,7 @@ using Orchard.ContentManagement;
 using Orchard.Core.Title.Models;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
+using Associativy.Frontends.Models.Pages.Frontends;
 
 namespace Associativy.Frontends.EventHandlers
 {
@@ -32,7 +33,7 @@ namespace Associativy.Frontends.EventHandlers
 
         public void OnPageInitializing(IEngineContext engineContext, IGraphContext graphContext, IContent page)
         {
-            var engineCommonPart = new EngineCommonPart();
+            var engineCommonPart = new AssociativyFrontendCommonPart();
             engineCommonPart.GraphContext = graphContext;
             engineCommonPart.EngineContext = engineContext;
             engineCommonPart.MindSettings = new MindSettings
@@ -42,8 +43,7 @@ namespace Associativy.Frontends.EventHandlers
 
             page.ContentItem.Weld(engineCommonPart);
 
-            // These below should really be set up in a handler, but neither OnActivated, neither OnInitialized are run...
-            page.ContentItem.Weld(new AssociativySearchFormPart
+            page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
                 {
                     GraphRetrieverField = (settings) =>
                         {
@@ -51,7 +51,7 @@ namespace Associativy.Frontends.EventHandlers
                         }
                 });
 
-            var graphPart = new GraphPart();
+            var graphPart = new AssociativyFrontendGraphPart();
             graphPart.ZoomLevelCountField.Loader(() =>
                 {
                     var settings = engineCommonPart.MindSettings.MakeShallowCopy();

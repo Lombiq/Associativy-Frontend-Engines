@@ -2,18 +2,19 @@
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
+using Associativy.Frontends.Models.Pages.Frontends;
 
-namespace Associativy.Frontends.Drivers
+namespace Associativy.Frontends.Drivers.Pages.Frontends
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class GraphPartDriver : ContentPartDriver<GraphPart>
+    public class AssociativyFrontendGraphPartDriver : ContentPartDriver<AssociativyFrontendGraphPart>
     {
         protected override string Prefix
         {
             get { return "Associativy.Frontends.GraphPart"; }
         }
 
-        protected override DriverResult Display(GraphPart part, string displayType, dynamic shapeHelper)
+        protected override DriverResult Display(AssociativyFrontendGraphPart part, string displayType, dynamic shapeHelper)
         {
             return ContentShape("AssociativyGraph",
                         () =>
@@ -26,13 +27,13 @@ namespace Associativy.Frontends.Drivers
                             if (part.Graph.IsVerticesEmpty)
                             {
                                 return shapeHelper.DisplayTemplate(
-                                        TemplateName: "NotFound",
+                                        TemplateName: "Pages/Frontends/NotFound",
                                         Model: part,
                                         Prefix: Prefix);
                             }
 
                             return shapeHelper.DisplayTemplate(
-                                        TemplateName: "Engines/" + part.As<IEngineConfigurationAspect>().EngineContext.EngineName + "/Graph",
+                                        TemplateName: "Pages/Frontends/Engines/" + part.As<IEngineConfigurationAspect>().EngineContext.EngineName + "/Graph",
                                         Model: part,
                                         Prefix: Prefix);
                         });

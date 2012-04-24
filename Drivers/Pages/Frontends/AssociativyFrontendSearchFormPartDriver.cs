@@ -8,11 +8,12 @@ using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using QuickGraph;
+using Associativy.Frontends.Models.Pages.Frontends;
 
-namespace Associativy.Frontends.Drivers
+namespace Associativy.Frontends.Drivers.Pages.Frontends
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class AssociativySearchFormPartDriver : ContentPartDriver<AssociativySearchFormPart>
+    public class AssociativyFrontendSearchFormPartDriver : ContentPartDriver<AssociativyFrontendSearchFormPart>
     {
         private readonly IAssociativyServices _associativyServices;
         private readonly IWorkContextAccessor _workContextAccessor;
@@ -24,7 +25,7 @@ namespace Associativy.Frontends.Drivers
 
         public Localizer T { get; set; }
 
-        public AssociativySearchFormPartDriver(
+        public AssociativyFrontendSearchFormPartDriver(
             IAssociativyServices associativyServices,
             IWorkContextAccessor workContextAccessor)
         {
@@ -34,23 +35,23 @@ namespace Associativy.Frontends.Drivers
             T = NullLocalizer.Instance;
         }
 
-        protected override DriverResult Display(AssociativySearchFormPart part, string displayType, dynamic shapeHelper)
+        protected override DriverResult Display(AssociativyFrontendSearchFormPart part, string displayType, dynamic shapeHelper)
         {
             return Editor(part, shapeHelper);
         }
 
         // GET
-        protected override DriverResult Editor(AssociativySearchFormPart part, dynamic shapeHelper)
+        protected override DriverResult Editor(AssociativyFrontendSearchFormPart part, dynamic shapeHelper)
         {
             return ContentShape("AssociativySearchForm",
                         () => shapeHelper.DisplayTemplate(
-                                TemplateName: "SearchForm",
+                                TemplateName: "Pages/Frontends/FrontendSearchForm",
                                 Model: part,
                                 Prefix: Prefix));
         }
 
         // POST
-        protected override DriverResult Editor(AssociativySearchFormPart part, IUpdateModel updater, dynamic shapeHelper)
+        protected override DriverResult Editor(AssociativyFrontendSearchFormPart part, IUpdateModel updater, dynamic shapeHelper)
         {
             if (updater.TryUpdateModel(part, Prefix, null, null))
             {

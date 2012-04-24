@@ -3,10 +3,10 @@ using Orchard.Core.Common.Utilities;
 using Orchard.Environment.Extensions;
 using QuickGraph;
 
-namespace Associativy.Frontends.Models
+namespace Associativy.Frontends.Models.Pages.Frontends
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class GraphPart : ContentPart, IGraphAspect
+    public class AssociativyFrontendGraphPart : ContentPart, IGraphAspect
     {
         public IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; set; }
 
