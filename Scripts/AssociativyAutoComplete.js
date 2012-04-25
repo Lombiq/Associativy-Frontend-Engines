@@ -2,10 +2,7 @@
     $.extend(true, {
         associativy: {
             autoComplete: {
-                labels: function (textboxId, fetchUrl) {
-                    if (textboxId == null)
-                        textboxId = 'terms';
-
+                labels: function (textboxSelector, fetchUrl) {
                     function split(val) {
                         return val.split(/,\s*/);
                     }
@@ -13,7 +10,7 @@
                         return split(term).pop();
                     }
 
-                    var textBox = $('#' + textboxId);
+                    var textBox = $(textboxSelector);
 
                     textBox.bind('keydown', function (event) {
                         // don't navigate away from the field on tab when selecting an item
