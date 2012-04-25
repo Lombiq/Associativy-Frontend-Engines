@@ -17,3 +17,22 @@
     text-align: center;
     width: 100%;
 }
+
+#associativy-jit-zoom-slider-max
+{
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    margin: 0 auto 10px auto;
+}
+
+#associativy-jit-associations-canvas
+{
+    height: 800px;
+    overflow: hidden;
+}
+
+#associativy-jit-associations-canvas:hover
+{
+    cursor: move;
+}

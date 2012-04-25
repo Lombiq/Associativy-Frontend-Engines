@@ -21,7 +21,7 @@
 
                 var graphSetup = {
                     //id of the visualization container
-                    injectInto: "associativy-jit-associations",
+                    injectInto: "associativy-jit-associations-canvas",
                     //Enable zooming and panning
                     //by scrolling and DnD
                     Navigation: {
