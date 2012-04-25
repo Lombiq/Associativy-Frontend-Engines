@@ -19,5 +19,5 @@
 }
 
 <script type="text/javascript">
-    $.associativyAutoComplete.terms("@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<IEngineConfigurationAspect>().GraphContext.GraphName })");
+    $.associativyAutoComplete.labels("@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<IEngineConfigurationAspect>().GraphContext.GraphName })");
 </script>

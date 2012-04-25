@@ -1,7 +1,7 @@
 ﻿(function ($) {
     $.extend({
         associativyAutoComplete: {
-            terms: function (textboxId, fetchUrl) {
+            labels: function (textboxId, fetchUrl) {
                 if (textboxId == null)
                     textboxId = 'terms';
 
