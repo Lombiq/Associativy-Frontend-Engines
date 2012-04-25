@@ -1,7 +1,7 @@
 ﻿(function ($) {
     $.extend({
         jit: {
-            draw: function (json) {
+            draw: function (canvasId, json) {
                 var labelType, useGradients, nativeTextSupport, animate;
 
                 var ua = navigator.userAgent;
@@ -21,7 +21,7 @@
 
                 var graphSetup = {
                     //id of the visualization container
-                    injectInto: "associativy-jit-associations-canvas",
+                    injectInto: canvasId,
                     //Enable zooming and panning
                     //by scrolling and DnD
                     Navigation: {
