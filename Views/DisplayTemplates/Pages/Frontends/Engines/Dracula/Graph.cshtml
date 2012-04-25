@@ -1,7 +1,8 @@
 ﻿@model Associativy.Frontends.Models.IGraphAspect
            
 @{
-    Script.Require("Dracula").AtHead();
+    Script.Require("Dracula").AtFoot();
+    Style.Require("Dracula");
 
     var addNodesShape = ((dynamic)ShapeFactory).DisplayTemplate(
                             TemplateName: "Pages/Frontends/Engines/Dracula/AddNodes",
@@ -14,20 +15,24 @@
                             Prefix: null);
 }
 
-<script type="text/javascript">
-$(document).ready(function(){
-	var graph = new Graph();
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(document).ready(function(){
+	        var graph = new Graph();
 
-    @Display(addNodesShape)
+            @Display(addNodesShape)
 
-    @Display(addEdgesShape)
+            @Display(addEdgesShape)
 	
-	var layouter = new Graph.Layout.Spring(graph);
-	layouter.layout();
+	        var layouter = new Graph.Layout.Spring(graph);
+	        layouter.layout();
 	 
-	var renderer = new Graph.Renderer.Raphael("canvas", graph, 900, 1000);
-	renderer.draw();
-});
-</script>
-<div id="canvas">
+	        var renderer = new Graph.Renderer.Raphael("associativy-dracula-canvas", graph, $("#associativy-dracula-canvas").width(), $("#associativy-dracula-canvas").height());
+	        renderer.draw();
+        });
+    </script>
+}
+
+<div id="associativy-dracula-canvas">
 </div>

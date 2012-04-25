@@ -562,6 +562,7 @@
     <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\README.txt" />
     <Content Include="Scripts\Engines\JIT\JIT.custom.min.js" />
     <Content Include="Scripts\Engines\JIT\JITDrawer.js" />
+    <Content Include="Styles\Engines\Dracula\associativy-dracula.css" />
     <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapbox.css" />
     <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapz.css" />
     <Content Include="Styles\Engines\JIT\associativy-jit.css" />
