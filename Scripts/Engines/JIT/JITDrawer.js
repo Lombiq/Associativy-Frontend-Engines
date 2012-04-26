@@ -149,7 +149,10 @@
                         }
                     };
 
-                    graphSetup = this.modifyGraphSetup(graphSetup);
+                    $(document).triggerHandler({
+                        type: "graphSetup.AssociativyJIT",
+                        graphSetup: graphSetup
+                    });
 
                     var graph = new $jit.ForceDirected(graphSetup);
 
@@ -177,11 +180,6 @@
                             });
                         }
                     });
-                },
-
-                // Method to override
-                modifyGraphSetup: function (graphSetup) {
-                    return graphSetup;
                 }
             }
         }
