@@ -32,17 +32,17 @@ namespace Associativy.Frontends.EventHandlers
             T = NullLocalizer.Instance;
         }
 
-        public void OnPageInitializing(IEngineContext engineContext, IGraphContext graphContext, IContent page)
+        public void OnPageInitializing(FrontendContext frontendContext, IContent page)
         {
             var engineCommonPart = new AssociativyFrontendCommonPart();
-            engineCommonPart.GraphContext = graphContext;
-            engineCommonPart.EngineContext = engineContext;
+            engineCommonPart.GraphContext = frontendContext.GraphContext;
+            engineCommonPart.EngineContext = frontendContext.EngineContext;
             engineCommonPart.MindSettings = new MindSettings
                 {
                     ModifyQuery = (query) =>
                         {
                             var recordQuery = query.Where<CommonPartRecord>(r => true);
-                            foreach (var contentType in _associativyServices.GraphManager.FindGraph(graphContext).ContentTypes)
+                            foreach (var contentType in _associativyServices.GraphManager.FindGraph(frontendContext.GraphContext).ContentTypes)
                             {
                                 recordQuery.WithQueryHintsFor(contentType);
                             }
@@ -70,16 +70,16 @@ namespace Associativy.Frontends.EventHandlers
             page.ContentItem.Weld(graphPart);
         }
 
-        public void OnPageInitialized(IEngineContext engineContext, IGraphContext graphContext, IContent page)
+        public void OnPageInitialized(FrontendContext frontendContext, IContent page)
         {
         }
 
 
-        public void OnPageBuilt(IEngineContext engineContext, IGraphContext graphContext, IContent page)
+        public void OnPageBuilt(FrontendContext frontendContext, IContent page)
         {
             if (page.IsPage("WholeGraph"))
             {
-                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(graphContext).DisplayGraphName).ToString();
+                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(frontendContext.GraphContext).DisplayGraphName).ToString();
             }
         }
     }

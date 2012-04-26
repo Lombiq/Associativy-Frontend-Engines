@@ -27,6 +27,17 @@ namespace Associativy.Frontends.Controllers
 
         abstract protected IEngineContext EngineContext { get; }
 
+        private readonly FrontendContext _frontendContext = new FrontendContext();
+        protected FrontendContext FrontendContext
+        {
+            get
+            {
+                _frontendContext.EngineContext = EngineContext;
+                _frontendContext.GraphContext = GraphContext;
+                return _frontendContext;
+            }
+        }
+
         public Localizer T { get; set; }
 
         protected EngineControllerBase(
@@ -48,7 +59,7 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("WholeGraph");
 
-            _eventHandler.OnPageBuilt(EngineContext, GraphContext, page);
+            _eventHandler.OnPageBuilt(FrontendContext, page);
 
             return new ShapeResult(this, _contentManager.BuildEnginePageDisplay(GraphContext, page));
         }
@@ -61,7 +72,7 @@ namespace Associativy.Frontends.Controllers
 
             if (ModelState.IsValid)
             {
-                _eventHandler.OnPageBuilt(EngineContext, GraphContext, page);
+                _eventHandler.OnPageBuilt(FrontendContext, page);
 
                 return new ShapeResult(
                     this,
@@ -92,8 +103,8 @@ namespace Associativy.Frontends.Controllers
         {
             var page = _contentManager.NewEnginePage(EngineContext, pageName);
 
-            _eventHandler.OnPageInitializing(EngineContext, GraphContext, page);
-            _eventHandler.OnPageInitialized(EngineContext, GraphContext, page);
+            _eventHandler.OnPageInitializing(FrontendContext, page);
+            _eventHandler.OnPageInitialized(FrontendContext, page);
 
             return page;
         }

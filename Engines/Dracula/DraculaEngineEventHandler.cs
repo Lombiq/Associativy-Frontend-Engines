@@ -19,7 +19,7 @@ namespace Associativy.Frontends.Engines.Dracula
             _configurationHandler = configurationHandler;
         }
 
-        public void OnPageInitializing(IEngineContext engineContext, IGraphContext graphContext, IContent page)
+        public void OnPageInitializing(FrontendContext frontendContext, IContent page)
         {
             var draculaPart = new DraculaPart();
             draculaPart.NodesField.Loader(() =>
@@ -31,7 +31,7 @@ namespace Associativy.Frontends.Engines.Dracula
                 foreach (var node in graph.Vertices)
                 {
                     var viewModel = new NodeViewModel { ContentItem = node };
-                    _configurationHandler.SetupViewModel(engineContext, graphContext, node, viewModel);
+                    _configurationHandler.SetupViewModel(frontendContext, node, viewModel);
                     nodes[node.Id] = viewModel;
                 }
 
@@ -40,11 +40,11 @@ namespace Associativy.Frontends.Engines.Dracula
             page.ContentItem.Weld(draculaPart);
         }
 
-        public void OnPageInitialized(IEngineContext engineContext, IGraphContext graphContext, IContent page)
+        public void OnPageInitialized(FrontendContext frontendContext, IContent page)
         {
         }
 
-        public void OnPageBuilt(IEngineContext engineContext, IGraphContext graphContext, IContent page)
+        public void OnPageBuilt(FrontendContext frontendContext, IContent page)
         {
         }
     }

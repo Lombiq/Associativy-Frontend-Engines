@@ -622,6 +622,7 @@
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
     <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
+    <Compile Include="EventHandlers\FrontendContext.cs" />
     <Compile Include="EventHandlers\IFrontendEngineEventHandler.cs" />
     <Compile Include="Extensions\ContentExtensions.cs" />
     <Compile Include="Extensions\ContentManagerExtensions.cs" />

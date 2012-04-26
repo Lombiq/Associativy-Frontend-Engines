@@ -2,11 +2,12 @@
 using Associativy.GraphDiscovery;
 using Orchard.ContentManagement;
 using Orchard.Events;
+using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.Dracula
 {
     public interface IDraculaConfigurationHandler : IEventHandler
     {
-        void SetupViewModel(IEngineContext engineContext, IGraphContext graphContext, IContent node, NodeViewModel viewModel);
+        void SetupViewModel(FrontendContext frontendContext, IContent node, NodeViewModel viewModel);
     }
 }

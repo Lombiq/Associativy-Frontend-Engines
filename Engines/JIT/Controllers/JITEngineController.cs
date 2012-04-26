@@ -61,7 +61,7 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
             {
                 // Setting the ContentItem causes "A circular reference was detected while serializing an object of type 'Orchard.ContentManagement.Records.ContentItemRecord'."
                 var viewModel = new NodeViewModel { id = vertex.Id.ToString() };
-                _configurationHandler.SetupViewModel(EngineContext, GraphContext, vertex, viewModel);
+                _configurationHandler.SetupViewModel(FrontendContext, vertex, viewModel);
                 viewNodes[vertex.Id] = viewModel;
             }
 

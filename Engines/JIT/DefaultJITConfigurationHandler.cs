@@ -5,6 +5,7 @@ using Orchard;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Aspects;
 using Orchard.Environment.Extensions;
+using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.JIT
 {
@@ -18,7 +19,7 @@ namespace Associativy.Frontends.Engines.JIT
             _orchardServices = orchardServices;
         }
 
-        public void SetupViewModel(IEngineContext engineContext, IGraphContext graphContext, IContent node, NodeViewModel viewModel)
+        public void SetupViewModel(FrontendContext frontendContext, IContent node, NodeViewModel viewModel)
         {
             // .Has<> doesn't work here
             if (node.As<ITitleAspect>() != null) viewModel.name = node.As<ITitleAspect>().Title;
