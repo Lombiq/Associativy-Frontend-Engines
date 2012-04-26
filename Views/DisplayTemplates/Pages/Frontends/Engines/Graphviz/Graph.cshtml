@@ -7,64 +7,67 @@
 }
 <script type="text/javascript">
 $(document).ready(function(){
-	$.getJSON("@Url.Action("Render", routeData["controller"].ToString())?" + $("#associativy-search-form").serialize(), function(response) {
-        /// Native OpenLayers implementation
-        var map = new OpenLayers.Map("associativy-graphviz-openlayers-map");
-        var urls = response["GraphImageUrls"];
-        var maxZoomLevelsPerLayer = 3;
-        var layerCount = urls.length;
-        var layerSwitched = 0;
+	$.post(
+        "@Url.Action("Render", routeData["controller"].ToString())?" + $("#associativy-search-form").serialize(), 
+        { __RequestVerificationToken: "@Html.AntiForgeryTokenValueOrchard()" },
+        function(response) {
+            /// Native OpenLayers implementation
+            var map = new OpenLayers.Map("associativy-graphviz-openlayers-map");
+            var urls = response["GraphImageUrls"];
+            var maxZoomLevelsPerLayer = 3;
+            var layerCount = urls.length;
+            var layerSwitched = 0;
 
-        for (var i = 0; i < urls.length; i++) {
-            var layer = new OpenLayers.Layer.Image(
-                            "layer-" + i,
-                            urls[i],
-                            new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
-                            new OpenLayers.Size(600, 400),
-                            {numZoomLevels: maxZoomLevelsPerLayer}
-                        );
-            map.addLayer(layer);
-        }
+            for (var i = 0; i < urls.length; i++) {
+                var layer = new OpenLayers.Layer.Image(
+                                "layer-" + i,
+                                urls[i],
+                                new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
+                                new OpenLayers.Size(600, 400),
+                                {numZoomLevels: maxZoomLevelsPerLayer}
+                            );
+                map.addLayer(layer);
+            }
 
-        map.addControl(new OpenLayers.Control.LayerSwitcher());
-        map.zoomToMaxExtent();
-
-
-//        /// MapQuery implementation
-//        var urls = response["GraphImageUrls"];
-//        var layers = [];
-//        
-//        for (var i = 0; i < urls.length; i++) {
-//            layers[i] = {
-//                type:"image",
-//                name: "layer-" + i,
-//                url: urls[i],
-//                extent: new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
-//                size: new OpenLayers.Size(580, 288),
-//                options: {numZoomLevels: 3}};
-//        }
-
-//        var mapQuery = $("#associativy-graphviz-openlayers-map").mapQuery({
-//                maxExtent:[-180,-90,180,90],
-//                projection:'EPSG:4326',
-//                units:'degrees',
-//                layers: layers
-//            }).data("mapQuery");
-
-////        for (var i = 0; i < urls.length; i++) {
-////            mapQuery.olMap.addLayer(
-////                new OpenLayers.Layer.Image(
-////                    "layer-" + i,
-////                    urls[i],
-////                    new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
-////                    new OpenLayers.Size(580, 288),
-////                    {numZoomLevels: 3}
-////                ));
-////        }
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+            map.zoomToMaxExtent();
 
 
-//        mapQuery.olMap.addControl(new OpenLayers.Control.LayerSwitcher());
-//        mapQuery.center({position:[5,52],zoom:2});
+    //        /// MapQuery implementation
+    //        var urls = response["GraphImageUrls"];
+    //        var layers = [];
+    //        
+    //        for (var i = 0; i < urls.length; i++) {
+    //            layers[i] = {
+    //                type:"image",
+    //                name: "layer-" + i,
+    //                url: urls[i],
+    //                extent: new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
+    //                size: new OpenLayers.Size(580, 288),
+    //                options: {numZoomLevels: 3}};
+    //        }
+
+    //        var mapQuery = $("#associativy-graphviz-openlayers-map").mapQuery({
+    //                maxExtent:[-180,-90,180,90],
+    //                projection:'EPSG:4326',
+    //                units:'degrees',
+    //                layers: layers
+    //            }).data("mapQuery");
+
+    ////        for (var i = 0; i < urls.length; i++) {
+    ////            mapQuery.olMap.addLayer(
+    ////                new OpenLayers.Layer.Image(
+    ////                    "layer-" + i,
+    ////                    urls[i],
+    ////                    new OpenLayers.Bounds(-180, -88.759, 180, 88.759),
+    ////                    new OpenLayers.Size(580, 288),
+    ////                    {numZoomLevels: 3}
+    ////                ));
+    ////        }
+
+
+    //        mapQuery.olMap.addControl(new OpenLayers.Control.LayerSwitcher());
+    //        mapQuery.center({position:[5,52],zoom:2});
     });
 });
 </script>

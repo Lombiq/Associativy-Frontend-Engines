@@ -13,9 +13,12 @@
             jit: {
                 loadGraph: function (zoomLevel, redraw) {
                     var that = this;
-                    $.getJSON("@Url.Action("FetchAssociations", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
-                        if (!redraw) that.graph = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
-                        else $.associativy.jit.redraw(that.graph, graphData);
+                    $.post(
+                        "@Url.Action("FetchAssociations", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), 
+                        { __RequestVerificationToken: "@Html.AntiForgeryTokenValueOrchard()" },
+                        function(graphData) {
+                            if (!redraw) that.graph = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
+                            else $.associativy.jit.redraw(that.graph, graphData);
                     });
                 }
             }

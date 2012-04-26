@@ -35,9 +35,15 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
             _configurationHandler = configurationHandler;
         }
 
-        public virtual JsonResult FetchAssociations(int zoomLevel = 0)
+        [HttpPost]
+        public virtual ActionResult FetchAssociations(int zoomLevel = 0)
         {
             var page = NewPage("FetchAssociations");
+
+            if (!IsAuthorized(page))
+            {
+                return new HttpUnauthorizedResult();
+            }
 
             var mindSettings = page.As<IEngineConfigurationAspect>().MindSettings;
             mindSettings.ZoomLevel = zoomLevel;
@@ -71,7 +77,7 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
                 viewNodes[edge.Target.Id].adjacencies.Add(edge.Source.Id.ToString());
             }
 
-            return Json(viewNodes.Values, JsonRequestBehavior.AllowGet);
+            return Json(viewNodes.Values);
         }
     }
 }

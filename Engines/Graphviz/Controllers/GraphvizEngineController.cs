@@ -40,9 +40,16 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             _graphImageService = graphImageService;
         }
 
-        public virtual JsonResult Render()
+        [HttpPost]
+        public virtual ActionResult Render()
         {
             var page = NewPage("Render");
+
+            if (!IsAuthorized(page))
+            {
+                return new HttpUnauthorizedResult();
+            }
+
             _contentManager.UpdateEditor(page, this);
 
             var mindSettings = page.As<IEngineConfigurationAspect>().MindSettings;
@@ -69,7 +76,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             }
 
 
-            return Json(new { GraphImageUrls = graphImageUrls }, JsonRequestBehavior.AllowGet);
+            return Json(new { GraphImageUrls = graphImageUrls });
         }
 
         protected virtual List<string> FetchZoomedGraphUrls(IMindSettings settings, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
