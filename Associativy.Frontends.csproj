@@ -562,7 +562,7 @@
     <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\README.txt" />
     <Content Include="Scripts\Engines\JIT\JIT.custom.min.js" />
     <Content Include="Scripts\Engines\JIT\JITDrawer.js" />
-    <Content Include="Scripts\ZoomSlider.js" />
+    <Content Include="Styles\associativy-graph-zoom-slider.css" />
     <Content Include="Styles\Engines\Dracula\associativy-dracula.css" />
     <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapbox.css" />
     <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapz.css" />
@@ -677,6 +677,7 @@
     <Content Include="Views\DisplayTemplates\Pages\Frontends\NotFound.cshtml" />
     <Content Include="Views\DisplayTemplates\Pages\Frontends\FrontendSearchForm.cshtml" />
     <Content Include="Views\AssociativyBadgeOfHonor.cshtml" />
+    <Content Include="Views\GraphZoomSlider.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

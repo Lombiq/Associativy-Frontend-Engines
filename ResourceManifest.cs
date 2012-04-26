@@ -9,7 +9,11 @@ namespace Associativy.Frontends
         public void BuildManifests(ResourceManifestBuilder builder)
         {
             var manifest = builder.Add();
+
             manifest.DefineScript("AssociativyAutoComplete").SetUrl("AssociativyAutoComplete.js").SetDependencies("jQueryUI_Autocomplete");
+            manifest.DefineScript("GraphZoomSlider").SetDependencies(new string[] { "jQueryUI_Slider" });
+
+            manifest.DefineStyle("GraphZoomSlider").SetUrl("associativy-graph-zoom-slider.css").SetDependencies(new string[] { "jQueryUI_Orchard" });
         }
     }
 }

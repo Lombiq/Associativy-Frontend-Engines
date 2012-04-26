@@ -5,42 +5,35 @@
 
     var maxZoomLevel = Model.ZoomLevelCount - 1;
 }
-
 <script type="text/javascript">
+(function ($) {
+    $.extend(true, {
+        associativy: {
+            graph: null,
+            jit: {
+                loadGraph: function (zoomLevel, redraw) {
+                    var that = this;
+                    $.getJSON("@Url.Action("FetchAssociations", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
+                        if (!redraw) that.graph = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
+                        else $.associativy.jit.redraw(that.graph, graphData);
+                    });
+                }
+            }
+        }
+    });
+})(jQuery);
+
+$(document).on("stop.AssociativyGraphZoomSlider", function(values) {
+    $.associativy.jit.loadGraph(values.ui.value, true);
+});
+
 $(document).ready(function() {
-    var graph;
-
-    var loadGraph = function(zoomLevel, redraw) {
-        $.getJSON("@Url.Action("FetchAssociations", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), function(graphData) {
-            if (redraw == null) redraw = false;
-            if (!redraw) graph = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
-            else $.associativy.jit.redraw(graph, graphData);
-        });
-    };
-
-    loadGraph(0);
-
-    $("#associativy-jit-zoom-slider").slider({
-		orientation: "vertical",
-		range: "min",
-		min: 0,
-		max: @maxZoomLevel,
-		value: 0,
-		stop: function(event, ui) {
-            loadGraph(ui.value, true);
-            $("#associativy-jit-zoom-slider-value").text(ui.value);
-		}
-	});
-    $("#associativy-jit-zoom-slider-value").text($("#associativy-jit-zoom-slider").slider("value"));
+    $.associativy.jit.loadGraph(0, false);
 });
 </script>
-<div id="associativy-jit-zoom-slider-container">
-    <span id="associativy-jit-zoom-slider-max">@maxZoomLevel</span>
-    <div id="associativy-jit-zoom-slider">
-    </div>
-    <span id="associativy-jit-zoom-slider-value"></span>
-</div>
+
+@Display.GraphZoomSlider(MaxZoomLevel: maxZoomLevel)
+
 <div id="associativy-jit-associations-canvas">
 </div>
-
 @Display.AssociativyBadgeOfHonor()

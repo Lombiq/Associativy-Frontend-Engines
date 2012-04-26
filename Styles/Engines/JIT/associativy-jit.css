@@ -1,32 +1,4 @@
-﻿#associativy-jit-zoom-slider-container
-{
-    float: left;
-    margin: 0 15px 0 0;
-}
-
-#associativy-jit-zoom-slider 
-{
-    height: 200px;
-}
-
-#associativy-jit-zoom-slider-value
-{
-    display: inline-block;
-    margin: 10px auto 0 auto;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
-}
-
-#associativy-jit-zoom-slider-max
-{
-    font-weight: bold;
-    text-align: center;
-    display: block;
-    margin: 0 auto 10px auto;
-}
-
-#associativy-jit-associations-canvas
+﻿#associativy-jit-associations-canvas
 {
     height: 800px;
     overflow: hidden;
