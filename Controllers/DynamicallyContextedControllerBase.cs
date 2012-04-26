@@ -7,7 +7,7 @@ using Orchard.Environment.Extensions;
 namespace Associativy.Frontends.Controllers
 {
     [OrchardFeature("Associativy.Frontends")]
-    public abstract class DynamicallyContextedControllerBase : FrontendControllerBase, IDynamicallyContextedController
+    public abstract class DynamicallyContextedControllerBase : FrontendControllerBase
     {
         private IGraphContext _graphContext;
         public IGraphContext GraphContext
