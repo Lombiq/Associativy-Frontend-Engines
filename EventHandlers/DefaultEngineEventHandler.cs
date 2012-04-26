@@ -74,13 +74,17 @@ namespace Associativy.Frontends.EventHandlers
         {
         }
 
-
         public void OnPageBuilt(FrontendEventContext frontendEventContext)
         {
             if (frontendEventContext.Page.IsPage("WholeGraph"))
             {
                 _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(frontendEventContext.GraphContext).DisplayGraphName).ToString();
             }
+        }
+
+        public void OnAuthorization(FrontendAuthorizationEventContext frontendAuthorizationEventContext)
+        {
+            frontendAuthorizationEventContext.Granted = true;
         }
     }
 }

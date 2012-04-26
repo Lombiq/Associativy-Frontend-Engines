@@ -47,7 +47,12 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("WholeGraph");
 
-            _eventHandler.OnPageBuilt(new FrontendEventContext(page, EngineContext, GraphContext));
+            if (!IsAuthorized(page))
+            {
+                return new HttpUnauthorizedResult();
+            }
+
+            _eventHandler.OnPageBuilt(FrontendEventContext(page));
 
             return new ShapeResult(this, _contentManager.BuildEnginePageDisplay(GraphContext, page));
         }
@@ -56,11 +61,16 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("Associations");
 
+            if (!IsAuthorized(page))
+            {
+                return new HttpUnauthorizedResult();
+            }
+
             _contentManager.UpdateEditor(page, this);
 
             if (ModelState.IsValid)
             {
-                _eventHandler.OnPageBuilt(new FrontendEventContext(page, EngineContext, GraphContext));
+                _eventHandler.OnPageBuilt(FrontendEventContext(page));
 
                 return new ShapeResult(
                     this,
@@ -91,10 +101,22 @@ namespace Associativy.Frontends.Controllers
         {
             var page = _contentManager.NewEnginePage(EngineContext, pageName);
 
-            _eventHandler.OnPageInitializing(new FrontendEventContext(page, EngineContext, GraphContext));
-            _eventHandler.OnPageInitialized(new FrontendEventContext(page, EngineContext, GraphContext));
+            _eventHandler.OnPageInitializing(FrontendEventContext(page));
+            _eventHandler.OnPageInitialized(FrontendEventContext(page));
 
             return page;
+        }
+
+        protected virtual FrontendEventContext FrontendEventContext(IContent page)
+        {
+            return new FrontendEventContext(page, EngineContext, GraphContext);
+        }
+
+        protected virtual bool IsAuthorized(IContent page)
+        {
+            var authorizationContext = new FrontendAuthorizationEventContext(_orchardServices.WorkContext.CurrentUser, page, EngineContext, GraphContext);
+            _eventHandler.OnAuthorization(authorizationContext);
+            return authorizationContext.Granted;
         }
     }
 }

@@ -6,20 +6,40 @@ using Associativy.Models;
 using Associativy.Services;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
+using Associativy.Frontends.Services;
+using Associativy.Frontends.EventHandlers;
+using Orchard;
+using Associativy.Frontends.Engines;
 
 namespace Associativy.Frontends.Controllers
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class AutoCompleteController : AssociativyControllerBase
+    public class AutoCompleteController : DynamicallyContextedControllerBase
     {
-        public AutoCompleteController(IAssociativyServices associativyServices)
-            : base(associativyServices)
+        private readonly IFrontendEngineEventHandler _eventHandler;
+        private readonly IOrchardServices _orchardServices;
+
+        public AutoCompleteController(
+            IAssociativyServices associativyServices,
+            IFrontendServices frontendServices,
+            IFrontendEngineEventHandler eventHandler,
+            IOrchardServices orchardServices)
+            : base(associativyServices, frontendServices)
         {
+            _eventHandler = eventHandler;
+            _orchardServices = orchardServices;
         }
 
-        public virtual JsonResult FetchSimilarLabels(string graphName, string labelSnippet)
+        public virtual ActionResult FetchSimilarLabels(string graphName, string labelSnippet)
         {
-            return Json(_nodeManager.GetSimilarNodes(new GraphContext { GraphName = graphName }, labelSnippet).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
+            var authorizationContext = new FrontendAuthorizationEventContext(_orchardServices.WorkContext.CurrentUser, null, new EngineContext(), GraphContext);
+            _eventHandler.OnAuthorization(authorizationContext);
+            if (!authorizationContext.Granted)
+            {
+                return new HttpUnauthorizedResult();
+            }
+
+            return Json(_nodeManager.GetSimilarNodes(GraphContext, labelSnippet).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }

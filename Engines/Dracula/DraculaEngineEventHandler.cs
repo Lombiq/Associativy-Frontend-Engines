@@ -21,6 +21,8 @@ namespace Associativy.Frontends.Engines.Dracula
 
         public void OnPageInitializing(FrontendEventContext frontendEventContext)
         {
+            if (frontendEventContext.EngineContext.EngineName != "Dracula") return;
+
             var draculaPart = new DraculaPart();
             draculaPart.NodesField.Loader(() =>
             {
@@ -45,6 +47,10 @@ namespace Associativy.Frontends.Engines.Dracula
         }
 
         public void OnPageBuilt(FrontendEventContext frontendEventContext)
+        {
+        }
+
+        public void OnAuthorization(FrontendAuthorizationEventContext frontendAuthorizationEventContext)
         {
         }
     }

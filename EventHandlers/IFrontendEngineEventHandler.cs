@@ -10,5 +10,6 @@ namespace Associativy.Frontends.EventHandlers
         void OnPageInitializing(FrontendEventContext frontendEventContext);
         void OnPageInitialized(FrontendEventContext frontendEventContext);
         void OnPageBuilt(FrontendEventContext frontendEventContext);
+        void OnAuthorization(FrontendAuthorizationEventContext frontendAuthorizationEventContext);
     }
 }

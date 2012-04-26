@@ -621,6 +621,7 @@
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
     <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
+    <Compile Include="EventHandlers\FrontendAuthorizationEventContext.cs" />
     <Compile Include="EventHandlers\FrontendContext.cs" />
     <Compile Include="EventHandlers\FrontendEventContext.cs" />
     <Compile Include="EventHandlers\IFrontendEngineEventHandler.cs" />
