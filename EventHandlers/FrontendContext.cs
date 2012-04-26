@@ -9,7 +9,13 @@ namespace Associativy.Frontends.EventHandlers
 {
     public class FrontendContext
     {
-        public IEngineContext EngineContext { get; set; }
-        public IGraphContext GraphContext { get; set; }
+        public IEngineContext EngineContext { get; private set; }
+        public IGraphContext GraphContext { get; private set; }
+
+        public FrontendContext(IEngineContext engineContext, IGraphContext graphContext)
+        {
+            EngineContext = engineContext;
+            GraphContext = graphContext;
+        }
     }
 }

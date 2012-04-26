@@ -32,26 +32,26 @@ namespace Associativy.Frontends.EventHandlers
             T = NullLocalizer.Instance;
         }
 
-        public void OnPageInitializing(FrontendContext frontendContext, IContent page)
+        public void OnPageInitializing(FrontendEventContext frontendEventContext)
         {
             var engineCommonPart = new AssociativyFrontendCommonPart();
-            engineCommonPart.GraphContext = frontendContext.GraphContext;
-            engineCommonPart.EngineContext = frontendContext.EngineContext;
+            engineCommonPart.GraphContext = frontendEventContext.GraphContext;
+            engineCommonPart.EngineContext = frontendEventContext.EngineContext;
             engineCommonPart.MindSettings = new MindSettings
                 {
                     ModifyQuery = (query) =>
                         {
                             var recordQuery = query.Where<CommonPartRecord>(r => true);
-                            foreach (var contentType in _associativyServices.GraphManager.FindGraph(frontendContext.GraphContext).ContentTypes)
+                            foreach (var contentType in _associativyServices.GraphManager.FindGraph(frontendEventContext.GraphContext).ContentTypes)
                             {
                                 recordQuery.WithQueryHintsFor(contentType);
                             }
                         }
                 };
 
-            page.ContentItem.Weld(engineCommonPart);
+            frontendEventContext.Page.ContentItem.Weld(engineCommonPart);
 
-            page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
+            frontendEventContext.Page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
                 {
                     GraphRetrieverField = (settings) =>
                         {
@@ -67,19 +67,19 @@ namespace Associativy.Frontends.EventHandlers
                     settings.ZoomLevel = 0;
                     return _associativyServices.GraphEditor.CalculateZoomLevelCount(graphPart.As<IGraphRetrieverAspect>().RetrieveGraph(settings), graphPart.As<IEngineConfigurationAspect>().MindSettings.ZoomLevelCount);
                 });
-            page.ContentItem.Weld(graphPart);
+            frontendEventContext.Page.ContentItem.Weld(graphPart);
         }
 
-        public void OnPageInitialized(FrontendContext frontendContext, IContent page)
+        public void OnPageInitialized(FrontendEventContext frontendEventContext)
         {
         }
 
 
-        public void OnPageBuilt(FrontendContext frontendContext, IContent page)
+        public void OnPageBuilt(FrontendEventContext frontendEventContext)
         {
-            if (page.IsPage("WholeGraph"))
+            if (frontendEventContext.Page.IsPage("WholeGraph"))
             {
-                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(frontendContext.GraphContext).DisplayGraphName).ToString();
+                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(frontendEventContext.GraphContext).DisplayGraphName).ToString();
             }
         }
     }

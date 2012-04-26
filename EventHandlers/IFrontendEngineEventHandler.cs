@@ -7,8 +7,8 @@ namespace Associativy.Frontends.EventHandlers
 {
     public interface IFrontendEngineEventHandler : IEventHandler
     {
-        void OnPageInitializing(FrontendContext frontendContext, IContent page);
-        void OnPageInitialized(FrontendContext frontendContext, IContent page);
-        void OnPageBuilt(FrontendContext frontendContext, IContent page);
+        void OnPageInitializing(FrontendEventContext frontendEventContext);
+        void OnPageInitialized(FrontendEventContext frontendEventContext);
+        void OnPageBuilt(FrontendEventContext frontendEventContext);
     }
 }
