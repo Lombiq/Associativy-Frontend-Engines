@@ -595,8 +595,14 @@
   <ItemGroup />
   <ItemGroup>
     <Compile Include="Controllers\FrontendControllerBase.cs" />
+    <Compile Include="EngineDiscovery\EngineDescriptor.cs" />
+    <Compile Include="EngineDiscovery\EngineManager.cs" />
+    <Compile Include="EngineDiscovery\EngineProviderBase.cs" />
+    <Compile Include="EngineDiscovery\IEngineManager.cs" />
+    <Compile Include="EngineDiscovery\IEngineProvider.cs" />
     <Compile Include="Engines\Dracula\DefaultDraculaConfigurationHandler.cs" />
     <Compile Include="Engines\Dracula\DraculaEngineEventHandler.cs" />
+    <Compile Include="Engines\Dracula\EngineProvider.cs" />
     <Compile Include="Engines\Dracula\IDraculaConfigurationHandler.cs" />
     <Compile Include="Engines\Graphviz\DefaultGraphvizConfigurationHandler.cs" />
     <Compile Include="Controllers\DynamicallyContextedControllerBase.cs" />
@@ -610,6 +616,7 @@
     <Compile Include="Engines\Dracula\ViewModels\NodeViewModel.cs" />
     <Compile Include="Engines\EngineContext.cs" />
     <Compile Include="Engines\Graphviz\Controllers\GraphvizEngineController.cs" />
+    <Compile Include="Engines\Graphviz\EngineProvider.cs" />
     <Compile Include="Engines\Graphviz\IGraphvizConfigurationHandler.cs" />
     <Compile Include="Engines\Graphviz\ResourceManifest.cs" />
     <Compile Include="Engines\Graphviz\Services\GraphImageService.cs" />
@@ -618,6 +625,7 @@
     <Compile Include="Engines\JIT\Controllers\JITEngineController.cs" />
     <Compile Include="Engines\JIT\DefaultJITConfigurationHandler.cs" />
     <Compile Include="Engines\JIT\IJITConfigurationHandler.cs" />
+    <Compile Include="Engines\JIT\EngineProvider.cs" />
     <Compile Include="Engines\JIT\ResourceManifest.cs" />
     <Compile Include="Engines\JIT\ViewModels\NodeViewModel.cs" />
     <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
@@ -627,6 +635,8 @@
     <Compile Include="EventHandlers\IFrontendEngineEventHandler.cs" />
     <Compile Include="Extensions\ContentExtensions.cs" />
     <Compile Include="Extensions\ContentManagerExtensions.cs" />
+    <Compile Include="EngineDiscovery\DescribeContext.cs" />
+    <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendCommonPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendGraphPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendSearchFormPart.cs" />

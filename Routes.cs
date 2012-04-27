@@ -3,18 +3,26 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Orchard.Environment.Extensions;
 using Orchard.Mvc.Routes;
+using Associativy.Frontends.EngineDiscovery;
+using System.Linq;
 
 namespace Associativy.Frontends
 {
     [OrchardFeature("Associativy.Frontends")]
     public class Routes : IRouteProvider
     {
-        public Routes(RouteCollection routeCollection)
+        private readonly IEngineManager _engineManager;
+
+        public Routes(
+            RouteCollection routeCollection,
+            IEngineManager engineManager)
         {
             // This is to prohibit direct access to frontend engines with unpredictable results
             routeCollection.Ignore(
                 "Associativy.Frontends/{frontendEngineName}Engine/{action}"
             );
+
+            _engineManager = engineManager;
         }
 
         public void GetRoutes(ICollection<RouteDescriptor> routes)
@@ -23,7 +31,7 @@ namespace Associativy.Frontends
 
         public IEnumerable<RouteDescriptor> GetRoutes()
         {
-            return new[]
+            var routes = new[]
             {
                 new RouteDescriptor
                 {
@@ -42,6 +50,8 @@ namespace Associativy.Frontends
                         new MvcRouteHandler())
                 }
             };
+
+            return routes.Union(_engineManager.GetEngines().Select(engine => engine.Route));
         }
     }
 }
