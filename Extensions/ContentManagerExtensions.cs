@@ -1,9 +1,11 @@
 ﻿using Associativy.Frontends.Engines;
 using Associativy.GraphDiscovery;
 using Orchard.ContentManagement;
+using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.Extensions
 {
+    [OrchardFeature("Associativy.Frontends")]
     public static class ContentManagerExtensions
     {
         public static ContentItem NewEnginePage(this IContentManager contentManager, IEngineContext engineContext, string pageName)
