@@ -17,8 +17,7 @@ namespace Associativy.Frontends.Controllers
     /// <summary>
     /// Base class for frontend engine controllers
     /// </summary>
-    [Themed]
-    [OrchardFeature("Associativy.Frontends")]
+    [Themed, OrchardFeature("Associativy.Frontends")]
     public abstract class EngineControllerBase : DynamicallyContextedControllerBase, IUpdateModel
     {
         protected readonly IFrontendEngineEventHandler _eventHandler;
