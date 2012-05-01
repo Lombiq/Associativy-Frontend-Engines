@@ -28,7 +28,7 @@ namespace Associativy.Frontends.EngineDiscovery
                 {
                     Name = "Associativy " + engineName + " frontend engine route",
                     Route = new Route(
-                        "AssociativyGraphs/{GraphName}/" + engineName + "Engine/{action}",
+                        "Associativy/Graphs/{GraphName}/" + engineName + "Engine/{action}",
                         new RouteValueDictionary {
                                                     {"area", area},
                                                     {"controller", engineName + "Engine"},
