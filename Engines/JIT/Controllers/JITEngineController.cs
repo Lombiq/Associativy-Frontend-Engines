@@ -36,9 +36,9 @@ namespace Associativy.Frontends.Engines.JIT.Controllers
         }
 
         [HttpPost]
-        public virtual ActionResult FetchAssociations(int zoomLevel = 0)
+        public virtual ActionResult FetchGraph(int zoomLevel = 0)
         {
-            var page = NewPage("FetchAssociations");
+            var page = NewPage("FetchGraph");
 
             if (!IsAuthorized(page))
             {

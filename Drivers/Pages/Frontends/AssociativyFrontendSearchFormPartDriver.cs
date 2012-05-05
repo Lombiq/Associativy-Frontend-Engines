@@ -69,10 +69,22 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                     }
                     else
                     {
-                        part.GraphRetrieverField = (settings) =>
+                        // TODO: this could be nicer...
+                        var isPartialGraphQuery = _workContextAccessor.GetContext().HttpContext.Request.QueryString["IsPartialGraph"];
+                        if (part.LabelsArray.Length == 1 && isPartialGraphQuery != null && bool.Parse(isPartialGraphQuery))
+                        {
+                            part.GraphRetrieverField = (settings) =>
+                            {
+                                return _associativyServices.Mind.GetPartialGraph(part.As<IEngineConfigurationAspect>().GraphContext, searched.First(), settings);
+                            };   
+                        }
+                        else
+                        {
+                            part.GraphRetrieverField = (settings) =>
                             {
                                 return _associativyServices.Mind.MakeAssociations(part.As<IEngineConfigurationAspect>().GraphContext, searched, settings);
                             };  
+                        }
                     }
                 }
 

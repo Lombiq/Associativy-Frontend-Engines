@@ -88,6 +88,9 @@
                                 $jit.util.event.stop(e); //stop default touchmove event
                                 this.onDragMove(node, eventInfo, e);
                             },
+                            onDblClick: function (node) {
+                                alert("dcl");
+                            },
                             //Add also a click handler to nodes
                             onClick: function (node) {
                                 if (!node) return;
@@ -128,13 +131,13 @@
                         levelDistance: 230,
                         // This method is only triggered  
                         // on label creation and only for DOM labels (not native canvas ones).  
-                        onCreateLabel: function (domElement, node) {
+                        onCreateLabel: function (label, node) {
                             if (!node.data["url"]) {
-                                domElement.innerHTML = node.name;
+                                label.innerHTML = node.name;
                                 return;
                             }
 
-                            domElement.innerHTML = "<a href='" + node.data["url"] + "'>" + node.name + "</a>";
+                            label.innerHTML = "<a href='" + node.data["url"] + "'>" + node.name + "</a>";
                         },
                         // Change node styles when DOM labels are placed
                         // or moved.

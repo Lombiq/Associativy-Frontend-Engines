@@ -30,6 +30,8 @@ namespace Associativy.Frontends.Models.Pages.Frontends
 
         public string[] LabelsArray { get; private set; }
 
+        public bool IsPartialGraph { get; set; }
+
         public AssociativyFrontendSearchFormPart()
         {
             LabelsArray = new string[0];
