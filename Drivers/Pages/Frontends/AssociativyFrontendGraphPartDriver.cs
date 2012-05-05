@@ -21,7 +21,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                         {
                             if (part.Graph == null)
                             {
-                                part.Graph = part.As<IGraphRetrieverAspect>().RetrieveGraph(part.As<IEngineConfigurationAspect>().MindSettings);
+                                part.GraphField.Loader(() => part.As<IGraphRetrieverAspect>().RetrieveGraph(part.As<IEngineConfigurationAspect>().MindSettings)); 
                             }
 
                             if (part.Graph.IsVerticesEmpty)
