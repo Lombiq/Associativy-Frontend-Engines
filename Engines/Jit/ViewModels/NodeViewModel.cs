@@ -8,7 +8,14 @@ namespace Associativy.Frontends.Engines.Jit.ViewModels
     public class NodeViewModel : NodeViewModelBase
     {
         // Naming is Jit naming for easy JSON serialization
-        public string id { get; set; }
+        public string id
+        {
+            get
+            {
+                return ContentItem.Id.ToString();
+            }
+        }
+
         public string name { get; set; }
         public List<string> adjacencies { get; set; }
         public Dictionary<string, string> data { get; set; }

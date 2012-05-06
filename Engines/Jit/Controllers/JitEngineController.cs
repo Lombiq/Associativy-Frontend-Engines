@@ -65,8 +65,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
 
             foreach (var vertex in graph.Vertices)
             {
-                // Setting the ContentItem causes "A circular reference was detected while serializing an object of type 'Orchard.ContentManagement.Records.ContentItemRecord'."
-                var viewModel = new NodeViewModel { id = vertex.Id.ToString() };
+                var viewModel = new NodeViewModel { ContentItem = vertex };
                 _configurationHandler.SetupViewModel(new FrontendContext(EngineContext, GraphContext), vertex, viewModel);
                 viewNodes[vertex.Id] = viewModel;
             }
@@ -76,7 +75,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
                 viewNodes[edge.Source.Id].adjacencies.Add(edge.Target.Id.ToString());
                 viewNodes[edge.Target.Id].adjacencies.Add(edge.Source.Id.ToString());
             }
-
+            
             return Json(viewNodes.Values);
         }
     }
