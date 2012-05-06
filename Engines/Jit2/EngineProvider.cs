@@ -9,17 +9,17 @@ using Orchard.Mvc.Routes;
 using System.Web.Routing;
 using System.Web.Mvc;
 
-namespace Associativy.Frontends.Engines.JIT
+namespace Associativy.Frontends.Engines.Jit
 {
-    [OrchardFeature("Associativy.Frontends.JIT")]
+    [OrchardFeature("Associativy.Frontends.Jit")]
     public class EngineProvider : EngineProviderBase
     {
         public override void Describe(DescribeContext describeContext)
         {
             describeContext.DescribeEngine(
-                "JIT",
-                () => T("JIT"),
-                DefaultRoute("JIT"));
+                "Jit",
+                () => T("Jit"),
+                DefaultRoute("Jit"));
         }
     }
 }

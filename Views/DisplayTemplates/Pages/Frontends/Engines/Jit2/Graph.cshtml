@@ -1,7 +1,7 @@
 ﻿@model Associativy.Frontends.Models.IGraphAspect
 @{
-    Script.Require("JIT").AtHead();
-    Style.Require("JIT");
+    Script.Require("Jit").AtHead();
+    Style.Require("Jit");
 
     var maxZoomLevel = Model.ZoomLevelCount - 1;
     var isPartialGraphQuery = ViewContext.HttpContext.Request.QueryString["IsPartialGraph"];
@@ -32,7 +32,7 @@ $(document).on("stop.AssociativyGraphZoomSlider", function(values) {
     $.associativy.jit.loadGraph(values.ui.value, true);
 });
 
-$(document).on("graphSetup.AssociativyJIT", function (values) {
+$(document).on("graphSetup.AssociativyJit", function (values) {
     var oldFunction = values.graphSetup.onCreateLabel;
 
     values.graphSetup.onCreateLabel = function (label, node) {

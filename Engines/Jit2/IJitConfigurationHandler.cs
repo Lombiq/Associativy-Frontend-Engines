@@ -1,12 +1,12 @@
-﻿using Associativy.Frontends.Engines.JIT.ViewModels;
+﻿using Associativy.Frontends.Engines.Jit.ViewModels;
 using Associativy.GraphDiscovery;
 using Orchard.ContentManagement;
 using Orchard.Events;
 using Associativy.Frontends.EventHandlers;
 
-namespace Associativy.Frontends.Engines.JIT
+namespace Associativy.Frontends.Engines.Jit
 {
-    public interface IJITConfigurationHandler : IEventHandler
+    public interface IJitConfigurationHandler : IEventHandler
     {
         void SetupViewModel(FrontendContext frontendContext, IContent node, NodeViewModel viewModel);
     }

@@ -153,7 +153,7 @@
                     };
 
                     $(document).triggerHandler({
-                        type: "graphSetup.AssociativyJIT",
+                        type: "graphSetup.AssociativyJit",
                         graphSetup: graphSetup
                     });
 

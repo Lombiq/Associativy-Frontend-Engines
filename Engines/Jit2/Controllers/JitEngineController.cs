@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using Associativy.Frontends.Controllers;
-using Associativy.Frontends.Engines.JIT.ViewModels;
+using Associativy.Frontends.Engines.Jit.ViewModels;
 using Associativy.Frontends.EventHandlers;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.Services;
@@ -11,25 +11,25 @@ using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using QuickGraph;
 
-namespace Associativy.Frontends.Engines.JIT.Controllers
+namespace Associativy.Frontends.Engines.Jit.Controllers
 {
-    [OrchardFeature("Associativy.Frontends.JIT")]
-    public class JITEngineController : EngineControllerBase
+    [OrchardFeature("Associativy.Frontends.Jit")]
+    public class JitEngineController : EngineControllerBase
     {
-        private readonly IJITConfigurationHandler _configurationHandler;
+        private readonly IJitConfigurationHandler _configurationHandler;
 
-        private readonly IEngineContext _engineContext = new EngineContext { EngineName = "JIT" };
+        private readonly IEngineContext _engineContext = new EngineContext { EngineName = "Jit" };
         protected override IEngineContext EngineContext
         {
             get { return _engineContext; }
         }
 
-        public JITEngineController(
+        public JitEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
             IFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices,
-            IJITConfigurationHandler configurationHandler)
+            IJitConfigurationHandler configurationHandler)
             : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {
             _configurationHandler = configurationHandler;

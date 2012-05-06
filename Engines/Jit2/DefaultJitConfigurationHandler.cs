@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Associativy.Frontends.Engines.JIT.ViewModels;
+using Associativy.Frontends.Engines.Jit.ViewModels;
 using Associativy.GraphDiscovery;
 using Orchard;
 using Orchard.ContentManagement;
@@ -7,14 +7,14 @@ using Orchard.ContentManagement.Aspects;
 using Orchard.Environment.Extensions;
 using Associativy.Frontends.EventHandlers;
 
-namespace Associativy.Frontends.Engines.JIT
+namespace Associativy.Frontends.Engines.Jit
 {
-    [OrchardFeature("Associativy.Frontends.JIT")]
-    public class DefaultJITConfigurationHandler : IJITConfigurationHandler
+    [OrchardFeature("Associativy.Frontends.Jit")]
+    public class DefaultJitConfigurationHandler : IJitConfigurationHandler
     {
         private readonly IOrchardServices _orchardServices;
 
-        public DefaultJITConfigurationHandler(IOrchardServices orchardServices)
+        public DefaultJitConfigurationHandler(IOrchardServices orchardServices)
         {
             _orchardServices = orchardServices;
         }

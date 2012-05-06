@@ -21,8 +21,8 @@ Features:
         Description: Graphviz Associativy Frontend Engine
 		Category: Associativy
 		Dependencies: Associativy.Frontends
-	Associativy.Frontends.JIT:
-		Name: JIT Associativy Frontend Engine
-        Description: JIT Associativy Frontend Engine
+	Associativy.Frontends.Jit:
+		Name: Jit Associativy Frontend Engine
+        Description: Jit Associativy Frontend Engine
 		Category: Associativy
 		Dependencies: Associativy.Frontends
