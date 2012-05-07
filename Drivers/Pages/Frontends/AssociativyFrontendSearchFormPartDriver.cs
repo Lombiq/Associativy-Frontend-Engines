@@ -69,9 +69,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                     }
                     else
                     {
-                        // TODO: this could be nicer...
-                        var isPartialGraphQuery = _workContextAccessor.GetContext().HttpContext.Request.QueryString["IsPartialGraph"];
-                        if (part.LabelsArray.Length == 1 && isPartialGraphQuery != null && bool.Parse(isPartialGraphQuery))
+                        if (part.LabelsArray.Length == 1 && part.IsPartialGraph)
                         {
                             part.GraphRetrieverField = (settings) =>
                             {

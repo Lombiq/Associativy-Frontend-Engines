@@ -9,10 +9,11 @@
 
 @using (Html.BeginForm(null, null, FormMethod.Get, new { @id = "associativy-search-form", action = Url.Action("Associations", ViewContext.RouteData.Values) }))
 {
+    @Html.HiddenFor(m => m.IsPartialGraph)
     <fieldset>
-        @Html.LabelFor(model => model.Labels, T("Search terms"))
-        @Html.TextBoxFor(model => model.Labels, new { @class = "text text-small" })
-        @Html.ValidationMessageFor(model => model.Labels)
+        @Html.LabelFor(m => m.Labels, T("Search terms"))
+        @Html.TextBoxFor(m => m.Labels, new { @class = "text textMedium" })
+        @Html.ValidationMessageFor(m => m.Labels)
     </fieldset>
     
     <button type="submit">@T("Find associations")</button>
@@ -20,6 +21,6 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $.associativy.autoComplete.labels("#@Html.FieldIdFor(model => model.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<IEngineConfigurationAspect>().GraphContext.GraphName })");
+    $.associativy.autoComplete.labels("#@Html.FieldIdFor(m => m.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<IEngineConfigurationAspect>().GraphContext.GraphName })");
 });
 </script>

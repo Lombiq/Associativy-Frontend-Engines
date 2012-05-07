@@ -625,6 +625,7 @@
     <Compile Include="Engines\IEngineContext.cs" />
     <Compile Include="Engines\Jit\Controllers\JitEngineController.cs" />
     <Compile Include="Engines\Jit\DefaultJitConfigurationHandler.cs" />
+    <Compile Include="Engines\Jit\Drivers\AssociativyFrontendSearchFormPartDriver.cs" />
     <Compile Include="Engines\Jit\IJitConfigurationHandler.cs" />
     <Compile Include="Engines\Jit\EngineProvider.cs" />
     <Compile Include="Engines\Jit\ResourceManifest.cs" />
@@ -691,6 +692,7 @@
     <Content Include="Views\DisplayTemplates\Pages\Frontends\FrontendSearchForm.cshtml" />
     <Content Include="Views\AssociativyBadgeOfHonor.cshtml" />
     <Content Include="Views\GraphZoomSlider.cshtml" />
+    <Content Include="Views\DisplayTemplates\Pages\Frontends\Engines\Jit\FrontendSearchForm.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

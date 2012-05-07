@@ -1,0 +1,22 @@
+﻿@model Associativy.Frontends.Models.Pages.Frontends.AssociativyFrontendSearchFormPart
+
+@{
+    Script.Require("Jit").AtHead();
+}
+
+<script type="text/javascript">
+    $(document).on("graphSetup.AssociativyJit", function (values) {
+        var oldFunction = values.graphSetup.onCreateLabel;
+
+        values.graphSetup.onCreateLabel = function (label, node) {
+            oldFunction(label, node);
+            var name = node.name;
+
+            $(label).dblclick(function () {
+                $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
+                $("#@Html.FieldIdFor(m => m.Labels)").val(name);
+                $.associativy.jit.loadGraph(0, true);
+            });
+        }
+    });
+</script>
