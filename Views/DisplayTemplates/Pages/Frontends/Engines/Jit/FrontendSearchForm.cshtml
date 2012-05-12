@@ -5,6 +5,10 @@
 }
 
 <script type="text/javascript">
+    $("#associativy-search-form").submit(function () {
+        $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("False");
+    });
+
     $(document).on("graphSetup.AssociativyJit", function (values) {
         var oldFunction = values.graphSetup.onCreateLabel;
 
@@ -13,9 +17,11 @@
             var name = node.name;
 
             $(label).dblclick(function () {
-                $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
-                $("#@Html.FieldIdFor(m => m.Labels)").val(name);
-                $.associativy.jit.loadGraph(0, true);
+                $("#associativy-search-form").submit(function () {
+                    $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
+                    $("#@Html.FieldIdFor(m => m.Labels)").val(name);
+                });
+                $("#associativy-search-form").submit();
             });
         }
     });
