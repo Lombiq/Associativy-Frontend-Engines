@@ -4,6 +4,8 @@
     Script.Require("Jit").AtHead();
 }
 
+
+
 <script type="text/javascript">
     $("#associativy-search-form").submit(function () {
         $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("False");
@@ -14,15 +16,46 @@
 
         values.graphSetup.onCreateLabel = function (label, node) {
             oldFunction(label, node);
-            var name = node.name;
 
             $(label).dblclick(function () {
                 $("#associativy-search-form").submit(function () {
                     $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
-                    $("#@Html.FieldIdFor(m => m.Labels)").val(name);
+                    $("#@Html.FieldIdFor(m => m.Labels)").val(node.name);
                 });
                 $("#associativy-search-form").submit();
             });
+        }
+    });
+
+    $(document).on("layoutComputed.AssociativyJit", function (values) {
+        // This is to overcome that Razor print escapes quotes, so e.g. the same with String.Join() is not possible
+        var searchedLabels = [
+        @foreach (var label in Model.LabelsArray)
+        {
+            <text>"</text>@label<text>",</text>
+        }
+        ];
+
+        // Emphasizing searched nodes
+        var layout = values.layout;
+        var nodes = layout.graph.nodes;
+        for (nodeId in nodes) {
+            var node = nodes[nodeId];
+            if (searchedLabels.indexOf(node.name) != -1) {
+                node.selected = true;
+                node.setData('dim', 29, 'end');
+                node.eachAdjacency(function (adj) {
+                    adj.setDataset('end', {
+                        lineWidth: 3,
+                        color: '#36acfb'
+                    });
+                });
+
+                layout.fx.animate({
+                    modes: ['node-property:dim', 'edge-property:lineWidth:color'],
+                    duration: 200
+                });
+            }
         }
     });
 </script>

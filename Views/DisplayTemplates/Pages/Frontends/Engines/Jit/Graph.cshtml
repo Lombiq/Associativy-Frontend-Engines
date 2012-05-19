@@ -9,7 +9,7 @@
 (function ($) {
     $.extend(true, {
         associativy: {
-            graph: null,
+            layout: null,
             jit: {
                 loadGraph: function (zoomLevel, redraw, isPartialGraph) {
                     var that = this;
@@ -17,8 +17,8 @@
                         "@Url.Action("FetchGraph", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), 
                         { __RequestVerificationToken: "@Html.AntiForgeryTokenValueOrchard()" },
                         function(graphData) {
-                            if (!redraw) that.graph = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
-                            else $.associativy.jit.redraw(that.graph, graphData);
+                            if (!redraw) that.layout = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
+                            else $.associativy.jit.redraw(that.layout, graphData);
                     });
                 }
             }

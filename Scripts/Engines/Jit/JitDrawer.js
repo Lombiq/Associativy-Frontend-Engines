@@ -72,16 +72,16 @@
                             type: "Native",
                             //Change cursor style when hovering a node
                             onMouseEnter: function () {
-                                graph.canvas.getElement().style.cursor = "move";
+                                layout.canvas.getElement().style.cursor = "move";
                             },
                             onMouseLeave: function () {
-                                graph.canvas.getElement().style.cursor = "";
+                                layout.canvas.getElement().style.cursor = "";
                             },
                             //Update node positions when dragged
                             onDragMove: function (node, eventInfo, e) {
                                 var pos = eventInfo.getPos();
                                 node.pos.setc(pos.x, pos.y);
-                                graph.plot();
+                                layout.plot();
                             },
                             //Implement the same handler for touchscreens
                             onTouchMove: function (node, eventInfo, e) {
@@ -96,7 +96,7 @@
                                 if (!node) return;
 
                                 //set final styles  
-                                graph.graph.eachNode(function (n) {
+                                layout.graph.eachNode(function (n) {
                                     if (n.id != node.id) delete n.selected;
                                     n.setData('dim', 18, 'end');
                                     n.eachAdjacency(function (adj) {
@@ -119,7 +119,7 @@
                                     delete node.selected;
                                 }
                                 //trigger animation to final styles  
-                                graph.fx.animate({
+                                layout.fx.animate({
                                     modes: ['node-property:dim', 'edge-property:lineWidth:color'],
                                     duration: 500
                                 });
@@ -157,29 +157,40 @@
                         graphSetup: graphSetup
                     });
 
-                    var graph = new $jit.ForceDirected(graphSetup);
+                    var layout = new $jit.ForceDirected(graphSetup);
 
-                    this.redraw(graph, json);
+                    this.redraw(layout, json);
 
-                    return graph;
+                    return layout;
                 },
 
-                redraw: function (graph, json) {
+                redraw: function (layout, json) {
                     // load JSON data.
-                    graph.loadJSON(json);
+                    layout.loadJSON(json);
+
+                    $(document).triggerHandler({
+                        type: "graphLoaded.AssociativyJit",
+                        layout: layout
+                    });
 
                     // compute positions incrementally and animate.
-                    graph.computeIncremental({
+                    layout.computeIncremental({
                         iter: 40,
                         property: "end",
                         onStep: function (percent) {
                             // percent% done
                         },
                         onComplete: function () {
-                            graph.animate({
+                            layout.animate({
                                 modes: ["linear"],
                                 transition: $jit.Trans.Elastic.easeOut,
-                                duration: 2500
+                                duration: 500,
+                                onComplete: function () {
+                                    $(document).triggerHandler({
+                                        type: "layoutComputed.AssociativyJit",
+                                        layout: layout
+                                    });
+                                }
                             });
                         }
                     });
