@@ -50,17 +50,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
 
             _contentManager.UpdateEditor(page, this);
 
-            IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph;
-
-            if (ModelState.IsValid)
-            {
-                graph = page.As<IGraphRetrieverAspect>().RetrieveGraph(mindSettings);
-            }
-            else
-            {
-                graph = _mind.GetAllAssociations(GraphContext, mindSettings);
-            }
-
+            var graph = page.As<IGraphRetrieverAspect>().RetrieveGraph(mindSettings);
             var viewNodes = new Dictionary<int, NodeViewModel>(graph.VertexCount);
 
             foreach (var vertex in graph.Vertices)
@@ -75,7 +65,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
                 viewNodes[edge.Source.Id].adjacencies.Add(edge.Target.Id.ToString());
                 viewNodes[edge.Target.Id].adjacencies.Add(edge.Source.Id.ToString());
             }
-            
+
             return Json(viewNodes.Values);
         }
     }

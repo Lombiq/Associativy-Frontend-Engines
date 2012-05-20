@@ -9,7 +9,6 @@ namespace Associativy.Frontends.Models.Pages.Frontends
     [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendSearchFormPart : ContentPart, IGraphRetrieverAspect
     {
-        [Required]
         public string Labels
         {
             get

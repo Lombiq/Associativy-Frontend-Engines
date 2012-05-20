@@ -55,13 +55,18 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
         {
             if (updater.TryUpdateModel(part, Prefix, null, null))
             {
+                var graphContext = part.As<IEngineConfigurationAspect>().GraphContext;
+
                 if (part.LabelsArray.Length == 0)
                 {
-                    part.GraphRetrieverField = EmptyRetriever;
+                    part.GraphRetrieverField = (settings) =>
+                        {
+                            return _associativyServices.Mind.GetAllAssociations(graphContext, settings);
+                        };
                 }
                 else
                 {
-                    var searched = _associativyServices.NodeManager.GetMany(part.As<IEngineConfigurationAspect>().GraphContext, part.LabelsArray);
+                    var searched = _associativyServices.NodeManager.GetMany(graphContext, part.LabelsArray);
 
                     if (searched.Count() != part.LabelsArray.Length) // Some nodes were not found
                     {
@@ -72,22 +77,22 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                         if (part.LabelsArray.Length == 1 && part.IsPartialGraph)
                         {
                             part.GraphRetrieverField = (settings) =>
-                            {
-                                return _associativyServices.Mind.GetPartialGraph(part.As<IEngineConfigurationAspect>().GraphContext, searched.First(), settings);
-                            };   
+                                {
+                                    return _associativyServices.Mind.GetPartialGraph(graphContext, searched.First(), settings);
+                                };   
                         }
                         else
                         {
                             part.GraphRetrieverField = (settings) =>
-                            {
-                                return _associativyServices.Mind.MakeAssociations(part.As<IEngineConfigurationAspect>().GraphContext, searched, settings);
-                            };  
+                                {
+                                    return _associativyServices.Mind.MakeAssociations(graphContext, searched, settings);
+                                };  
                         }
                     }
                 }
 
                 // Maybe this should be elsewhere, e.g. in a handler
-                _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, _associativyServices.GraphManager.FindGraph(part.As<IEngineConfigurationAspect>().GraphContext).DisplayGraphName).ToString();
+                _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, _associativyServices.GraphManager.FindGraph(graphContext).DisplayGraphName).ToString();
             }
             else part.GraphRetrieverField = (settings) => _associativyServices.GraphEditor.GraphFactory();
 
