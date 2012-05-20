@@ -32,7 +32,7 @@
         var searchedLabels = [
         @foreach (var label in Model.LabelsArray)
         {
-            <text>"</text>@label<text>",</text>
+            <text>"</text>@label.ToUpper()<text>",</text>
         }
         ];
 
@@ -41,7 +41,7 @@
         var nodes = layout.graph.nodes;
         for (nodeId in nodes) {
             var node = nodes[nodeId];
-            if (searchedLabels.indexOf(node.name) != -1) {
+            if (searchedLabels.indexOf(node.name.toUpperCase()) != -1) {
                 node.selected = true;
                 node.setData('dim', 29, 'end');
                 node.eachAdjacency(function (adj) {
