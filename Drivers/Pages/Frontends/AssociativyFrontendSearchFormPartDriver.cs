@@ -94,14 +94,14 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                 // Maybe this should be elsewhere, e.g. in a handler
                 _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, _associativyServices.GraphManager.FindGraph(graphContext).DisplayGraphName).ToString();
             }
-            else part.GraphRetrieverField = (settings) => _associativyServices.GraphEditor.GraphFactory();
+            else part.GraphRetrieverField = (settings) => _associativyServices.GraphEditor.GraphFactory<IContent>();
 
             return Editor(part, shapeHelper);
         }
 
         private IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> EmptyRetriever(IMindSettings settings)
         {
-            return _associativyServices.GraphEditor.GraphFactory();
+            return _associativyServices.GraphEditor.GraphFactory<IContent>();
         }
     }
 }
