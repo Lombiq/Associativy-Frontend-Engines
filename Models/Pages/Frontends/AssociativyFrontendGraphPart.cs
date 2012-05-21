@@ -8,9 +8,9 @@ namespace Associativy.Frontends.Models.Pages.Frontends
     [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendGraphPart : ContentPart, IGraphAspect
     {
-        private readonly LazyField<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> _graph = new LazyField<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>>();
-        public LazyField<IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> GraphField { get { return _graph; } }
-        public IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph
+        private readonly LazyField<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> _graph = new LazyField<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>>();
+        public LazyField<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> GraphField { get { return _graph; } }
+        public IUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph
         {
             get { return _graph.Value; }
         }

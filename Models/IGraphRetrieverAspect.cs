@@ -4,7 +4,7 @@ using QuickGraph;
 
 namespace Associativy.Frontends.Models
 {
-    public delegate IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> GraphRetriever(IMindSettings settings);
+    public delegate IUndirectedGraph<IContent, IUndirectedEdge<IContent>> GraphRetriever(IMindSettings settings);
 
     public interface IGraphRetrieverAspect : IContent
     {

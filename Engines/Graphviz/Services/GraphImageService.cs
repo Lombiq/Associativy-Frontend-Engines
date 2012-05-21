@@ -29,13 +29,13 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
             _graphEventMonitor = graphEventMonitor;
         }
 
-        public virtual string ToSvg(IGraphContext graphContext, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
+        public virtual string ToSvg(IGraphContext graphContext, IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
         {
             //var stringBuilder = new StringBuilder();
             //using (var xmlWriter = XmlWriter.Create(stringBuilder))
             //{
             //    // This may also need attributes on models, see: http://quickgraph.codeplex.com/wikipage?title=GraphML%20Serialization&referringTitle=Documentation
-            //    graph.SerializeToGraphML<TNode, IUndirectedEdge<TNode>, IMutableUndirectedGraph<TNode, IUndirectedEdge<TNode>>>(
+            //    graph.SerializeToGraphML<TNode, IUndirectedEdge<TNode>, IUndirectedGraph<TNode, IUndirectedEdge<TNode>>>(
             //        xmlWriter,
             //        node => node.Label,
             //        edge => edge.Source.Id.ToString() + edge.Target.Id.ToString());

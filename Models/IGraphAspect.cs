@@ -5,7 +5,7 @@ namespace Associativy.Frontends.Models
 {
     public interface IGraphAspect : IContent
     {
-        IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; }
+        IUndirectedGraph<IContent, IUndirectedEdge<IContent>> Graph { get; }
         int ZoomLevelCount { get; }
     }
 }

@@ -79,7 +79,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             return Json(new { GraphImageUrls = graphImageUrls });
         }
 
-        protected virtual List<string> FetchZoomedGraphUrls(IMindSettings settings, Func<IMindSettings, IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
+        protected virtual List<string> FetchZoomedGraphUrls(IMindSettings settings, Func<IMindSettings, IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
         {
             var graphImageUrls = new List<string>(settings.ZoomLevelCount);
 
