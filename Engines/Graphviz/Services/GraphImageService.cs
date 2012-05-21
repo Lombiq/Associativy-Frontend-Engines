@@ -9,6 +9,7 @@ using Orchard.Environment.Extensions;
 using Orchard.FileSystems.Media;
 using QuickGraph;
 using QuickGraph.Graphviz;
+using Piedone.HelpfulLibraries.Tasks;
 
 namespace Associativy.Frontends.Engines.Graphviz.Services
 {
@@ -16,12 +17,12 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
     public class GraphImageService : IGraphImageService
     {
         protected readonly IStorageProvider _storageProvider;
-        protected readonly ICacheManager _cacheManager;
+        protected readonly ILockingCacheManager _cacheManager;
         protected readonly IGraphEventMonitor _graphEventMonitor;
 
         public GraphImageService(
             IStorageProvider storageProvider,
-            ICacheManager cacheManager,
+            ILockingCacheManager cacheManager,
             IGraphEventMonitor graphEventMonitor)
         {
             _storageProvider = storageProvider;
@@ -51,32 +52,42 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
 
             var filePath = "Associativy/Graphs-" + graphContext.GraphName + "/" + dotData.GetHashCode() + ".svg";
 
-            return _cacheManager.Get("Associativy.GraphImages." + filePath, ctx =>
+            return _cacheManager.Get("Associativy.Frontends.Graphviz.GraphImages." + filePath, 
+                ctx =>
+                {
+                    _graphEventMonitor.MonitorChanged(graphContext, ctx);
+
+                    return RetrieveImage(dotData, filePath);
+                },
+                () =>
+                {
+                    return RetrieveImage(dotData, filePath);
+                });
+        }
+
+        private string RetrieveImage(string dotData, string filePath)
+        {
+            // Since there is no method for checking the existence of a file, we use this ugly technique
+            try
             {
-                _graphEventMonitor.MonitorChanged(graphContext, ctx);
+                _storageProvider.DeleteFile(filePath);
+            }
+            catch (Exception)
+            {
+            }
 
-                // Since there is no method for checking the existence of a file, we use this ugly technique
-                try
+            using (var wc = new WebClient())
+            {
+                var svgData = wc.UploadString("http://rise4fun.com/services.svc/ask/agl", dotData);
+
+                using (var stream = _storageProvider.CreateFile(filePath).OpenWrite())
                 {
-                    _storageProvider.DeleteFile(filePath);
+                    var bytes = Encoding.UTF8.GetBytes(svgData);
+                    stream.Write(bytes, 0, bytes.Length);
                 }
-                catch (Exception)
-                {
-                }
+            }
 
-                using (var wc = new WebClient())
-                {
-                    var svgData = wc.UploadString("http://rise4fun.com/services.svc/ask/agl", dotData);
-
-                    using (var stream = _storageProvider.CreateFile(filePath).OpenWrite())
-                    {
-                        var bytes = Encoding.UTF8.GetBytes(svgData);
-                        stream.Write(bytes, 0, bytes.Length);
-                    }
-                }
-
-                return _storageProvider.GetPublicUrl(filePath);
-            });
+            return _storageProvider.GetPublicUrl(filePath);
         }
     }
 }
