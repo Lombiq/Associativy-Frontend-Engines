@@ -10,10 +10,10 @@ namespace Associativy.Frontends
         {
             var manifest = builder.Add();
 
-            manifest.DefineScript("AssociativyAutoComplete").SetUrl("AssociativyAutoComplete.js").SetDependencies("jQueryUI_Autocomplete");
-            manifest.DefineScript("GraphZoomSlider").SetDependencies(new string[] { "jQueryUI_Slider" });
+            manifest.DefineScript("AssociativyFrontends_AutoComplete").SetUrl("AssociativyAutoComplete.js").SetDependencies("jQueryUI_Autocomplete");
+            manifest.DefineScript("AssociativyFrontends_GraphZoomSlider").SetDependencies(new string[] { "jQueryUI_Slider" });
 
-            manifest.DefineStyle("GraphZoomSlider").SetUrl("associativy-graph-zoom-slider.css").SetDependencies(new string[] { "jQueryUI_Orchard" });
+            manifest.DefineStyle("AssociativyFrontends_GraphZoomSlider").SetUrl("associativy-graph-zoom-slider.css").SetDependencies(new string[] { "jQueryUI_Orchard" });
         }
     }
 }

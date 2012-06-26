@@ -10,11 +10,11 @@ namespace Associativy.Frontends.Engines.Dracula
         {
             var manifest = builder.Add();
 
-            manifest.DefineScript("Raphael").SetUrl("Engines/Dracula/raphael-min.js");
-            manifest.DefineScript("DraculaGraffle").SetUrl("Engines/Dracula/dracula_graffle.js");
-            manifest.DefineScript("Dracula").SetUrl("Engines/Dracula/dracula_graph.js").SetDependencies(new string[] { "jQuery", "Raphael", "DraculaGraffle" });
+            manifest.DefineScript("AssociativyFrontends_Raphael").SetUrl("Engines/Dracula/raphael-min.js");
+            manifest.DefineScript("AssociativyFrontends_DraculaGraffle").SetUrl("Engines/Dracula/dracula_graffle.js");
+            manifest.DefineScript("AssociativyFrontends_Dracula").SetUrl("Engines/Dracula/dracula_graph.js").SetDependencies(new string[] { "jQuery", "AssociativyFrontends_Raphael", "AssociativyFrontends_DraculaGraffle" });
 
-            manifest.DefineStyle("Dracula").SetUrl("Engines/Dracula/associativy-dracula.css");
+            manifest.DefineStyle("AssociativyFrontends_Dracula").SetUrl("Engines/Dracula/associativy-dracula.css");
         }
     }
 }
