@@ -18,6 +18,7 @@
 @using (Script.Foot())
 {
     <script type="text/javascript">
+    (function ($) {
         $(document).ready(function(){
 	        var graph = new Graph();
 
@@ -31,6 +32,7 @@
 	        var renderer = new Graph.Renderer.Raphael("associativy-dracula-canvas", graph, $("#associativy-dracula-canvas").width(), $("#associativy-dracula-canvas").height());
 	        renderer.draw();
         });
+    })(jQuery);
     </script>
 }
 

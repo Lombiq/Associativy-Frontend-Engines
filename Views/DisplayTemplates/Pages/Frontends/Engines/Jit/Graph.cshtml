@@ -24,19 +24,18 @@
             }
         }
     });
+
+    $(document).on("stop.AssociativyGraphZoomSlider", function(values) {
+        $.associativy.jit.loadGraph(values.ui.value, true);
+    });
+
+    $(document).ready(function() {
+        $.associativy.jit.loadGraph(0, false);
+    });
 })(jQuery);
-
-$(document).on("stop.AssociativyGraphZoomSlider", function(values) {
-    $.associativy.jit.loadGraph(values.ui.value, true);
-});
-
-$(document).ready(function() {
-    $.associativy.jit.loadGraph(0, false);
-});
 </script>
 
 @Display.GraphZoomSlider(MaxZoomLevel: maxZoomLevel)
-
 <div id="associativy-jit-associations-canvas">
 </div>
 @Display.AssociativyBadgeOfHonor()
