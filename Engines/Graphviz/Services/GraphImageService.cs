@@ -10,6 +10,7 @@ using Orchard.FileSystems.Media;
 using QuickGraph;
 using QuickGraph.Graphviz;
 using Piedone.HelpfulLibraries.Tasks;
+using Orchard.Exceptions;
 
 namespace Associativy.Frontends.Engines.Graphviz.Services
 {
@@ -72,8 +73,9 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
             {
                 _storageProvider.DeleteFile(filePath);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                if (ex.IsFatal()) throw;
             }
 
             using (var wc = new WebClient())
