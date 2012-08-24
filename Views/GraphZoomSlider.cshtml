@@ -4,24 +4,9 @@
 }
 
 <script type="text/javascript">
-$(document).ready(function() {
-    $("#associativy-graph-zoom-slider").slider({
-		orientation: "vertical",
-		range: "min",
-		min: 0,
-		max: @Model.MaxZoomLevel,
-		value: 0,
-		stop: function(event, ui) {
-            $(document).triggerHandler({
-                type: "stop.AssociativyGraphZoomSlider",
-                event: event,
-                ui: ui
-            });
-            $("#associativy-graph-zoom-slider-value").text(ui.value);
-		}
-	});
-    $("#associativy-graph-zoom-slider-value").text($("#associativy-graph-zoom-slider").slider("value"));
-});
+    $(document).ready(function () {
+        $.associativy.graphZoomSlider.init(@Model.MaxZoomLevel);
+    });
 </script>
 
 <div id="associativy-graph-zoom-slider-container">

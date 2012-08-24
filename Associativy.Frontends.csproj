@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\AssociativyAutoComplete.js" />
+    <Content Include="Scripts\GraphZoomSlider.js" />
     <Content Include="Scripts\Engines\Dracula\Curry-1.0.1.js" />
     <Content Include="Scripts\Engines\Dracula\dracula_algorithms.js" />
     <Content Include="Scripts\Engines\Dracula\dracula_graffle.js" />
