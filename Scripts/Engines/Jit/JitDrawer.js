@@ -88,9 +88,6 @@
                                 $jit.util.event.stop(e); //stop default touchmove event
                                 this.onDragMove(node, eventInfo, e);
                             },
-                            onDblClick: function (node) {
-                                alert("dcl");
-                            },
                             //Add also a click handler to nodes
                             onClick: function (node) {
                                 if (!node) return;
