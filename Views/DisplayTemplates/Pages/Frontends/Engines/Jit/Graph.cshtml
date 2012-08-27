@@ -1,8 +1,11 @@
 ﻿@model Associativy.Frontends.Models.IGraphAspect
+@using Orchard.ContentManagement
+
 @{
     Script.Require("AssociativyFrontends_Jit").AtHead();
     Style.Require("AssociativyFrontends_Jit");
 
+    var initialZoomLevel = Model.As<Associativy.Frontends.Models.IEngineConfigurationAspect>().MindSettings.ZoomLevel;
     var maxZoomLevel = Model.ZoomLevelCount - 1;
 }
 <script type="text/javascript">
@@ -30,12 +33,12 @@
     });
 
     $(document).ready(function() {
-        $.associativy.jit.loadGraph(0, false);
+        $.associativy.jit.loadGraph(@initialZoomLevel, false);
     });
 })(jQuery);
 </script>
 
-@Display.GraphZoomSlider(MaxZoomLevel: maxZoomLevel)
+@Display.GraphZoomSlider(CurrentZoomLevel: initialZoomLevel, MaxZoomLevel: maxZoomLevel)
 <div id="associativy-jit-associations-canvas">
 </div>
 @Display.AssociativyBadgeOfHonor()

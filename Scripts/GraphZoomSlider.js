@@ -2,13 +2,13 @@
     $.extend(true, {
         associativy: {
             graphZoomSlider: {
-                init: function (maxZoomLevel) {
+                init: function (currentZoomLevel, maxZoomLevel) {
                     $("#associativy-graph-zoom-slider").slider({
 		                orientation: "vertical",
 		                range: "min",
 		                min: 0,
 		                max: maxZoomLevel,
-		                value: 0,
+		                value: currentZoomLevel,
 		                stop: function(event, ui) {
                             $(document).triggerHandler({
                                 type: "stop.AssociativyGraphZoomSlider",
