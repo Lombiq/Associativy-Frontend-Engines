@@ -15,7 +15,7 @@ using Orchard.Core.Common.Models;
 namespace Associativy.Frontends.EventHandlers
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class DefaultEngineEventHandler : IFrontendEngineEventHandler
+    public class DefaultEngineEventHandler : IAssociativyFrontendEngineEventHandler
     {
         private readonly IAssociativyServices _associativyServices;
         private readonly IOrchardServices _orchardServices;

@@ -16,13 +16,13 @@ namespace Associativy.Frontends.Controllers
     [OrchardFeature("Associativy.Frontends")]
     public class AutoCompleteController : DynamicallyContextedControllerBase
     {
-        private readonly IFrontendEngineEventHandler _eventHandler;
+        private readonly IAssociativyFrontendEngineEventHandler _eventHandler;
         private readonly IOrchardServices _orchardServices;
 
         public AutoCompleteController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IFrontendEngineEventHandler eventHandler,
+            IAssociativyFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices, frontendServices)
         {

@@ -19,7 +19,7 @@ namespace Associativy.Frontends.Engines.Dracula.Controllers
         public DraculaEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IFrontendEngineEventHandler eventHandler,
+            IAssociativyFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {

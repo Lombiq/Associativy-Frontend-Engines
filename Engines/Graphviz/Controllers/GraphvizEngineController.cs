@@ -30,7 +30,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
         public GraphvizEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IFrontendEngineEventHandler eventHandler,
+            IAssociativyFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices,
             IGraphvizConfigurationHandler configurationHandler,
             IGraphImageService graphImageService)

@@ -10,7 +10,7 @@ using Orchard.Environment.Extensions;
 namespace Associativy.Frontends.Engines.Dracula
 {
     [OrchardFeature("Associativy.Frontends.Dracula")]
-    public class DraculaEngineEventHandler : IFrontendEngineEventHandler
+    public class DraculaEngineEventHandler : IAssociativyFrontendEngineEventHandler
     {
         private readonly IDraculaConfigurationHandler _configurationHandler;
 

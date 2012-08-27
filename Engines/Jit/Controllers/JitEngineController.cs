@@ -27,7 +27,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
         public JitEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IFrontendEngineEventHandler eventHandler,
+            IAssociativyFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices,
             IJitConfigurationHandler configurationHandler)
             : base(associativyServices, frontendServices, eventHandler, orchardServices)

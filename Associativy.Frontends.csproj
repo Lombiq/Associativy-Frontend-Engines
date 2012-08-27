@@ -635,7 +635,7 @@
     <Compile Include="EventHandlers\FrontendAuthorizationEventContext.cs" />
     <Compile Include="EventHandlers\FrontendContext.cs" />
     <Compile Include="EventHandlers\FrontendEventContext.cs" />
-    <Compile Include="EventHandlers\IFrontendEngineEventHandler.cs" />
+    <Compile Include="EventHandlers\IAssociativyFrontendEngineEventHandler.cs" />
     <Compile Include="Extensions\ContentExtensions.cs" />
     <Compile Include="Extensions\ContentManagerExtensions.cs" />
     <Compile Include="EngineDiscovery\DescribeContext.cs" />

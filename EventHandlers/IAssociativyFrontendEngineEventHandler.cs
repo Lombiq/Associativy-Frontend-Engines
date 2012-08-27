@@ -5,7 +5,7 @@ using Orchard.Events;
 
 namespace Associativy.Frontends.EventHandlers
 {
-    public interface IFrontendEngineEventHandler : IEventHandler
+    public interface IAssociativyFrontendEngineEventHandler : IEventHandler
     {
         void OnPageInitializing(FrontendEventContext frontendEventContext);
         void OnPageInitialized(FrontendEventContext frontendEventContext);

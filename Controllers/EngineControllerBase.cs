@@ -20,7 +20,7 @@ namespace Associativy.Frontends.Controllers
     [Themed, OrchardFeature("Associativy.Frontends")]
     public abstract class EngineControllerBase : DynamicallyContextedControllerBase, IUpdateModel
     {
-        protected readonly IFrontendEngineEventHandler _eventHandler;
+        protected readonly IAssociativyFrontendEngineEventHandler _eventHandler;
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
 
@@ -31,7 +31,7 @@ namespace Associativy.Frontends.Controllers
         protected EngineControllerBase(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IFrontendEngineEventHandler eventHandler,
+            IAssociativyFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices, frontendServices)
         {
