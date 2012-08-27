@@ -11,6 +11,7 @@ using Orchard.Core.Title.Models;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using Orchard.Core.Common.Models;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.EventHandlers
 {
@@ -32,59 +33,42 @@ namespace Associativy.Frontends.EventHandlers
             T = NullLocalizer.Instance;
         }
 
-        public void OnPageInitializing(FrontendEventContext frontendEventContext)
+        public void OnPageInitializing(IContent page)
         {
-            var engineCommonPart = new AssociativyFrontendCommonPart();
-            engineCommonPart.GraphContext = frontendEventContext.GraphContext;
-            engineCommonPart.EngineContext = frontendEventContext.EngineContext;
-            engineCommonPart.MindSettings = new MindSettings
-                {
-                    ModifyQuery = (query) =>
-                        {
-                            var recordQuery = query.Where<CommonPartRecord>(r => true);
-                            foreach (var contentType in _associativyServices.GraphManager.FindGraph(frontendEventContext.GraphContext).ContentTypes)
-                            {
-                                recordQuery.WithQueryHintsFor(contentType);
-                            }
-                        }
-                };
-
-            frontendEventContext.Page.ContentItem.Weld(engineCommonPart);
-
-            frontendEventContext.Page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
+            page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
                 {
                     GraphRetrieverField = (settings) =>
                         {
-                            return _associativyServices.Mind.GetAllAssociations(engineCommonPart.GraphContext, settings);
+                            return _associativyServices.Mind.GetAllAssociations(page.As<IEngineConfigurationAspect>().GraphContext, settings);
                         }
                 });
 
             var graphPart = new AssociativyFrontendGraphPart();
             graphPart.ZoomLevelCountField.Loader(() =>
                 {
-                    var settings = engineCommonPart.MindSettings.MakeShallowCopy();
+                    var settings = page.As<IEngineConfigurationAspect>().MindSettings.MakeShallowCopy();
                     settings.ZoomLevelCount = 1;
                     settings.ZoomLevel = 0;
                     return _associativyServices.GraphEditor.CalculateZoomLevelCount(graphPart.As<IGraphRetrieverAspect>().RetrieveGraph(settings), graphPart.As<IEngineConfigurationAspect>().MindSettings.ZoomLevelCount);
                 });
-            frontendEventContext.Page.ContentItem.Weld(graphPart);
+            page.ContentItem.Weld(graphPart);
         }
 
-        public void OnPageInitialized(FrontendEventContext frontendEventContext)
+        public void OnPageInitialized(IContent page)
         {
         }
 
-        public void OnPageBuilt(FrontendEventContext frontendEventContext)
+        public void OnPageBuilt(IContent page)
         {
-            if (frontendEventContext.Page.IsPage("WholeGraph"))
+            if (page.IsPage("WholeGraph"))
             {
-                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(frontendEventContext.GraphContext).DisplayGraphName).ToString();
+                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(page.As<IEngineConfigurationAspect>().GraphContext).DisplayGraphName).ToString();
             }
         }
 
-        public void OnAuthorization(FrontendAuthorizationEventContext frontendAuthorizationEventContext)
+        public void OnAuthorization(PageAutorizationContext authorizationContext)
         {
-            frontendAuthorizationEventContext.Granted = true;
+            authorizationContext.Granted = true;
         }
     }
 }

@@ -2,14 +2,16 @@
 using Associativy.GraphDiscovery;
 using Orchard.ContentManagement;
 using Orchard.Events;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.EventHandlers
 {
-    public interface IAssociativyFrontendEngineEventHandler : IEventHandler
+    public interface IAssociativyFrontendEngineEventHandler : IPageEventHandler
     {
-        void OnPageInitializing(FrontendEventContext frontendEventContext);
-        void OnPageInitialized(FrontendEventContext frontendEventContext);
-        void OnPageBuilt(FrontendEventContext frontendEventContext);
-        void OnAuthorization(FrontendAuthorizationEventContext frontendAuthorizationEventContext);
+        // See: http://orchard.codeplex.com/workitem/18990
+        new void OnPageInitializing(IContent page);
+        new void OnPageInitialized(IContent page);
+        new void OnPageBuilt(IContent page);
+        new void OnAuthorization(PageAutorizationContext authorizationContext);
     }
 }

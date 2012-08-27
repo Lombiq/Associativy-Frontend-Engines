@@ -10,31 +10,32 @@ using Associativy.Frontends.Services;
 using Associativy.Frontends.EventHandlers;
 using Orchard;
 using Associativy.Frontends.Engines;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Controllers
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class AutoCompleteController : DynamicallyContextedControllerBase
+    public class AutoCompleteController : FrontendControllerBase
     {
-        private readonly IAssociativyFrontendEngineEventHandler _eventHandler;
-        private readonly IOrchardServices _orchardServices;
+        protected override IEngineContext EngineContext
+        {
+            get { return new EngineContext(); }
+        }
 
         public AutoCompleteController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
             IAssociativyFrontendEngineEventHandler eventHandler,
             IOrchardServices orchardServices)
-            : base(associativyServices, frontendServices)
+            : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {
-            _eventHandler = eventHandler;
-            _orchardServices = orchardServices;
         }
 
         public virtual ActionResult FetchSimilarLabels(string graphName, string labelSnippet)
         {
-            var authorizationContext = new FrontendAuthorizationEventContext(_orchardServices.WorkContext.CurrentUser, null, new EngineContext(), GraphContext);
-            _eventHandler.OnAuthorization(authorizationContext);
-            if (!authorizationContext.Granted)
+            var page = NewPage("FetchSimilarLabels");
+            _eventHandler.OnPageBuilt(page);
+            if (!IsAuthorized(page))
             {
                 return new HttpUnauthorizedResult();
             }

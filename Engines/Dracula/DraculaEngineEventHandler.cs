@@ -6,6 +6,7 @@ using Associativy.Frontends.Models;
 using Associativy.GraphDiscovery;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Engines.Dracula
 {
@@ -19,9 +20,9 @@ namespace Associativy.Frontends.Engines.Dracula
             _configurationHandler = configurationHandler;
         }
 
-        public void OnPageInitializing(FrontendEventContext frontendEventContext)
+        public void OnPageInitializing(IContent page)
         {
-            if (frontendEventContext.EngineContext.EngineName != "Dracula") return;
+            if (page.As<IEngineConfigurationAspect>().EngineContext.EngineName != "Dracula") return;
 
             var draculaPart = new DraculaPart();
             draculaPart.NodesField.Loader(() =>
@@ -33,24 +34,25 @@ namespace Associativy.Frontends.Engines.Dracula
                 foreach (var node in graph.Vertices)
                 {
                     var viewModel = new NodeViewModel { ContentItem = node };
-                    _configurationHandler.SetupViewModel(frontendEventContext, node, viewModel);
+                    var configAspect = page.As<IEngineConfigurationAspect>();
+                    _configurationHandler.SetupViewModel(new FrontendContext(configAspect.EngineContext, configAspect.GraphContext), node, viewModel);
                     nodes[node.Id] = viewModel;
                 }
 
                 return nodes;
             });
-            frontendEventContext.Page.ContentItem.Weld(draculaPart);
+            page.ContentItem.Weld(draculaPart);
         }
 
-        public void OnPageInitialized(FrontendEventContext frontendEventContext)
+        public void OnPageInitialized(IContent page)
         {
         }
 
-        public void OnPageBuilt(FrontendEventContext frontendEventContext)
+        public void OnPageBuilt(IContent page)
         {
         }
 
-        public void OnAuthorization(FrontendAuthorizationEventContext frontendAuthorizationEventContext)
+        public void OnAuthorization(PageAutorizationContext authorizationContext)
         {
         }
     }

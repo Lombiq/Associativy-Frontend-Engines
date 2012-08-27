@@ -607,7 +607,6 @@
     <Compile Include="Engines\Dracula\EngineProvider.cs" />
     <Compile Include="Engines\Dracula\IDraculaConfigurationHandler.cs" />
     <Compile Include="Engines\Graphviz\DefaultGraphvizConfigurationHandler.cs" />
-    <Compile Include="Controllers\DynamicallyContextedControllerBase.cs" />
     <Compile Include="Controllers\AutoCompleteController.cs" />
     <Compile Include="Controllers\EngineControllerBase.cs" />
     <Compile Include="Drivers\Pages\Frontends\AssociativyFrontendGraphPartDriver.cs" />
@@ -632,12 +631,8 @@
     <Compile Include="Engines\Jit\ResourceManifest.cs" />
     <Compile Include="Engines\Jit\ViewModels\NodeViewModel.cs" />
     <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
-    <Compile Include="EventHandlers\FrontendAuthorizationEventContext.cs" />
     <Compile Include="EventHandlers\FrontendContext.cs" />
-    <Compile Include="EventHandlers\FrontendEventContext.cs" />
     <Compile Include="EventHandlers\IAssociativyFrontendEngineEventHandler.cs" />
-    <Compile Include="Extensions\ContentExtensions.cs" />
-    <Compile Include="Extensions\ContentManagerExtensions.cs" />
     <Compile Include="EngineDiscovery\DescribeContext.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendCommonPart.cs" />
