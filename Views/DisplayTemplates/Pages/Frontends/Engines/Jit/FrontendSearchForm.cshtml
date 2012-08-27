@@ -1,10 +1,9 @@
 ﻿@model Associativy.Frontends.Models.Pages.Frontends.AssociativyFrontendSearchFormPart
 
 @{
+    Style.Require("AssociativyFrontends_Jit");
     Script.Require("AssociativyFrontends_Jit").AtHead();
 }
-
-
 
 <script type="text/javascript">
     $("#associativy-search-form").submit(function () {
@@ -16,13 +15,20 @@
 
         values.graphSetup.onCreateLabel = function (label, node) {
             oldFunction(label, node);
+            
+            $(label).hover(function (e) {
+                var label = $(this);
+                label.append("<span class='associativy-node-discovery-link'>@T("Discover")</span>");
 
-            $(label).dblclick(function () {
-                $("#associativy-search-form").submit(function () {
-                    $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
-                    $("#@Html.FieldIdFor(m => m.Labels)").val(node.name);
+                label.find(".associativy-node-discovery-link").click(function (e) {
+                    $("#associativy-search-form").submit(function () {
+                        $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
+                        $("#@Html.FieldIdFor(m => m.Labels)").val(node.name);
+                    });
+                    $("#associativy-search-form").submit();
                 });
-                $("#associativy-search-form").submit();
+            }, function (e) {
+                $(this).find(".associativy-node-discovery-link").remove();
             });
         }
     });

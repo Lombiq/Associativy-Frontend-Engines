@@ -1,4 +1,13 @@
-﻿#associativy-jit-associations-canvas
+﻿.associativy-node-discovery-link
+{
+    display: inline-block;
+    margin-left: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    height: 2em;
+}
+
+#associativy-jit-associations-canvas
 {
     height: 800px;
     overflow: hidden;
