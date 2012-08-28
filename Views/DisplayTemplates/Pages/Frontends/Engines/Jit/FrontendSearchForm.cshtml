@@ -18,9 +18,9 @@
             
             $(label).hover(function (e) {
                 var label = $(this);
-                label.append("<span class='associativy-node-discovery-link'>@T("Explore")</span>");
+                label.append("<span class='associativy-node-discovery-button'>@T("Explore")</span>");
 
-                label.find(".associativy-node-discovery-link").click(function (e) {
+                label.find(".associativy-node-discovery-button").click(function (e) {
                     $("#associativy-search-form").submit(function () {
                         $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
                         $("#@Html.FieldIdFor(m => m.Labels)").val(node.name);
@@ -28,7 +28,7 @@
                     $("#associativy-search-form").submit();
                 });
             }, function (e) {
-                $(this).find(".associativy-node-discovery-link").remove();
+                $(this).find(".associativy-node-discovery-button").remove();
             });
         }
     });

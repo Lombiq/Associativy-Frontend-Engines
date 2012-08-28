@@ -1,10 +1,24 @@
-﻿.associativy-node-discovery-link
+﻿.node
 {
-    display: inline-block;
+    padding: 0.3em;
+    font-size: 1em;
+    height: 3em;
+    line-height: 1.6em;
+}
+
+.associativy-node-discovery-button
+{
     margin-left: 1em;
+    display: inline-block;
+    font-size: 1em;
     font-weight: bold;
+    line-height: 1em;
     cursor: pointer;
-    height: 2em;
+    padding: 0.3em;
+    background-color: #36ACFB;
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    border-radius: 0.2em;
 }
 
 #associativy-jit-associations-canvas
