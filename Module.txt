@@ -3,7 +3,7 @@ AntiForgery: enabled
 Author: Piedone
 Website: http://associativy.com
 Version: 1.0
-OrchardVersion: 1.5
+OrchardVersion: 1.5.1
 Description: Associativy Frontend Engines
 Features:
 	Associativy.Frontends:
