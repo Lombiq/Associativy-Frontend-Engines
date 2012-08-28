@@ -1,6 +1,7 @@
 ﻿@model Associativy.Frontends.Models.IGraphAspect
            
 @{
+    Style.Require("AssociativyFrontends_OpenLayers");
     Script.Require("AssociativyFrontends_MapQuery.ImageLayer").AtHead();
 
     var routeData = Html.ViewContext.RouteData.Values;
@@ -73,5 +74,5 @@
     });
 })(jQuery);
 </script>
-<div id="associativy-graphviz-openlayers-map" class="smallmap associativy-graph-canvas" style="width: 900px; height: 600px;">
+<div id="associativy-graphviz-openlayers-map" class="smallmap associativy-graph-canvas">
 </div>
