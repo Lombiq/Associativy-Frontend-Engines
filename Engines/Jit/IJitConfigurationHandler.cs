@@ -1,8 +1,7 @@
 ﻿using Associativy.Frontends.Engines.Jit.ViewModels;
-using Associativy.GraphDiscovery;
+using Associativy.Frontends.EventHandlers;
 using Orchard.ContentManagement;
 using Orchard.Events;
-using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.Jit
 {

@@ -3,14 +3,13 @@ using System.Net;
 using System.Text;
 using Associativy.EventHandlers;
 using Associativy.GraphDiscovery;
-using Orchard.Caching;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
+using Orchard.Exceptions;
 using Orchard.FileSystems.Media;
+using Piedone.HelpfulLibraries.Tasks;
 using QuickGraph;
 using QuickGraph.Graphviz;
-using Piedone.HelpfulLibraries.Tasks;
-using Orchard.Exceptions;
 
 namespace Associativy.Frontends.Engines.Graphviz.Services
 {

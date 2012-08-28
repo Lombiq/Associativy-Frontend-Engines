@@ -1,9 +1,8 @@
 ﻿using Associativy.Frontends.Engines.Dracula.ViewModels;
-using Associativy.GraphDiscovery;
+using Associativy.Frontends.EventHandlers;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Aspects;
 using Orchard.Environment.Extensions;
-using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.Dracula
 {

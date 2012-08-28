@@ -1,11 +1,10 @@
 ﻿using System.Web.Mvc;
 using Associativy.Frontends.Engines.Jit.ViewModels;
-using Associativy.GraphDiscovery;
+using Associativy.Frontends.EventHandlers;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Aspects;
 using Orchard.Environment.Extensions;
-using Associativy.Frontends.EventHandlers;
 
 namespace Associativy.Frontends.Engines.Jit
 {

@@ -1,5 +1,5 @@
-﻿using Orchard;
-using Associativy.Frontends.EngineDiscovery;
+﻿using Associativy.Frontends.EngineDiscovery;
+using Orchard;
 
 namespace Associativy.Frontends.Services
 {

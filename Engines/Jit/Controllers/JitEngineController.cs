@@ -9,7 +9,6 @@ using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
-using QuickGraph;
 
 namespace Associativy.Frontends.Engines.Jit.Controllers
 {

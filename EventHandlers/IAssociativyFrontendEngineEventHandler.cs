@@ -1,7 +1,4 @@
-﻿using Associativy.Frontends.Engines;
-using Associativy.GraphDiscovery;
-using Orchard.ContentManagement;
-using Orchard.Events;
+﻿using Orchard.ContentManagement;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.EventHandlers

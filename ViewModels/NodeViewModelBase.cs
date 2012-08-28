@@ -1,6 +1,6 @@
-﻿using Orchard.ContentManagement;
+﻿using System.Web.Script.Serialization;
+using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
-using System.Web.Script.Serialization;
 
 namespace Associativy.Frontends.ViewModels
 {

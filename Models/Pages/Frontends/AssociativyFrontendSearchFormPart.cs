@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;

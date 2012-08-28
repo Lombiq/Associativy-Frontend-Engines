@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Associativy.Frontends.Engines;
 using Associativy.Frontends.EventHandlers;
-using Associativy.Frontends.Extensions;
 using Associativy.Frontends.Services;
 using Associativy.Services;
 using Orchard;
@@ -11,10 +9,6 @@ using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using Orchard.Mvc;
 using Orchard.Themes;
-using Piedone.HelpfulLibraries.Contents.DynamicPages;
-using Associativy.Frontends.Models.Pages.Frontends;
-using Associativy.Models.Mind;
-using Orchard.Core.Common.Models;
 
 namespace Associativy.Frontends.Controllers
 {

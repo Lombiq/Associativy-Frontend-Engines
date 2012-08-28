@@ -1,16 +1,13 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Associativy.Controllers;
-using Associativy.GraphDiscovery;
+using Associativy.Frontends.Engines;
+using Associativy.Frontends.EventHandlers;
+using Associativy.Frontends.Services;
 using Associativy.Models;
 using Associativy.Services;
+using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
-using Associativy.Frontends.Services;
-using Associativy.Frontends.EventHandlers;
-using Orchard;
-using Associativy.Frontends.Engines;
-using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Controllers
 {
