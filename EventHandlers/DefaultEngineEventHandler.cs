@@ -11,7 +11,7 @@ using Piedone.HelpfulLibraries.Contents.DynamicPages;
 namespace Associativy.Frontends.EventHandlers
 {
     [OrchardFeature("Associativy.Frontends")]
-    public class DefaultEngineEventHandler : IAssociativyFrontendEngineEventHandler
+    public class DefaultEngineEventHandler : IPageEventHandler
     {
         private readonly IAssociativyServices _associativyServices;
         private readonly IOrchardServices _orchardServices;
@@ -28,8 +28,11 @@ namespace Associativy.Frontends.EventHandlers
             T = NullLocalizer.Instance;
         }
 
-        public void OnPageInitializing(IContent page)
+        public void OnPageInitializing(PageContext pageContext)
         {
+            if (pageContext.Group != FrontendsPageConfigs.Group) return;
+
+            var page = pageContext.Page;
             page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
                 {
                     GraphRetrieverField = (settings) =>
@@ -49,15 +52,17 @@ namespace Associativy.Frontends.EventHandlers
             page.ContentItem.Weld(graphPart);
         }
 
-        public void OnPageInitialized(IContent page)
+        public void OnPageInitialized(PageContext pageContext)
         {
         }
 
-        public void OnPageBuilt(IContent page)
+        public void OnPageBuilt(PageContext pageContext)
         {
-            if (page.IsPage("WholeGraph"))
+            if (pageContext.Group != FrontendsPageConfigs.Group) return;
+
+            if (pageContext.Page.IsPage("WholeGraph", pageContext.Group))
             {
-                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(page.As<IEngineConfigurationAspect>().GraphContext).DisplayGraphName).ToString();
+                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(pageContext.Page.As<IEngineConfigurationAspect>().GraphContext).DisplayGraphName).ToString();
             }
         }
 

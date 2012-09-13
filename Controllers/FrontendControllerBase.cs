@@ -21,7 +21,7 @@ namespace Associativy.Frontends.Controllers
     {
         protected readonly IFrontendServices _frontendServices;
         protected readonly IFrontendContextAccessor _frontendContextAccessor;
-        protected readonly IAssociativyFrontendEngineEventHandler _eventHandler;
+        protected readonly IPageEventHandler _eventHandler;
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
 
@@ -50,7 +50,7 @@ namespace Associativy.Frontends.Controllers
         protected FrontendControllerBase(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IAssociativyFrontendEngineEventHandler eventHandler,
+            IPageEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices)
         {
@@ -67,7 +67,8 @@ namespace Associativy.Frontends.Controllers
         protected virtual IContent NewPage(string pageName)
         {
             var page = _contentManager.NewPage(
-                EngineContext.EngineName + pageName, 
+                EngineContext.EngineName + pageName,
+                FrontendsPageConfigs.Group,
                 (content) =>
                     {
                         var engineCommonPart = new AssociativyFrontendCommonPart();
@@ -94,7 +95,7 @@ namespace Associativy.Frontends.Controllers
 
         protected virtual bool IsAuthorized(IContent page)
         {
-            var authorizationContext = new PageAutorizationContext(page, _orchardServices.WorkContext.CurrentUser);
+            var authorizationContext = new PageAutorizationContext(page, FrontendsPageConfigs.Group, _orchardServices.WorkContext.CurrentUser);
             _eventHandler.OnAuthorization(authorizationContext);
             return authorizationContext.Granted;
         }

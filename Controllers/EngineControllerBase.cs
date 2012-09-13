@@ -9,6 +9,7 @@ using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using Orchard.Mvc;
 using Orchard.Themes;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Controllers
 {
@@ -21,7 +22,7 @@ namespace Associativy.Frontends.Controllers
         protected EngineControllerBase(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IAssociativyFrontendEngineEventHandler eventHandler,
+            IPageEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {
@@ -36,7 +37,7 @@ namespace Associativy.Frontends.Controllers
                 return new HttpUnauthorizedResult();
             }
 
-            _eventHandler.OnPageBuilt(page);
+            _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
 
             return new ShapeResult(this, _contentManager.BuildDisplay(page));
         }
@@ -54,7 +55,7 @@ namespace Associativy.Frontends.Controllers
 
             if (ModelState.IsValid)
             {
-                _eventHandler.OnPageBuilt(page);
+                _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
 
                 return new ShapeResult(
                     this,

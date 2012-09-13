@@ -633,9 +633,9 @@
     <Compile Include="Engines\Jit\ViewModels\NodeViewModel.cs" />
     <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
     <Compile Include="EventHandlers\FrontendContext.cs" />
-    <Compile Include="EventHandlers\IAssociativyFrontendEngineEventHandler.cs" />
     <Compile Include="EngineDiscovery\DescribeContext.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
+    <Compile Include="FrontendsPageConfigs.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendCommonPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendGraphPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendSearchFormPart.cs" />

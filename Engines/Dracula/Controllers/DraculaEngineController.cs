@@ -4,6 +4,7 @@ using Associativy.Frontends.Services;
 using Associativy.Services;
 using Orchard;
 using Orchard.Environment.Extensions;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Engines.Dracula.Controllers
 {
@@ -19,7 +20,7 @@ namespace Associativy.Frontends.Engines.Dracula.Controllers
         public DraculaEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IAssociativyFrontendEngineEventHandler eventHandler,
+            IPageEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {

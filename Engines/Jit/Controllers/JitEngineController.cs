@@ -9,6 +9,7 @@ using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Engines.Jit.Controllers
 {
@@ -26,7 +27,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
         public JitEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IAssociativyFrontendEngineEventHandler eventHandler,
+            IPageEventHandler eventHandler,
             IOrchardServices orchardServices,
             IJitConfigurationHandler configurationHandler)
             : base(associativyServices, frontendServices, eventHandler, orchardServices)

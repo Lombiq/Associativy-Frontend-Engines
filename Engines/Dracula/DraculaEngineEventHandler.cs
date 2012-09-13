@@ -10,7 +10,7 @@ using Piedone.HelpfulLibraries.Contents.DynamicPages;
 namespace Associativy.Frontends.Engines.Dracula
 {
     [OrchardFeature("Associativy.Frontends.Dracula")]
-    public class DraculaEngineEventHandler : IAssociativyFrontendEngineEventHandler
+    public class DraculaEngineEventHandler : IPageEventHandler
     {
         private readonly IDraculaConfigurationHandler _configurationHandler;
 
@@ -19,8 +19,11 @@ namespace Associativy.Frontends.Engines.Dracula
             _configurationHandler = configurationHandler;
         }
 
-        public void OnPageInitializing(IContent page)
+        public void OnPageInitializing(PageContext pageContext)
         {
+            if (pageContext.Group != FrontendsPageConfigs.Group) return;
+
+            var page = pageContext.Page;
             if (page.As<IEngineConfigurationAspect>().EngineContext.EngineName != "Dracula") return;
 
             var draculaPart = new DraculaPart();
@@ -43,11 +46,11 @@ namespace Associativy.Frontends.Engines.Dracula
             page.ContentItem.Weld(draculaPart);
         }
 
-        public void OnPageInitialized(IContent page)
+        public void OnPageInitialized(PageContext pageContext)
         {
         }
 
-        public void OnPageBuilt(IContent page)
+        public void OnPageBuilt(PageContext pageContext)
         {
         }
 

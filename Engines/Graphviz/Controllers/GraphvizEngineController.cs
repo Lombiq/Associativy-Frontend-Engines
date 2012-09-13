@@ -12,6 +12,7 @@ using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using QuickGraph;
+using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {
@@ -30,7 +31,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
         public GraphvizEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IAssociativyFrontendEngineEventHandler eventHandler,
+            IPageEventHandler eventHandler,
             IOrchardServices orchardServices,
             IGraphvizConfigurationHandler configurationHandler,
             IGraphImageService graphImageService)
