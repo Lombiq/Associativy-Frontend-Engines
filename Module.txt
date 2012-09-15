@@ -10,7 +10,7 @@ Features:
 		Name: Associativy Frontend Engines base
         Description: Base for Associativy Frontend Engines
 		Category: Associativy
-		Dependencies: Associativy, Piedone.HelpfulLibraries.Utilities, Piedone.HelpfulLibraries.Contents
+		Dependencies: Associativy, Piedone.HelpfulLibraries.Contents
 	Associativy.Frontends.Dracula:
 		Name: Dracula Associativy Frontend Engine
         Description: Dracula Associativy Frontend Engine

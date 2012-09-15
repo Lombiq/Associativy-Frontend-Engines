@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using Associativy.Frontends.EventHandlers;
 using Associativy.Frontends.Services;
 using Associativy.Services;
 using Orchard;

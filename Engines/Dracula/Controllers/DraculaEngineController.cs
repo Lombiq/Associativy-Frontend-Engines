@@ -1,5 +1,4 @@
 ﻿using Associativy.Frontends.Controllers;
-using Associativy.Frontends.EventHandlers;
 using Associativy.Frontends.Services;
 using Associativy.Services;
 using Orchard;

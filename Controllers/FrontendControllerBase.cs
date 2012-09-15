@@ -1,7 +1,6 @@
 ﻿using System;
 using Associativy.Controllers;
 using Associativy.Frontends.Engines;
-using Associativy.Frontends.EventHandlers;
 using Associativy.Frontends.Models.Pages.Frontends;
 using Associativy.Frontends.Services;
 using Associativy.GraphDiscovery;

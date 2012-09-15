@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Associativy.Frontends.Engines;
-using Associativy.Frontends.EventHandlers;
 using Associativy.Frontends.Services;
 using Associativy.Models;
 using Associativy.Services;

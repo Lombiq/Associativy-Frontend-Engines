@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Associativy.Frontends.Controllers;
 using Associativy.Frontends.Engines.Graphviz.Services;
-using Associativy.Frontends.EventHandlers;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.Services;
 using Associativy.Models.Mind;
@@ -11,8 +10,8 @@ using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
-using QuickGraph;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
+using QuickGraph;
 
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {
