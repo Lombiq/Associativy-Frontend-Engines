@@ -4,7 +4,7 @@ Author: Piedone
 Website: http://associativy.com
 Version: 1.0
 OrchardVersion: 1.5.1
-Description: Associativy Frontend Engines
+Description: Associativy Frontend Engines for graph visualization
 Features:
 	Associativy.Frontends:
 		Name: Associativy Frontend Engines base
