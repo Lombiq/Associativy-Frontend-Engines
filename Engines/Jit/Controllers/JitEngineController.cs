@@ -57,13 +57,13 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
             {
                 var viewModel = new NodeViewModel { ContentItem = vertex };
                 _configurationHandler.SetupViewModel(new FrontendContext(EngineContext, GraphContext), vertex, viewModel);
-                viewNodes[vertex.Id] = viewModel;
+                viewNodes[vertex.ContentItem.Id] = viewModel;
             }
 
             foreach (var edge in graph.Edges)
             {
-                viewNodes[edge.Source.Id].adjacencies.Add(edge.Target.Id.ToString());
-                viewNodes[edge.Target.Id].adjacencies.Add(edge.Source.Id.ToString());
+                viewNodes[edge.Source.ContentItem.Id].adjacencies.Add(edge.Target.ContentItem.Id.ToString());
+                viewNodes[edge.Target.ContentItem.Id].adjacencies.Add(edge.Source.ContentItem.Id.ToString());
             }
 
             return Json(viewNodes.Values);

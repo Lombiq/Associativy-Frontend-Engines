@@ -38,7 +38,7 @@ namespace Associativy.Frontends.Engines.Dracula
                     var viewModel = new NodeViewModel { ContentItem = node };
                     var configAspect = page.As<IEngineConfigurationAspect>();
                     _configurationHandler.SetupViewModel(new FrontendContext(configAspect.EngineContext, configAspect.GraphContext), node, viewModel);
-                    nodes[node.Id] = viewModel;
+                    nodes[node.ContentItem.Id] = viewModel;
                 }
 
                 return nodes;

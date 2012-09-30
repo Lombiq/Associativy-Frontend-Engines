@@ -39,7 +39,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
             //    graph.SerializeToGraphML<TNode, IUndirectedEdge<TNode>, IUndirectedGraph<TNode, IUndirectedEdge<TNode>>>(
             //        xmlWriter,
             //        node => node.Label,
-            //        edge => edge.Source.Id.ToString() + edge.Target.Id.ToString());
+            //        edge => edge.Source.ContentItem.Id.ToString() + edge.Target.ContentItem.Id.ToString());
             //}
             //var graphML = stringBuilder.ToString();
 
