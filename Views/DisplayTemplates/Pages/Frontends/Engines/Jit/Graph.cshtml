@@ -16,13 +16,16 @@
             jit: {
                 loadGraph: function (zoomLevel, redraw, isPartialGraph) {
                     var that = this;
+                    $.associativy.jit.showLoader();
                     $.post(
                         "@Url.Action("FetchGraph", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), 
                         { __RequestVerificationToken: "@Html.AntiForgeryTokenValueOrchard()" },
                         function(graphData) {
                             if (!redraw) that.layout = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
                             else $.associativy.jit.redraw(that.layout, graphData);
-                    });
+
+                            $.associativy.jit.hideLoader();
+                        });
                 }
             }
         }
@@ -38,8 +41,10 @@
 })(jQuery);
 </script>
 
-@Html.Link(T("Show whole graph").Text, Url.RouteUrl(ViewContext.RouteData.Values), new { id = "associativy-jit-associations-whole-graph-link" })
-@Display.GraphZoomSlider(CurrentZoomLevel: initialZoomLevel, MaxZoomLevel: maxZoomLevel)
-<div id="associativy-jit-associations-canvas" class="associativy-graph-canvas">
+<div id="associativy-jit-associations-canvas-container">
+    @Html.Link(T("Show whole graph").Text, Url.RouteUrl(ViewContext.RouteData.Values), new { id = "associativy-jit-associations-whole-graph-link" })
+    @Display.GraphZoomSlider(CurrentZoomLevel: initialZoomLevel, MaxZoomLevel: maxZoomLevel)
+    <div id="associativy-jit-associations-canvas" class="associativy-graph-canvas">
+    </div>
 </div>
 @Display.AssociativyBadgeOfHonor()

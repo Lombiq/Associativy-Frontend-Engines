@@ -31,3 +31,11 @@
 {
     cursor: move;
 }
+
+#associativy-jit-loader
+{
+    width: 31px;
+    height: 31px;
+    background-image: url("Images/jit-loader.gif");
+    margin: 0 auto -31px auto;
+}

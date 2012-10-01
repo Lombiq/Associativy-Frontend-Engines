@@ -570,6 +570,7 @@
     <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapz.css" />
     <Content Include="Styles\Engines\Graphviz\associativy-graphviz-openlayers.css" />
     <Content Include="Styles\Engines\Jit\associativy-jit.css" />
+    <Content Include="Styles\Engines\Jit\Images\jit-loader.gif" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Scripts\Web.config" />

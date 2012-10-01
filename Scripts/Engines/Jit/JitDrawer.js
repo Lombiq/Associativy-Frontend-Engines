@@ -57,16 +57,16 @@
                         },
                         //Add Tips
                         // This would be only useful with the total connection count (vs the displayed connection count) shown.
-//                        Tips: {
-//                            enable: true,
-//                            onShow: function (tip, node) {
-//                                //count connections
-//                                var count = 0;
-//                                node.eachAdjacency(function () { count++; });
-//                                //display node info in tooltip
-//                                tip.innerHTML = "<div class=\"tip-title\">" + node.name + "</div>" + "<div class=\"tip-text\"><b>connections:</b> " + count + "</div>";
-//                            }
-//                        },
+                        //                        Tips: {
+                        //                            enable: true,
+                        //                            onShow: function (tip, node) {
+                        //                                //count connections
+                        //                                var count = 0;
+                        //                                node.eachAdjacency(function () { count++; });
+                        //                                //display node info in tooltip
+                        //                                tip.innerHTML = "<div class=\"tip-title\">" + node.name + "</div>" + "<div class=\"tip-text\"><b>connections:</b> " + count + "</div>";
+                        //                            }
+                        //                        },
                         // Add node events
                         Events: {
                             enable: true,
@@ -192,9 +192,19 @@
                             });
                         }
                     });
+                },
+
+                showLoader: function () {
+                    if ($("#associativy-jit-loader").length > 0) return;
+                    $("<div id='associativy-jit-loader'></div>").prependTo("#associativy-jit-associations-canvas-container");
+                },
+
+                hideLoader: function () {
+                    var loader = $("#associativy-jit-loader");
+                    if (loader.length = 0) return;
+                    loader.remove();
                 }
             }
         }
     });
 })(jQuery);
- 
