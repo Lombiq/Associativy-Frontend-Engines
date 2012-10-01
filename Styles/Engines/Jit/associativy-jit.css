@@ -25,6 +25,7 @@
 {
     height: 800px;
     overflow: hidden;
+    margin: 1em auto;
 }
 
 #associativy-jit-associations-canvas:hover
@@ -34,8 +35,8 @@
 
 #associativy-jit-loader
 {
-    width: 31px;
-    height: 31px;
+    width: 16px;
+    height: 16px;
     background-image: url("Images/jit-loader.gif");
-    margin: 0 auto -31px auto;
+    margin: 0 auto -16px auto;
 }
