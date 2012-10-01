@@ -38,6 +38,7 @@
 })(jQuery);
 </script>
 
+@Html.Link(T("Show whole graph").Text, Url.RouteUrl(ViewContext.RouteData.Values), new { id = "associativy-jit-associations-whole-graph-link" })
 @Display.GraphZoomSlider(CurrentZoomLevel: initialZoomLevel, MaxZoomLevel: maxZoomLevel)
 <div id="associativy-jit-associations-canvas" class="associativy-graph-canvas">
 </div>
