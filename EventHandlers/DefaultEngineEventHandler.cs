@@ -60,7 +60,7 @@ namespace Associativy.Frontends.EventHandlers
         {
             if (pageContext.Group != FrontendsPageConfigs.Group) return;
 
-            if (pageContext.Page.IsPage("WholeGraph", pageContext.Group))
+            if (pageContext.Page.IsPage(pageContext.Page.As<IEngineConfigurationAspect>().EngineContext.EngineName + "WholeGraph", pageContext.Group))
             {
                 _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(pageContext.Page.As<IEngineConfigurationAspect>().GraphContext).DisplayGraphName).ToString();
             }
