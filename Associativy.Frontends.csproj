@@ -21,6 +21,10 @@
     </UpgradeBackupLocation>
     <TargetFrameworkProfile />
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,8 +81,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\AssociativyAutoComplete.js" />
-    <Content Include="Scripts\GraphZoomSlider.js" />
+    <Content Include="Scripts\associativy-auto-complete.js" />
+    <Content Include="Scripts\associativy-graph-zoom-slider.js" />
     <Content Include="Scripts\Engines\Dracula\Curry-1.0.1.js" />
     <Content Include="Scripts\Engines\Dracula\dracula_algorithms.js" />
     <Content Include="Scripts\Engines\Dracula\dracula_graffle.js" />
@@ -565,7 +569,7 @@
     <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\jsmin.c" />
     <Content Include="Scripts\Engines\Graphviz\OpenLayers-2.11\tools\README.txt" />
     <Content Include="Scripts\Engines\Jit\Jit.custom.min.js" />
-    <Content Include="Scripts\Engines\Jit\JitDrawer.js" />
+    <Content Include="Scripts\Engines\Jit\associativy-jit-drawer.js" />
     <Content Include="Styles\associativy-graph-zoom-slider.css" />
     <Content Include="Styles\Engines\Dracula\associativy-dracula.css" />
     <Content Include="Styles\Engines\Graphviz\associativy-graphviz-mapbox.css" />
