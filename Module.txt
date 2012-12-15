@@ -2,8 +2,8 @@ Name: Associativy Frontend Engines
 AntiForgery: enabled
 Author: Piedone
 Website: http://associativy.com
-Version: 1.0
-OrchardVersion: 1.5.1
+Version: 1.1
+OrchardVersion: 1.6
 Description: Associativy Frontend Engines for graph visualization
 Features:
 	Associativy.Frontends:
