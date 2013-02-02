@@ -8,22 +8,13 @@ namespace Associativy.Frontends.EngineDiscovery
     public class EngineDescriptor
     {
         public string EngineName { get; private set; }
-
-        private readonly DisplayNameGetter _displayNameGetter;
-        public LocalizedString DisplayEngineName
-        {
-            get
-            {
-                return _displayNameGetter();
-            }
-        }
-
+        public LocalizedString DisplayEngineName { get; private set; }
         public RouteDescriptor Route { get; private set; }
 
-        public EngineDescriptor(string engineName, DisplayNameGetter displayNameGetter, RouteDescriptor route)
+        public EngineDescriptor(string engineName, LocalizedString displayName, RouteDescriptor route)
         {
             EngineName = engineName;
-            _displayNameGetter = displayNameGetter;
+            DisplayEngineName = displayName;
             Route = route;
         }
     }

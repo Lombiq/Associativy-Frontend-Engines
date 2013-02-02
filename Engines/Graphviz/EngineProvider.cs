@@ -8,10 +8,7 @@ namespace Associativy.Frontends.Engines.Graphviz
     {
         public override void Describe(DescribeContext describeContext)
         {
-            describeContext.DescribeEngine(
-                "Graphviz",
-                () => T("Graphviz"),
-                DefaultRoute("Graphviz"));
+            describeContext.DescribeEngine("Graphviz", T("Graphviz"), DefaultRoute("Graphviz"));
         }
     }
 }
