@@ -8,7 +8,10 @@ namespace Associativy.Frontends.Engines.Dracula
     {
         public override void Describe(DescribeContext describeContext)
         {
-            describeContext.DescribeEngine("Dracula", T("Dracula"), DefaultRoute("Dracula"));
+            describeContext.DescribeEngine(
+                "Dracula",
+                () => T("Dracula"),
+                DefaultRoute("Dracula"));
         }
     }
 }

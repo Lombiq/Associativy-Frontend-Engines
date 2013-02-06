@@ -8,7 +8,10 @@ namespace Associativy.Frontends.Engines.Jit
     {
         public override void Describe(DescribeContext describeContext)
         {
-            describeContext.DescribeEngine("Jit", T("Jit"), DefaultRoute("Jit"));
+            describeContext.DescribeEngine(
+                "Jit",
+                () => T("Jit"),
+                DefaultRoute("Jit"));
         }
     }
 }
