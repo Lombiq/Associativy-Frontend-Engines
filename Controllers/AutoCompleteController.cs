@@ -32,10 +32,8 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("FetchSimilarLabels");
             _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
-            if (!IsAuthorized(page))
-            {
-                return new HttpUnauthorizedResult();
-            }
+
+            if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             return Json(_nodeManager.GetSimilarNodes(GraphContext, labelSnippet).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
         }

@@ -31,10 +31,7 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("WholeGraph");
 
-            if (!IsAuthorized(page))
-            {
-                return new HttpUnauthorizedResult();
-            }
+            if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
 
@@ -45,10 +42,7 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("Associations");
 
-            if (!IsAuthorized(page))
-            {
-                return new HttpUnauthorizedResult();
-            }
+            if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             _contentManager.UpdateEditor(page, this);
 
