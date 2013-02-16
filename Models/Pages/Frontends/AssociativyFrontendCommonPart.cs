@@ -15,5 +15,10 @@ namespace Associativy.Frontends.Models.Pages.Frontends
         public IGraphContext GraphContext { get; set; }
         public IEngineContext EngineContext { get; set; }
         public IMindSettings MindSettings { get; set; }
+
+        public AssociativyFrontendCommonPart()
+        {
+            MindSettings = Associativy.Models.Mind.MindSettings.Empty;
+        }
     }
 }
