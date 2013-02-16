@@ -73,17 +73,6 @@ namespace Associativy.Frontends.Controllers
                         var engineCommonPart = new AssociativyFrontendCommonPart();
                         engineCommonPart.GraphContext = GraphContext;
                         engineCommonPart.EngineContext = EngineContext;
-                        engineCommonPart.MindSettings = new MindSettings
-                        {
-                            ModifyQuery = (query) =>
-                            {
-                                var recordQuery = query.Where<CommonPartRecord>(r => true);
-                                foreach (var contentType in _associativyServices.GraphManager.FindGraph(GraphContext).ContentTypes)
-                                {
-                                    recordQuery.WithQueryHintsFor(contentType);
-                                }
-                            }
-                        };
 
                         content.ContentItem.Weld(engineCommonPart);
                     },
