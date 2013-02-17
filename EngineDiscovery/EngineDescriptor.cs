@@ -20,6 +20,7 @@ namespace Associativy.Frontends.EngineDiscovery
 
         public RouteDescriptor Route { get; private set; }
 
+
         public EngineDescriptor(string engineName, DisplayNameGetter displayNameGetter, RouteDescriptor route)
         {
             EngineName = engineName;

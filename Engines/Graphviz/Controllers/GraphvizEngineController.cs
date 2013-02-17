@@ -21,7 +21,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
         private readonly IGraphvizConfigurationHandler _configurationHandler;
         private readonly IGraphImageService _graphImageService;
 
-        private readonly IEngineContext _engineContext = new EngineContext { EngineName = "Graphviz" };
+        private readonly IEngineContext _engineContext = new EngineContext("Graphviz");
         protected override IEngineContext EngineContext
         {
             get { return _engineContext; }

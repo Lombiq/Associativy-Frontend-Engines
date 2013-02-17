@@ -35,6 +35,7 @@ namespace Associativy.Frontends.EngineDiscovery
             _engineProviders = engineProviders;
         }
 
+
         public IEnumerable<EngineDescriptor> GetEngines()
         {
             return Descriptors;

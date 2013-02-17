@@ -11,10 +11,12 @@ namespace Associativy.Frontends.EngineDiscovery
     {
         public Localizer T { get; set; }
 
+
         public EngineProviderBase()
         {
             T = NullLocalizer.Instance;
         }
+
 
         public abstract void Describe(DescribeContext describeContext);
 

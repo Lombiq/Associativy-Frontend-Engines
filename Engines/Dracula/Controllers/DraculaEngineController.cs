@@ -10,7 +10,7 @@ namespace Associativy.Frontends.Engines.Dracula.Controllers
     [OrchardFeature("Associativy.Frontends.Dracula")]
     public class DraculaEngineController : EngineControllerBase
     {
-        private readonly IEngineContext _engineContext = new EngineContext { EngineName = "Dracula" };
+        private readonly IEngineContext _engineContext = new EngineContext("Dracula");
         protected override IEngineContext EngineContext
         {
             get { return _engineContext; }

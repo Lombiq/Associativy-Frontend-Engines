@@ -46,6 +46,7 @@ namespace Associativy.Frontends.Controllers
             }
         }
 
+
         protected FrontendControllerBase(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
@@ -62,6 +63,7 @@ namespace Associativy.Frontends.Controllers
 
             T = NullLocalizer.Instance;
         }
+
 
         protected virtual IContent NewPage(string pageName)
         {

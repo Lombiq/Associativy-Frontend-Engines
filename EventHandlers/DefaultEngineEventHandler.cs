@@ -18,6 +18,7 @@ namespace Associativy.Frontends.EventHandlers
 
         public Localizer T { get; set; }
 
+
         public DefaultEngineEventHandler(
             IAssociativyServices associativyServices,
             IOrchardServices orchardServices)
@@ -27,6 +28,7 @@ namespace Associativy.Frontends.EventHandlers
 
             T = NullLocalizer.Instance;
         }
+
 
         public void OnPageInitializing(PageContext pageContext)
         {

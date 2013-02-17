@@ -25,6 +25,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
 
         public Localizer T { get; set; }
 
+
         public AssociativyFrontendSearchFormPartDriver(
             IAssociativyServices associativyServices,
             IWorkContextAccessor workContextAccessor)
@@ -34,6 +35,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
 
             T = NullLocalizer.Instance;
         }
+
 
         protected override DriverResult Display(AssociativyFrontendSearchFormPart part, string displayType, dynamic shapeHelper)
         {

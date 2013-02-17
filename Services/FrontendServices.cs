@@ -16,6 +16,7 @@ namespace Associativy.Frontends.Services
             get { return _engineManager; }
         }
 
+
         public FrontendServices(
             IFrontendContextAccessor frontendContextAccessor,
             IEngineManager engineManager)

@@ -22,10 +22,12 @@ namespace Associativy.Frontends.EngineDiscovery
             }
         }
 
+
         public DescribeContext()
         {
             _descriptors = new List<EngineDescriptor>();
         }
+
 
         // We need a getter delegate so the localized name is only fetched when needed. This makes it possible to fetch the RouteDescriptors
         // from an IRouteProvider: otherwise, since there's no work context when building routes localizing will fail.

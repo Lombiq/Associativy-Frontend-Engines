@@ -18,7 +18,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
     {
         private readonly IJitConfigurationHandler _configurationHandler;
 
-        private readonly IEngineContext _engineContext = new EngineContext { EngineName = "Jit" };
+        private readonly IEngineContext _engineContext = new EngineContext("Jit");
         protected override IEngineContext EngineContext
         {
             get { return _engineContext; }

@@ -8,10 +8,12 @@ namespace Associativy.Frontends.Services
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
+
         public FrontendContextAccessor(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }
+
 
         public IGraphContext GetCurrentGraphContext()
         {

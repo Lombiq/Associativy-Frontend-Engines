@@ -16,8 +16,9 @@ namespace Associativy.Frontends.Controllers
     {
         protected override IEngineContext EngineContext
         {
-            get { return new EngineContext(); }
+            get { return new EngineContext(string.Empty); }
         }
+
 
         public AutoCompleteController(
             IAssociativyServices associativyServices,
@@ -27,6 +28,7 @@ namespace Associativy.Frontends.Controllers
             : base(associativyServices, frontendServices, eventHandler, orchardServices)
         {
         }
+
 
         public virtual ActionResult FetchSimilarLabels(string graphName, string labelSnippet)
         {

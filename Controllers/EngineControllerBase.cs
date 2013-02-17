@@ -27,6 +27,7 @@ namespace Associativy.Frontends.Controllers
         {
         }
 
+
         public virtual ActionResult WholeGraph()
         {
             var page = NewPage("WholeGraph");

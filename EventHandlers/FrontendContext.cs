@@ -8,6 +8,7 @@ namespace Associativy.Frontends.EventHandlers
         public IEngineContext EngineContext { get; private set; }
         public IGraphContext GraphContext { get; private set; }
 
+
         public FrontendContext(IEngineContext engineContext, IGraphContext graphContext)
         {
             EngineContext = engineContext;
