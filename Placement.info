@@ -2,5 +2,7 @@
   <Place Pages_AssociativyFrontendSearchForm="Content:1"/>
   <Place Pages_AssociativyFrontendGraph="Content:2"/>
 
-  <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
+  <Match ContentType="AssociativyFrontendsJitWholeGraphPage">
+    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
+  </Match>
 </Placement>
