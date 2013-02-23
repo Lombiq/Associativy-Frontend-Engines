@@ -68,7 +68,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                 }
                 else
                 {
-                    var searched = _associativyServices.NodeManager.GetManySimilarNodesQuery(graphContext, part.LabelsArray).List();
+                    var searched = _associativyServices.NodeManager.GetManyByLabelQuery(graphContext, part.LabelsArray).List();
 
                     if (searched.Count() != part.LabelsArray.Length) // Some nodes were not found
                     {
