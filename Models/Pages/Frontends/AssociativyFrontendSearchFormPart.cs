@@ -16,19 +16,18 @@ namespace Associativy.Frontends.Models.Pages.Frontends
                 return String.Join(", ", LabelsArray);
             }
 
-            set
-            {
-                if (value != null)
-                {
-                    LabelsArray = value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    LabelsArray = (from p in LabelsArray where !String.IsNullOrEmpty(p.Trim()) select p.Trim()).ToArray();
-                }
-            }
+            set { LabelsArray = LabelsToArray(value); }
         }
 
         public string[] LabelsArray { get; private set; }
 
         public bool IsPartialGraph { get; set; }
+
+        public GraphRetriever GraphRetrieverField { get; set; }
+        public GraphRetriever RetrieveGraph
+        {
+            get { return GraphRetrieverField; }
+        }
 
 
         public AssociativyFrontendSearchFormPart()
@@ -37,10 +36,11 @@ namespace Associativy.Frontends.Models.Pages.Frontends
         }
 
 
-        public GraphRetriever GraphRetrieverField { get; set; }
-        public GraphRetriever RetrieveGraph
+        public static string[] LabelsToArray(string labels)
         {
-            get { return GraphRetrieverField; }
+            if (string.IsNullOrEmpty(labels)) return new string[] { };
+            var array = labels.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            return (from p in array where !String.IsNullOrEmpty(p.Trim()) select p.Trim()).ToArray();
         }
     }
 }
