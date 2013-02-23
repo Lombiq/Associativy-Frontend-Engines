@@ -1,9 +1,9 @@
 ﻿@using Orchard.ContentManagement;
 @using Associativy.Frontends.Models
+
 @model Associativy.Frontends.Models.Pages.Frontends.AssociativyFrontendSearchFormPart
-           
 @{
-    Script.Require("AssociativyFrontends_AutoComplete").AtHead();
+    Script.Require("AssociativyFrontends_AutoComplete").AtFoot();
     Style.Require("jQueryUI_Orchard");
 }
 
@@ -19,8 +19,13 @@
     <button type="submit">@T("Find associations")</button>
 }
 
-<script type="text/javascript">
-    $(function() {
-        $.associativy.autoComplete.labels("#@Html.FieldIdFor(m => m.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<IEngineConfigurationAspect>().GraphContext.GraphName })");
-    });
-</script>
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        (function ($) {
+            $(function () {
+                $.associativy.autoComplete.labels("#@Html.FieldIdFor(m => m.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<IEngineConfigurationAspect>().GraphContext.GraphName })");
+            });
+        })(jQuery);
+    </script>
+}

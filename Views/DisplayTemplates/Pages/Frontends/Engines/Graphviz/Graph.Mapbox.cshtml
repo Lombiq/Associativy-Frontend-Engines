@@ -1,49 +1,54 @@
 ﻿@{
-    Script.Require("AssociativyFrontends_Mapbox").AtHead();
+    Script.Require("AssociativyFrontends_Mapbox").AtFoot();
     Style.Require("AssociativyFrontends_Mapbox");
 
     var routeData = Html.ViewContext.RouteData.Values;
 }
-<script type="text/javascript">
-$(document).ready(function(){
-	$.getJSON("@Url.Action("Render", routeData["controller"].ToString())?" + $("#associativy-search-form").serialize(), function(response) {
-         var urls = response["GraphImageUrls"];
-         
-         var topLayer = $("#associativy-graphviz-mapbox-top-layer");
-         topLayer.css("background",  "url(" + urls[0] + ") no-repeat");
-         $("<img src='" + urls[0] + "'>")
-            .load(function() {
-                topLayer.width(this.width); // .width() or .height() of the image is not working here
-                topLayer.height(this.height);
+
+
+<div id="associativy-graphviz-mapbox-viewport">
+    <div id="associativy-graphviz-mapbox-top-layer">
+    </div>
+</div>
+
+<div id="dummy-layer" class="associativy-graphviz-mapbox-layer" style="display: none;">
+    <div class="mapcontent">
+    </div>
+</div>
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON("@Url.Action("Render", routeData["controller"].ToString())?" + $("#associativy-search-form").serialize(), function (response) {
+            var urls = response["GraphImageUrls"];
+
+            var topLayer = $("#associativy-graphviz-mapbox-top-layer");
+            topLayer.css("background", "url(" + urls[0] + ") no-repeat");
+            $("<img src='" + urls[0] + "'>")
+               .load(function () {
+                   topLayer.width(this.width); // .width() or .height() of the image is not working here
+                   topLayer.height(this.height);
+               });
+
+
+            for (var i = 1; i < urls.length; i++) {
+                var layer = $($("#dummy-layer").clone().appendTo("#associativy-graphviz-mapbox-viewport"));
+                layer.attr("id", "associativy-graphviz-mapbox-layer-" + i);
+                layer.prepend("<img src='" + urls[i] + "' alt=''>");
+                layer.find("img").first()
+                    .load(function () {
+                        layer.width(this.width); // .width() or .height() of the image is not working here
+                        layer.height(this.height);
+                    });
+                layer.show(0);
+            }
+
+            $("#associativy-graphviz-mapbox-viewport").mapbox({
+                mousewheel: true,
+                layerSplit: 8
             });
-         
-
-         for (var i = 1; i < urls.length; i++) {
-            var layer = $($("#dummy-layer").clone().appendTo("#associativy-graphviz-mapbox-viewport"));
-            layer.attr("id", "associativy-graphviz-mapbox-layer-" + i);
-            layer.prepend("<img src='" + urls[i] + "' alt=''>");
-            layer.find("img").first()
-                .load(function() {
-                    layer.width(this.width); // .width() or .height() of the image is not working here
-                    layer.height(this.height);
-                });
-            layer.show(0);
-         }
-
-         $("#associativy-graphviz-mapbox-viewport").mapbox({
-            mousewheel: true,
-            layerSplit: 8
-         }); 
+        });
     });
-});
-</script>
-
-<div id="associativy-graphviz-mapbox-viewport"> 
-    <div id="associativy-graphviz-mapbox-top-layer"> 
-    </div>
-</div>
-
-<div id="dummy-layer" class="associativy-graphviz-mapbox-layer" style="display: none;"> 
-    <div class="mapcontent"> 
-    </div>
-</div>
+    </script>
+}

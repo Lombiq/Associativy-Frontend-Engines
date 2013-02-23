@@ -1,13 +1,7 @@
 ﻿@{
-    Script.Require("AssociativyFrontends_GraphZoomSlider").AtHead();
+    Script.Require("AssociativyFrontends_GraphZoomSlider").AtFoot();
     Style.Require("AssociativyFrontends_GraphZoomSlider");
 }
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $.associativy.graphZoomSlider.init(@Model.CurrentZoomLevel, @Model.MaxZoomLevel);
-    });
-</script>
 
 <div id="associativy-graph-zoom-slider-container">
     <span id="associativy-graph-zoom-slider-max">@Model.MaxZoomLevel</span>
@@ -15,3 +9,13 @@
     </div>
     <span id="associativy-graph-zoom-slider-value"></span>
 </div>
+
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(function () {
+            $.associativy.graphZoomSlider.init(@Model.CurrentZoomLevel, @Model.MaxZoomLevel);
+        });
+    </script>
+}

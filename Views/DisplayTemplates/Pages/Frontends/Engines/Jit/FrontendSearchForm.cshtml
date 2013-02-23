@@ -2,66 +2,69 @@
 
 @{
     Style.Require("AssociativyFrontends_Jit");
-    Script.Require("AssociativyFrontends_Jit").AtHead();
+    Script.Require("AssociativyFrontends_Jit").AtFoot();
 }
 
-<script type="text/javascript">
-    $("#associativy-search-form").submit(function () {
-        $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("False");
-    });
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $("#associativy-search-form").submit(function () {
+                $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("False");
+        });
 
-    $(document).on("graphSetup.AssociativyJit", function (values) {
-        var oldFunction = values.graphSetup.onCreateLabel;
+        $(document).on("graphSetup.AssociativyJit", function (values) {
+            var oldFunction = values.graphSetup.onCreateLabel;
 
-        values.graphSetup.onCreateLabel = function (label, node) {
-            oldFunction(label, node);
-            
-            $(label).hover(function (e) {
-                var label = $(this);
-                label.append("<span class='associativy-node-discovery-button'>@T("Explore")</span>");
+            values.graphSetup.onCreateLabel = function (label, node) {
+                oldFunction(label, node);
 
-                label.find(".associativy-node-discovery-button").click(function (e) {
-                    $("#associativy-search-form").submit(function () {
-                        $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
-                        $("#@Html.FieldIdFor(m => m.Labels)").val(node.name);
+                $(label).hover(function (e) {
+                    var label = $(this);
+                    label.append("<span class='associativy-node-discovery-button'>@T("Explore")</span>");
+
+                    label.find(".associativy-node-discovery-button").click(function (e) {
+                        $("#associativy-search-form").submit(function () {
+                            $("#@Html.FieldIdFor(m => m.IsPartialGraph)").val("True");
+                            $("#@Html.FieldIdFor(m => m.Labels)").val(node.name);
+                        });
+                        $("#associativy-search-form").submit();
                     });
-                    $("#associativy-search-form").submit();
-                });
-            }, function (e) {
-                $(this).find(".associativy-node-discovery-button").remove();
-            });
-        }
-    });
-
-    $(document).on("layoutComputed.AssociativyJit", function (values) {
-        // This is to overcome that Razor print escapes quotes, so e.g. the same with String.Join() is not possible
-        var searchedLabels = [
-        @foreach (var label in Model.LabelsArray)
-        {
-            <text>"</text>@label.ToUpper()<text>",</text>
-        }
-        ];
-
-        // Emphasizing searched nodes
-        var layout = values.layout;
-        var nodes = layout.graph.nodes;
-        for (nodeId in nodes) {
-            var node = nodes[nodeId];
-            if (searchedLabels.indexOf(node.name.toUpperCase()) != -1) {
-                node.selected = true;
-                node.setData('dim', 29, 'end');
-                node.eachAdjacency(function (adj) {
-                    adj.setDataset('end', {
-                        lineWidth: 3,
-                        color: '#36acfb'
-                    });
-                });
-
-                layout.fx.animate({
-                    modes: ['node-property:dim', 'edge-property:lineWidth:color'],
-                    duration: 200
+                }, function (e) {
+                    $(this).find(".associativy-node-discovery-button").remove();
                 });
             }
-        }
-    });
-</script>
+        });
+
+        $(document).on("layoutComputed.AssociativyJit", function (values) {
+            // This is to overcome that Razor print escapes quotes, so e.g. the same with String.Join() is not possible
+            var searchedLabels = [
+            @foreach (var label in Model.LabelsArray)
+            {
+                <text>"</text>@label.ToUpper()<text>",</text>
+            }
+            ];
+
+            // Emphasizing searched nodes
+            var layout = values.layout;
+            var nodes = layout.graph.nodes;
+            for (nodeId in nodes) {
+                var node = nodes[nodeId];
+                if (searchedLabels.indexOf(node.name.toUpperCase()) != -1) {
+                    node.selected = true;
+                    node.setData('dim', 29, 'end');
+                    node.eachAdjacency(function (adj) {
+                        adj.setDataset('end', {
+                            lineWidth: 3,
+                            color: '#36acfb'
+                        });
+                    });
+
+                    layout.fx.animate({
+                        modes: ['node-property:dim', 'edge-property:lineWidth:color'],
+                        duration: 200
+                    });
+                }
+            }
+        });
+    </script>
+}

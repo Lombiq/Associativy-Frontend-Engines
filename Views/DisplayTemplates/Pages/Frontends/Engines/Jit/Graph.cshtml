@@ -2,44 +2,12 @@
 @using Orchard.ContentManagement
 
 @{
-    Script.Require("AssociativyFrontends_Jit").AtHead();
+    Script.Require("AssociativyFrontends_Jit").AtFoot();
     Style.Require("AssociativyFrontends_Jit");
 
     var initialZoomLevel = Model.As<Associativy.Frontends.Models.IEngineConfigurationAspect>().MindSettings.ZoomLevel;
     var maxZoomLevel = Model.ZoomLevelCount - 1;
 }
-<script type="text/javascript">
-(function ($) {
-    $.extend(true, {
-        associativy: {
-            layout: null,
-            jit: {
-                loadGraph: function (zoomLevel, redraw, isPartialGraph) {
-                    var that = this;
-                    $.associativy.jit.showLoader();
-                    $.post(
-                        "@Url.Action("FetchGraph", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), 
-                        { __RequestVerificationToken: "@Html.AntiForgeryTokenValueOrchard()" },
-                        function(graphData) {
-                            if (!redraw) that.layout = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
-                            else $.associativy.jit.redraw(that.layout, graphData);
-
-                            $.associativy.jit.hideLoader();
-                        });
-                }
-            }
-        }
-    });
-
-    $(document).on("stop.AssociativyGraphZoomSlider", function(values) {
-        $.associativy.jit.loadGraph(values.ui.value, true);
-    });
-
-    $(document).ready(function() {
-        $.associativy.jit.loadGraph(@initialZoomLevel, false);
-    });
-})(jQuery);
-</script>
 
 <div id="associativy-jit-associations-canvas-container">
     @Html.Link(T("Show whole graph").Text, Url.Action("WholeGraph", ViewContext.RouteData.Values), new { id = "associativy-jit-associations-whole-graph-link" })
@@ -47,4 +15,41 @@
     <div id="associativy-jit-associations-canvas" class="associativy-graph-canvas">
     </div>
 </div>
+
 @Display.AssociativyBadgeOfHonor()
+
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        (function ($) {
+            $.extend(true, {
+                associativy: {
+                    layout: null,
+                    jit: {
+                        loadGraph: function (zoomLevel, redraw, isPartialGraph) {
+                            var that = this;
+                            $.associativy.jit.showLoader();
+                            $.post(
+                                "@Url.Action("FetchGraph", ViewContext.RouteData.Values)?ZoomLevel=" + zoomLevel + "&" + $("#associativy-search-form").serialize(), 
+                                { __RequestVerificationToken: "@Html.AntiForgeryTokenValueOrchard()" },
+                                function(graphData) {
+                                    if (!redraw) that.layout = $.associativy.jit.draw("associativy-jit-associations-canvas", graphData);
+                                    else $.associativy.jit.redraw(that.layout, graphData);
+
+                                    $.associativy.jit.hideLoader();
+                                });
+                        }
+                    }
+                }
+            });
+
+            $(document).on("stop.AssociativyGraphZoomSlider", function(values) {
+                $.associativy.jit.loadGraph(values.ui.value, true);
+            });
+
+            $(function() {
+                $.associativy.jit.loadGraph(@initialZoomLevel, false);
+            });
+        })(jQuery);
+    </script>
+}

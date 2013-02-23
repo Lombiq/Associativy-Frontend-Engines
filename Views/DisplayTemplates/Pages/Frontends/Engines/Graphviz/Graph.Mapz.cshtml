@@ -1,51 +1,57 @@
 ﻿@{
-    Script.Require("AssociativyFrontends_Mapz").AtHead();
+    Script.Require("AssociativyFrontends_Mapz").AtFoot();
     Style.Require("AssociativyFrontends_Mapz");
 
     var routeData = Html.ViewContext.RouteData.Values;
 }
-<script type="text/javascript">
-$(document).ready(function(){
-	$.getJSON("@Url.Action("Render", routeData["controller"].ToString())?" + $("#associativy-search-form").serialize(), function(response) {
-         var urls = response["GraphImageUrls"];
-         
-         for (var i = 0; i < urls.length; i++) {
-            $("<img id='associativy-graphviz-mapz-graph-layer-" + i + "' src='" + urls[i] + "' alt='' class='associativy-graphviz-mapz-layer'>").appendTo("#associativy-graphviz-mapz-graph");
-            var img = $("#associativy-graphviz-mapz-graph-layer-" + i);
-            // Otherwise Mapz is confused
-            img.attr("height", img.height());
-            img.attr("width", img.width());
-         }
 
-         $("#associativy-graphviz-mapz-graph-layer-0").addClass("current");
+<div id="associativy-graphviz-mapz-container" class="map-viewport">
+    <div id="associativy-graphviz-mapz-graph">
+    </div>
+</div>
 
-         var graph = $("#associativy-graphviz-mapz-graph");
-         var graphHeight = graph.height();
-         var graphWidth = graph.width();
 
-         $(".layer").each(function() { 
-                var img = $(this);
-                var imgHeight = img.height();
-                var imgWidth = img.width();
+@using (Script.Foot())
+{
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON("@Url.Action("Render", routeData["controller"].ToString())?" + $("#associativy-search-form").serialize(), function (response) {
+                var urls = response["GraphImageUrls"];
 
-                if (imgHeight < graphHeight) {
-                    //img.css("margin-bottom", 1);
+                for (var i = 0; i < urls.length; i++) {
+                    $("<img id='associativy-graphviz-mapz-graph-layer-" + i + "' src='" + urls[i] + "' alt='' class='associativy-graphviz-mapz-layer'>").appendTo("#associativy-graphviz-mapz-graph");
+                    var img = $("#associativy-graphviz-mapz-graph-layer-" + i);
+                    // Otherwise Mapz is confused
+                    img.attr("height", img.height());
+                    img.attr("width", img.width());
                 }
 
-//                if (originalWidth < graphWidth) {
-//                    img.width(graphWidth);
-//                }
-            });
+                $("#associativy-graphviz-mapz-graph-layer-0").addClass("current");
 
-         graph.mapz({
-	        zoom : true,
-	        createmaps : false,
-	        mousewheel : true
-        })
-    });
-});
-</script>
-<div id="associativy-graphviz-mapz-container" class="map-viewport">
-	<div id="associativy-graphviz-mapz-graph">
-	</div>
-</div>
+                var graph = $("#associativy-graphviz-mapz-graph");
+                var graphHeight = graph.height();
+                var graphWidth = graph.width();
+
+                $(".layer").each(function () {
+                    var img = $(this);
+                    var imgHeight = img.height();
+                    var imgWidth = img.width();
+
+                    if (imgHeight < graphHeight) {
+                        //img.css("margin-bottom", 1);
+                    }
+
+                    //                if (originalWidth < graphWidth) {
+                    //                    img.width(graphWidth);
+                    //                }
+                });
+
+                graph.mapz({
+                    zoom: true,
+                    createmaps: false,
+                    mousewheel: true
+                })
+            });
+        });
+    </script>
+}
