@@ -5,4 +5,7 @@
   <Match ContentType="AssociativyFrontendsJitWholeGraphPage">
     <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
   </Match>
+  <Match ContentType="AssociativyFrontendsJitAssociationsPage">
+    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
+  </Match>
 </Placement>
