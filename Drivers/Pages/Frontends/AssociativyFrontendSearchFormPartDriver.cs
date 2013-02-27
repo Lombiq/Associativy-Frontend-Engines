@@ -59,12 +59,17 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
             {
                 var graphContext = part.As<IEngineConfigurationAspect>().GraphContext;
 
+                part.ContentGraphRetrieverField = (settings) =>
+                {
+                    return _associativyServices.Mind.MakeContentGraph(graphContext, part.RetrieveGraph(settings), settings);
+                };
+
                 if (part.LabelsArray.Length == 0)
                 {
                     part.GraphRetrieverField = (settings) =>
-                        {
-                            return _associativyServices.Mind.GetAllAssociations(graphContext, settings);
-                        };
+                    {
+                        return _associativyServices.Mind.GetAllAssociations(graphContext, settings);
+                    };
                 }
                 else
                 {
@@ -73,22 +78,23 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                     if (searched.Count() != part.LabelsArray.Length) // Some nodes were not found
                     {
                         part.GraphRetrieverField = EmptyRetriever;
+                        part.ContentGraphRetrieverField = EmptyContentRetriever;
                     }
                     else
                     {
                         if (part.LabelsArray.Length == 1 && part.IsPartialGraph)
                         {
                             part.GraphRetrieverField = (settings) =>
-                                {
-                                    return _associativyServices.Mind.GetPartialGraph(graphContext, searched.First(), settings);
-                                };   
+                            {
+                                return _associativyServices.Mind.GetPartialGraph(graphContext, searched.First(), settings);
+                            };
                         }
                         else
                         {
                             part.GraphRetrieverField = (settings) =>
-                                {
-                                    return _associativyServices.Mind.MakeAssociations(graphContext, searched, settings);
-                                };  
+                            {
+                                return _associativyServices.Mind.MakeAssociations(graphContext, searched, settings);
+                            };
                         }
                     }
                 }
@@ -96,12 +102,21 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                 // Maybe this should be elsewhere, e.g. in a handler
                 _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, _associativyServices.GraphManager.FindGraph(graphContext).DisplayGraphName).ToString();
             }
-            else part.GraphRetrieverField = (settings) => _associativyServices.GraphEditor.GraphFactory<IContent>();
+            else
+            {
+                part.GraphRetrieverField = EmptyRetriever;
+                part.ContentGraphRetrieverField = EmptyContentRetriever;
+            }
 
             return Editor(part, shapeHelper);
         }
 
-        private IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> EmptyRetriever(IMindSettings settings)
+        private IMutableUndirectedGraph<int, IUndirectedEdge<int>> EmptyRetriever(IMindSettings settings)
+        {
+            return _associativyServices.GraphEditor.GraphFactory<int>();
+        }
+
+        private IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> EmptyContentRetriever(IMindSettings settings)
         {
             return _associativyServices.GraphEditor.GraphFactory<IContent>();
         }

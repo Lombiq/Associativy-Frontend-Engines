@@ -35,13 +35,20 @@ namespace Associativy.Frontends.EventHandlers
             if (pageContext.Group != FrontendsPageConfigs.Group) return;
 
             var page = pageContext.Page;
-            page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
+
+            var searchFormPart = new AssociativyFrontendSearchFormPart
                 {
                     GraphRetrieverField = (settings) =>
                         {
                             return _associativyServices.Mind.GetAllAssociations(page.As<IEngineConfigurationAspect>().GraphContext, settings);
                         }
-                });
+                };
+            searchFormPart.ContentGraphRetrieverField = (settings) =>
+            {
+                return _associativyServices.Mind.MakeContentGraph(page.As<IEngineConfigurationAspect>().GraphContext, searchFormPart.RetrieveGraph(settings), settings);
+            };
+            page.ContentItem.Weld(searchFormPart);
+
 
             var graphPart = new AssociativyFrontendGraphPart();
             graphPart.ZoomLevelCountField.Loader(() =>

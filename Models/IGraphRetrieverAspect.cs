@@ -4,10 +4,12 @@ using QuickGraph;
 
 namespace Associativy.Frontends.Models
 {
-    public delegate IUndirectedGraph<IContent, IUndirectedEdge<IContent>> GraphRetriever(IMindSettings settings);
+    public delegate IUndirectedGraph<int, IUndirectedEdge<int>> GraphRetriever(IMindSettings settings);
+    public delegate IUndirectedGraph<IContent, IUndirectedEdge<IContent>> ContentGraphRetriever(IMindSettings settings);
 
     public interface IGraphRetrieverAspect : IContent
     {
         GraphRetriever RetrieveGraph { get; }
+        ContentGraphRetriever RetrieveContentGraph { get; }
     }
 }

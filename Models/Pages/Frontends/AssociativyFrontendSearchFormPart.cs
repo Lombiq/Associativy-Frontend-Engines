@@ -29,6 +29,12 @@ namespace Associativy.Frontends.Models.Pages.Frontends
             get { return GraphRetrieverField; }
         }
 
+        public ContentGraphRetriever ContentGraphRetrieverField { get; set; }
+        public ContentGraphRetriever RetrieveContentGraph
+        {
+            get { return ContentGraphRetrieverField; }
+        }
+
 
         public AssociativyFrontendSearchFormPart()
         {

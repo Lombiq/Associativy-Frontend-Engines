@@ -62,7 +62,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                             mindSettings,
                             (currentSettings) =>
                             {
-                                return page.As<IGraphRetrieverAspect>().RetrieveGraph(mindSettings);
+                                return page.As<IGraphRetrieverAspect>().RetrieveContentGraph(mindSettings);
                             });
             }
             else
@@ -71,7 +71,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                             mindSettings,
                             (currentSettings) =>
                             {
-                                return _mind.GetAllAssociations(GraphContext, mindSettings);
+                                return _mind.GetAllAssociationsContent(GraphContext, mindSettings);
                             });
             }
 

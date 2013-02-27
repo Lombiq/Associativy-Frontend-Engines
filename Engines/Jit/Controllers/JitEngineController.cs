@@ -50,7 +50,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
 
             _contentManager.UpdateEditor(page, this);
 
-            var graph = page.As<IGraphRetrieverAspect>().RetrieveGraph(mindSettings);
+            var graph = page.As<IGraphRetrieverAspect>().RetrieveContentGraph(mindSettings);
             var viewNodes = new Dictionary<int, NodeViewModel>(graph.VertexCount);
 
             foreach (var vertex in graph.Vertices)
