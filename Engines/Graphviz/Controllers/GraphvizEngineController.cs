@@ -71,7 +71,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                             mindSettings,
                             (currentSettings) =>
                             {
-                                return _mind.GetAllAssociationsContent(GraphContext, mindSettings);
+                                return _mind.GetAllAssociationsContent(_graphEditor, GraphContext, mindSettings);
                             });
             }
 

@@ -61,7 +61,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
 
                 part.ContentGraphRetrieverField = (settings) =>
                 {
-                    return _associativyServices.Mind.MakeContentGraph(graphContext, part.RetrieveGraph(settings), settings);
+                    return _associativyServices.GraphEditor.MakeContentGraph(graphContext, part.RetrieveGraph(settings));
                 };
 
                 if (part.LabelsArray.Length == 0)

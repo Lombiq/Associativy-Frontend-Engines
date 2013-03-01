@@ -45,7 +45,7 @@ namespace Associativy.Frontends.EventHandlers
                 };
             searchFormPart.ContentGraphRetrieverField = (settings) =>
             {
-                return _associativyServices.Mind.MakeContentGraph(page.As<IEngineConfigurationAspect>().GraphContext, searchFormPart.RetrieveGraph(settings), settings);
+                return _associativyServices.GraphEditor.MakeContentGraph(page.As<IEngineConfigurationAspect>().GraphContext, searchFormPart.RetrieveGraph(settings));
             };
             page.ContentItem.Weld(searchFormPart);
 
