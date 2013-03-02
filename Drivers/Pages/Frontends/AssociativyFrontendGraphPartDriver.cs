@@ -24,7 +24,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                                 part.GraphField.Loader(() => part.As<IGraphRetrieverAspect>().RetrieveContentGraph(part.As<IEngineConfigurationAspect>().MindSettings)); 
                             }
 
-                            if (part.Graph.IsVerticesEmpty)
+                            if (part.As<IGraphRetrieverAspect>().RetrieveGraph(part.As<IEngineConfigurationAspect>().MindSettings).IsVerticesEmpty)
                             {
                                 return shapeHelper.DisplayTemplate(
                                         TemplateName: "Pages/Frontends/NotFound",
