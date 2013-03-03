@@ -19,7 +19,7 @@ namespace Associativy.Frontends.Models.Pages.Frontends
 
         public AssociativyFrontendCommonPart()
         {
-            MindSettings = Associativy.Models.Mind.MindSettings.Empty;
+            MindSettings = Associativy.Models.Mind.MindSettings.Default;
         }
     }
 }
