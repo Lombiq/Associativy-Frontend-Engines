@@ -1,4 +1,4 @@
-﻿using Associativy.Models.Mind;
+﻿using Associativy.Models.Services;
 using Orchard.ContentManagement;
 using QuickGraph;
 

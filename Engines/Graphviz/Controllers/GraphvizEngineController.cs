@@ -5,7 +5,8 @@ using Associativy.Frontends.Controllers;
 using Associativy.Frontends.Engines.Graphviz.Services;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.Services;
-using Associativy.Models.Mind;
+using Associativy.GraphDiscovery;
+using Associativy.Models.Services;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
@@ -56,9 +57,13 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
 
             List<string> graphImageUrls;
 
+            var graph = _associativyServices.GraphManager.FindGraph(GraphContext);
+            if (graph == null) return HttpNotFound();
+
             if (ModelState.IsValid)
             {
                 graphImageUrls = FetchZoomedGraphUrls(
+                            graph,
                             mindSettings,
                             (currentSettings) =>
                             {
@@ -68,10 +73,11 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             else
             {
                 graphImageUrls = FetchZoomedGraphUrls(
+                            graph,
                             mindSettings,
                             (currentSettings) =>
                             {
-                                return _mind.GetAllAssociationsContent(_graphEditor, GraphContext, mindSettings);
+                                return graph.Services.NodeManager.MakeContentGraph(graph.Services.Mind.GetAllAssociations(mindSettings));
                             });
             }
 
@@ -79,7 +85,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             return Json(new { GraphImageUrls = graphImageUrls });
         }
 
-        protected virtual List<string> FetchZoomedGraphUrls(IMindSettings settings, Func<IMindSettings, IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
+        protected virtual List<string> FetchZoomedGraphUrls(IGraphDescriptor graphDescriptor, IMindSettings settings, Func<IMindSettings, IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
         {
             var graphImageUrls = new List<string>(settings.ZoomLevelCount);
 
@@ -87,7 +93,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                 (zoomLevel) =>
                 {
                     settings.ZoomLevel = zoomLevel;
-                    return _graphImageService.ToSvg(GraphContext, fetchGraph(settings), algorithm =>
+                    return _graphImageService.ToSvg(graphDescriptor, fetchGraph(settings), algorithm =>
                             {
                                 algorithm.FormatVertex += _configurationHandler.FormatVertex;
                             });

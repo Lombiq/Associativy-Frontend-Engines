@@ -1,6 +1,6 @@
 ﻿using Associativy.Frontends.Engines;
 using Associativy.GraphDiscovery;
-using Associativy.Models.Mind;
+using Associativy.Models.Services;
 using Orchard.ContentManagement;
 
 namespace Associativy.Frontends.Models

@@ -1,6 +1,6 @@
 ﻿using Associativy.Frontends.Engines;
 using Associativy.GraphDiscovery;
-using Associativy.Models.Mind;
+using Associativy.Models.Services;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 
@@ -19,7 +19,7 @@ namespace Associativy.Frontends.Models.Pages.Frontends
 
         public AssociativyFrontendCommonPart()
         {
-            MindSettings = Associativy.Models.Mind.MindSettings.Default;
+            MindSettings = Associativy.Models.Services.MindSettings.Default;
         }
     }
 }

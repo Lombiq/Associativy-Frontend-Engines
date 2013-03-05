@@ -25,11 +25,11 @@ namespace Associativy.Frontends.Services
             }
             else if (!String.IsNullOrEmpty((string)request.RequestContext.RouteData.Values["GraphName"]))
             {
-                return new GraphContext { GraphName = (string)request.RequestContext.RouteData.Values["GraphName"] };
+                return new GraphContext { Name = (string)request.RequestContext.RouteData.Values["GraphName"] };
             }
             else if (!String.IsNullOrEmpty((string)request.Params["GraphName"]))
             {
-                return new GraphContext { GraphName = (string)request.Params["GraphName"] };
+                return new GraphContext { Name = (string)request.Params["GraphName"] };
             }
 
             return null;

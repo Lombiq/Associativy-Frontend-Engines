@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.Models.Pages.Frontends;
-using Associativy.Models.Mind;
+using Associativy.Models.Services;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
@@ -57,23 +57,24 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
         {
             if (updater.TryUpdateModel(part, Prefix, null, null))
             {
-                var graphContext = part.As<IEngineConfigurationAspect>().GraphContext;
+                var graph = _associativyServices.GraphManager.FindGraph(part.As<IEngineConfigurationAspect>().GraphContext);
+                if (graph == null) return null;
 
                 part.ContentGraphRetrieverField = (settings) =>
                 {
-                    return _associativyServices.GraphEditor.MakeContentGraph(graphContext, part.RetrieveGraph(settings));
+                    return graph.Services.NodeManager.MakeContentGraph(part.RetrieveGraph(settings));
                 };
 
                 if (part.LabelsArray.Length == 0)
                 {
                     part.GraphRetrieverField = (settings) =>
                     {
-                        return _associativyServices.Mind.GetAllAssociations(graphContext, settings);
+                        return graph.Services.Mind.GetAllAssociations(settings);
                     };
                 }
                 else
                 {
-                    var searched = _associativyServices.NodeManager.GetManyByLabelQuery(graphContext, part.LabelsArray).List();
+                    var searched = graph.Services.NodeManager.GetManyByLabelQuery(part.LabelsArray).List();
 
                     if (searched.Count() != part.LabelsArray.Length) // Some nodes were not found
                     {
@@ -86,21 +87,21 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                         {
                             part.GraphRetrieverField = (settings) =>
                             {
-                                return _associativyServices.Mind.GetPartialGraph(graphContext, searched.First(), settings);
+                                return graph.Services.Mind.GetPartialGraph(searched.First(), settings);
                             };
                         }
                         else
                         {
                             part.GraphRetrieverField = (settings) =>
                             {
-                                return _associativyServices.Mind.MakeAssociations(graphContext, searched, settings);
+                                return graph.Services.Mind.MakeAssociations(searched, settings);
                             };
                         }
                     }
                 }
 
                 // Maybe this should be elsewhere, e.g. in a handler
-                _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, _associativyServices.GraphManager.FindGraph(graphContext).DisplayGraphName).ToString();
+                _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, graph.DisplayName).ToString();
             }
             else
             {

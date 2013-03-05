@@ -1,12 +1,13 @@
 ﻿using Associativy.Frontends.Models;
 using Associativy.Frontends.Models.Pages.Frontends;
-using Associativy.Models.Mind;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
+using Associativy.Models.Services;
+using QuickGraph;
 
 namespace Associativy.Frontends.EventHandlers
 {
@@ -40,12 +41,16 @@ namespace Associativy.Frontends.EventHandlers
                 {
                     GraphRetrieverField = (settings) =>
                         {
-                            return _associativyServices.Mind.GetAllAssociations(page.As<IEngineConfigurationAspect>().GraphContext, settings);
+                            var graph = _associativyServices.GraphManager.FindGraph(page.As<IEngineConfigurationAspect>().GraphContext);
+                            if (graph == null) return _associativyServices.GraphEditor.GraphFactory<int>();
+                            return graph.Services.Mind.GetAllAssociations(settings);
                         }
                 };
             searchFormPart.ContentGraphRetrieverField = (settings) =>
             {
-                return _associativyServices.GraphEditor.MakeContentGraph(page.As<IEngineConfigurationAspect>().GraphContext, searchFormPart.RetrieveGraph(settings));
+                var graph = _associativyServices.GraphManager.FindGraph(page.As<IEngineConfigurationAspect>().GraphContext);
+                if (graph == null) return _associativyServices.GraphEditor.GraphFactory<IContent>();
+                return graph.Services.NodeManager.MakeContentGraph(searchFormPart.RetrieveGraph(settings));
             };
             page.ContentItem.Weld(searchFormPart);
 
@@ -71,7 +76,7 @@ namespace Associativy.Frontends.EventHandlers
 
             if (pageContext.Page.IsPage(pageContext.Page.As<IEngineConfigurationAspect>().EngineContext.EngineName + "WholeGraph", pageContext.Group))
             {
-                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(pageContext.Page.As<IEngineConfigurationAspect>().GraphContext).DisplayGraphName).ToString();
+                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(pageContext.Page.As<IEngineConfigurationAspect>().GraphContext).Name).ToString();
             }
         }
 

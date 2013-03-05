@@ -30,7 +30,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
             _graphEventMonitor = graphEventMonitor;
         }
 
-        public virtual string ToSvg(IGraphContext graphContext, IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
+        public virtual string ToSvg(IGraphDescriptor graphDescriptor, IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
         {
             //var stringBuilder = new StringBuilder();
             //using (var xmlWriter = XmlWriter.Create(stringBuilder))
@@ -50,12 +50,12 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
                 initialization(algorithm);
             });
 
-            var filePath = "Associativy/Graphs-" + graphContext.GraphName + "/" + dotData.GetHashCode() + ".svg";
+            var filePath = "Associativy/Graphs-" + graphDescriptor.Name + "/" + dotData.GetHashCode() + ".svg";
 
             return _cacheManager.Get("Associativy.Frontends.Graphviz.GraphImages." + filePath, 
                 ctx =>
                 {
-                    _graphEventMonitor.MonitorChanged(graphContext, ctx);
+                    _graphEventMonitor.MonitorChanged(graphDescriptor, ctx);
 
                     return RetrieveImage(dotData, filePath);
                 },
