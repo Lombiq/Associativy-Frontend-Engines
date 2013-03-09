@@ -69,7 +69,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                 {
                     part.GraphRetrieverField = (settings) =>
                     {
-                        return graph.Services.Mind.GetAllAssociations(settings);
+                        return graph.Services.Mind.GetAllAssociations(settings).ToGraph();
                     };
                 }
                 else

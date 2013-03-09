@@ -77,7 +77,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
                             mindSettings,
                             (currentSettings) =>
                             {
-                                return graph.Services.NodeManager.MakeContentGraph(graph.Services.Mind.GetAllAssociations(mindSettings));
+                                return graph.Services.NodeManager.MakeContentGraph(graph.Services.Mind.GetAllAssociations(mindSettings).ToGraph());
                             });
             }
 

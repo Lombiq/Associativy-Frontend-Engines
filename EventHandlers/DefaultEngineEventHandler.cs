@@ -43,7 +43,7 @@ namespace Associativy.Frontends.EventHandlers
                         {
                             var graph = _associativyServices.GraphManager.FindGraph(page.As<IEngineConfigurationAspect>().GraphContext);
                             if (graph == null) return _associativyServices.GraphEditor.GraphFactory<int>();
-                            return graph.Services.Mind.GetAllAssociations(settings);
+                            return graph.Services.Mind.GetAllAssociations(settings).ToGraph();
                         }
                 };
             searchFormPart.ContentGraphRetrieverField = (settings) =>
