@@ -14,18 +14,14 @@ namespace Associativy.Frontends.EventHandlers
     [OrchardFeature("Associativy.Frontends")]
     public class DefaultEngineEventHandler : IPageEventHandler
     {
-        private readonly IAssociativyServices _associativyServices;
-        private readonly IOrchardServices _orchardServices;
+        private readonly IWorkContextAccessor _wca;
 
         public Localizer T { get; set; }
 
 
-        public DefaultEngineEventHandler(
-            IAssociativyServices associativyServices,
-            IOrchardServices orchardServices)
+        public DefaultEngineEventHandler(IWorkContextAccessor wca)
         {
-            _associativyServices = associativyServices;
-            _orchardServices = orchardServices;
+            _wca = wca;
 
             T = NullLocalizer.Instance;
         }
@@ -37,32 +33,18 @@ namespace Associativy.Frontends.EventHandlers
 
             var page = pageContext.Page;
 
-            var searchFormPart = new AssociativyFrontendSearchFormPart
+            page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
                 {
-                    GraphRetrieverField = (settings) =>
+                    GraphRetrieverField = () =>
                         {
-                            var graph = _associativyServices.GraphManager.FindGraph(page.As<IEngineConfigurationAspect>().GraphContext);
-                            if (graph == null) return _associativyServices.GraphEditor.GraphFactory<int>();
-                            return graph.Services.Mind.GetAllAssociations(settings);
+                            var config = page.As<IEngineConfigurationAspect>();
+                            return config.GraphDescriptor.Services.Mind.GetAllAssociations(config.MindSettings).TakeConnections(config.GraphSettings.MaxConnectionCount);
                         }
-                };
-            searchFormPart.ContentGraphRetrieverField = (settings) =>
-            {
-                var graph = _associativyServices.GraphManager.FindGraph(page.As<IEngineConfigurationAspect>().GraphContext);
-                if (graph == null) return _associativyServices.GraphEditor.GraphFactory<IContent>();
-                return graph.Services.NodeManager.MakeContentGraph(searchFormPart.RetrieveGraph(settings));
-            };
-            page.ContentItem.Weld(searchFormPart);
+                });
 
 
             var graphPart = new AssociativyFrontendGraphPart();
-            graphPart.ZoomLevelCountField.Loader(() =>
-                {
-                    var settings = page.As<IEngineConfigurationAspect>().MindSettings.MakeShallowCopy();
-                    settings.ZoomLevelCount = 1;
-                    settings.ZoomLevel = 0;
-                    return _associativyServices.GraphEditor.CalculateZoomLevelCount(graphPart.As<IGraphRetrieverAspect>().RetrieveGraph(settings), graphPart.As<IEngineConfigurationAspect>().MindSettings.ZoomLevelCount);
-                });
+            graphPart.ZoomLevelCountField.Loader(() => page.As<IGraphRetrieverAspect>().RetrieveGraph().ZoomLevelCount(page.As<IEngineConfigurationAspect>().GraphSettings.ZoomLevelCount));
             page.ContentItem.Weld(graphPart);
         }
 
@@ -76,7 +58,7 @@ namespace Associativy.Frontends.EventHandlers
 
             if (pageContext.Page.IsPage(pageContext.Page.As<IEngineConfigurationAspect>().EngineContext.EngineName + "WholeGraph", pageContext.Group))
             {
-                _orchardServices.WorkContext.Layout.Title = T("The whole graph - {0}", _associativyServices.GraphManager.FindGraph(pageContext.Page.As<IEngineConfigurationAspect>().GraphContext).Name).ToString();
+                _wca.GetContext().Layout.Title = T("The whole graph - {0}", pageContext.Page.As<IEngineConfigurationAspect>().GraphDescriptor.DisplayName).ToString();
             }
         }
 

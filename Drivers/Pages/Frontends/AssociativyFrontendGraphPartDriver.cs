@@ -3,6 +3,7 @@ using Associativy.Frontends.Models.Pages.Frontends;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
 using Orchard.Environment.Extensions;
+using Associativy.Queryable;
 
 namespace Associativy.Frontends.Drivers.Pages.Frontends
 {
@@ -21,10 +22,10 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                         {
                             if (part.Graph == null)
                             {
-                                part.GraphField.Loader(() => part.As<IGraphRetrieverAspect>().RetrieveContentGraph(part.As<IEngineConfigurationAspect>().MindSettings)); 
+                                part.GraphField.Loader(() => part.As<IGraphRetrieverAspect>().RetrieveGraph().ToGraph().ToContentGraph(part.As<IEngineConfigurationAspect>().GraphDescriptor)); 
                             }
 
-                            if (part.As<IGraphRetrieverAspect>().RetrieveGraph(part.As<IEngineConfigurationAspect>().MindSettings).IsVerticesEmpty)
+                            if (part.As<IGraphRetrieverAspect>().RetrieveGraph().NodeCount() == 0)
                             {
                                 return shapeHelper.DisplayTemplate(
                                         TemplateName: "Pages/Frontends/NotFound",

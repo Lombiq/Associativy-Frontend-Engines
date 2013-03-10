@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using Associativy.Controllers;
 using Associativy.Frontends.Engines;
 using Associativy.Frontends.Models.Pages.Frontends;
@@ -66,13 +67,16 @@ namespace Associativy.Frontends.Controllers
 
         protected virtual IContent NewPage(string pageName)
         {
+            var graph = _graphManager.FindGraph(GraphContext);
+            if (graph == null) throw new HttpException(404, "The graph was not found.");
+
             var page = _contentManager.NewPage(
                 EngineContext.EngineName + pageName,
                 FrontendsPageConfigs.Group,
                 (content) =>
                     {
                         var engineCommonPart = new AssociativyFrontendCommonPart();
-                        engineCommonPart.GraphContext = GraphContext;
+                        engineCommonPart.GraphDescriptor = graph;
                         engineCommonPart.EngineContext = EngineContext;
 
                         content.ContentItem.Weld(engineCommonPart);

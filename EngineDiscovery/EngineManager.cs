@@ -9,8 +9,8 @@ namespace Associativy.Frontends.EngineDiscovery
     {
         private readonly IEnumerable<IEngineProvider> _engineProviders;
 
-        private IEnumerable<EngineDescriptor> _descriptors;
-        private IEnumerable<EngineDescriptor> Descriptors
+        private IEnumerable<IEngineDescriptor> _descriptors;
+        private IEnumerable<IEngineDescriptor> Descriptors
         {
             get
             {
@@ -36,7 +36,7 @@ namespace Associativy.Frontends.EngineDiscovery
         }
 
 
-        public IEnumerable<EngineDescriptor> GetEngines()
+        public IEnumerable<IEngineDescriptor> GetEngines()
         {
             return Descriptors;
         }

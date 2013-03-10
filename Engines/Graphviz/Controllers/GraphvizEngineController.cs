@@ -13,6 +13,7 @@ using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
 using QuickGraph;
+using Associativy.Queryable;
 
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {
@@ -53,31 +54,25 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
 
             _contentManager.UpdateEditor(page, this);
 
-            var mindSettings = page.As<IEngineConfigurationAspect>().MindSettings;
-
             List<string> graphImageUrls;
 
-            var graph = _associativyServices.GraphManager.FindGraph(GraphContext);
-            if (graph == null) return HttpNotFound();
-
+            var config = page.As<IEngineConfigurationAspect>();
             if (ModelState.IsValid)
             {
                 graphImageUrls = FetchZoomedGraphUrls(
-                            graph,
-                            mindSettings,
-                            (currentSettings) =>
+                            config,
+                            (zoomLevel) =>
                             {
-                                return page.As<IGraphRetrieverAspect>().RetrieveContentGraph(mindSettings);
+                                return page.As<IGraphRetrieverAspect>().RetrieveGraph().Zoom(zoomLevel, config.GraphSettings.ZoomLevelCount).ToGraph().ToContentGraph(config.GraphDescriptor);
                             });
             }
             else
             {
                 graphImageUrls = FetchZoomedGraphUrls(
-                            graph,
-                            mindSettings,
-                            (currentSettings) =>
+                            config,
+                            (zoomLevel) =>
                             {
-                                return graph.Services.NodeManager.MakeContentGraph(graph.Services.Mind.GetAllAssociations(mindSettings));
+                                return config.GraphDescriptor.Services.Mind.GetAllAssociations(config.MindSettings).Zoom(zoomLevel, config.GraphSettings.ZoomLevelCount).ToGraph().ToContentGraph(config.GraphDescriptor);
                             });
             }
 
@@ -85,15 +80,14 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
             return Json(new { GraphImageUrls = graphImageUrls });
         }
 
-        protected virtual List<string> FetchZoomedGraphUrls(IGraphDescriptor graphDescriptor, IMindSettings settings, Func<IMindSettings, IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
+        protected virtual List<string> FetchZoomedGraphUrls(IEngineConfigurationAspect config, Func<int, IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> fetchGraph)
         {
-            var graphImageUrls = new List<string>(settings.ZoomLevelCount);
+            var graphImageUrls = new List<string>();
 
             Func<int, string> getImageUrl =
                 (zoomLevel) =>
                 {
-                    settings.ZoomLevel = zoomLevel;
-                    return _graphImageService.ToSvg(graphDescriptor, fetchGraph(settings), algorithm =>
+                    return _graphImageService.ToSvg(config.GraphDescriptor, fetchGraph(zoomLevel), algorithm =>
                             {
                                 algorithm.FormatVertex += _configurationHandler.FormatVertex;
                             });
@@ -103,7 +97,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
 
             var currentImageUrl = getImageUrl(1);
             int i = 1;
-            while (i < settings.ZoomLevelCount && graphImageUrls[i - 1] != currentImageUrl)
+            while (i < config.GraphSettings.ZoomLevelCount && graphImageUrls[i - 1] != currentImageUrl)
             {
                 graphImageUrls.Add(currentImageUrl);
                 i++;

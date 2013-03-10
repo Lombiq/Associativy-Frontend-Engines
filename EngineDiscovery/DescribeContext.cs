@@ -12,9 +12,9 @@ namespace Associativy.Frontends.EngineDiscovery
     [OrchardFeature("Associativy.Frontends")]
     public class DescribeContext
     {
-        private readonly List<EngineDescriptor> _descriptors;
+        private readonly List<IEngineDescriptor> _descriptors;
 
-        public IEnumerable<EngineDescriptor> Descriptors
+        public IEnumerable<IEngineDescriptor> Descriptors
         {
             get
             {
@@ -25,14 +25,14 @@ namespace Associativy.Frontends.EngineDiscovery
 
         public DescribeContext()
         {
-            _descriptors = new List<EngineDescriptor>();
+            _descriptors = new List<IEngineDescriptor>();
         }
 
 
         // We need a getter delegate so the localized name is only fetched when needed. This makes it possible to fetch the RouteDescriptors
         // from an IRouteProvider: otherwise, since there's no work context when building routes localizing will fail.
         // See: http://orchard.codeplex.com/workitem/19430
-        public void DescribeEngine(string name, DisplayNameGetter displayNameGetter, RouteDescriptor route)
+        public virtual void DescribeEngine(string name, DisplayNameGetter displayNameGetter, RouteDescriptor route)
         {
             if (String.IsNullOrEmpty(name) || displayNameGetter == null)
             {

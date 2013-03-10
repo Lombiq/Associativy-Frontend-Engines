@@ -6,6 +6,7 @@ using Associativy.Frontends.Models;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
+using Associativy.GraphDiscovery;
 
 namespace Associativy.Frontends.Engines.Dracula
 {
@@ -37,7 +38,7 @@ namespace Associativy.Frontends.Engines.Dracula
                 {
                     var viewModel = new NodeViewModel { ContentItem = node };
                     var configAspect = page.As<IEngineConfigurationAspect>();
-                    _configurationHandler.SetupViewModel(new FrontendContext(configAspect.EngineContext, configAspect.GraphContext), node, viewModel);
+                    _configurationHandler.SetupViewModel(new FrontendContext(configAspect.EngineContext, configAspect.GraphDescriptor.MaximalContext()), node, viewModel);
                     nodes[node.ContentItem.Id] = viewModel;
                 }
 
