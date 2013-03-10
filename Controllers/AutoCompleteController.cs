@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Associativy.Frontends.Engines;
+using Associativy.Frontends.Models;
 using Associativy.Frontends.Services;
 using Associativy.Models;
 using Associativy.Services;
@@ -37,10 +38,7 @@ namespace Associativy.Frontends.Controllers
 
             if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
-            var graph = _associativyServices.GraphManager.FindGraph(GraphContext);
-            if (graph == null) return HttpNotFound();
-
-            return Json(graph.Services.NodeManager.GetSimilarNodesQuery(labelSnippet).Slice(15).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
+            return Json(page.As<IEngineConfigurationAspect>().GraphDescriptor.Services.NodeManager.GetSimilarNodesQuery(labelSnippet).Slice(15).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -1,15 +1,14 @@
 ﻿using Associativy.Models.Services;
+using Associativy.Queryable;
 using Orchard.ContentManagement;
 using QuickGraph;
 
 namespace Associativy.Frontends.Models
 {
-    public delegate IUndirectedGraph<int, IUndirectedEdge<int>> GraphRetriever(IMindSettings settings);
-    public delegate IUndirectedGraph<IContent, IUndirectedEdge<IContent>> ContentGraphRetriever(IMindSettings settings);
+    public delegate IQueryableGraph<int> GraphRetriever();
 
     public interface IGraphRetrieverAspect : IContent
     {
         GraphRetriever RetrieveGraph { get; }
-        ContentGraphRetriever RetrieveContentGraph { get; }
     }
 }

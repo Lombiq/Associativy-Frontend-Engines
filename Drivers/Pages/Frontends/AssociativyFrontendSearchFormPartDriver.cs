@@ -2,6 +2,7 @@
 using Associativy.Frontends.Models;
 using Associativy.Frontends.Models.Pages.Frontends;
 using Associativy.Models.Services;
+using Associativy.Queryable;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
@@ -57,19 +58,15 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
         {
             if (updater.TryUpdateModel(part, Prefix, null, null))
             {
-                var graph = _associativyServices.GraphManager.FindGraph(part.As<IEngineConfigurationAspect>().GraphContext);
-                if (graph == null) return null;
+                var config = part.As<IEngineConfigurationAspect>();
+                var graph = config.GraphDescriptor;
 
-                part.ContentGraphRetrieverField = (settings) =>
-                {
-                    return graph.Services.NodeManager.MakeContentGraph(part.RetrieveGraph(settings));
-                };
 
                 if (part.LabelsArray.Length == 0)
                 {
-                    part.GraphRetrieverField = (settings) =>
+                    part.GraphRetrieverField = () =>
                     {
-                        return graph.Services.Mind.GetAllAssociations(settings).ToGraph();
+                        return graph.Services.Mind.GetAllAssociations(config.MindSettings).TakeConnections(config.GraphSettings.MaxConnectionCount);
                     };
                 }
                 else
@@ -79,22 +76,23 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                     if (searched.Count() != part.LabelsArray.Length) // Some nodes were not found
                     {
                         part.GraphRetrieverField = EmptyRetriever;
-                        part.ContentGraphRetrieverField = EmptyContentRetriever;
                     }
                     else
                     {
                         if (part.LabelsArray.Length == 1 && part.IsPartialGraph)
                         {
-                            part.GraphRetrieverField = (settings) =>
+                            part.GraphRetrieverField = () =>
                             {
-                                return graph.Services.Mind.GetPartialGraph(searched.First(), settings);
+                                return graph.Services.PathFinder
+                                    .GetPartialGraph(searched.First(), new PathFinderSettings { MaxDistance = config.MindSettings.MaxDistance, UseCache = config.MindSettings.UseCache })
+                                    .TakeConnections(config.GraphSettings.MaxConnectionCount);
                             };
                         }
                         else
                         {
-                            part.GraphRetrieverField = (settings) =>
+                            part.GraphRetrieverField = () =>
                             {
-                                return graph.Services.Mind.MakeAssociations(searched, settings);
+                                return graph.Services.Mind.MakeAssociations(searched, config.MindSettings).TakeConnections(config.GraphSettings.MaxConnectionCount);
                             };
                         }
                     }
@@ -106,20 +104,18 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
             else
             {
                 part.GraphRetrieverField = EmptyRetriever;
-                part.ContentGraphRetrieverField = EmptyContentRetriever;
             }
 
             return Editor(part, shapeHelper);
         }
 
-        private IMutableUndirectedGraph<int, IUndirectedEdge<int>> EmptyRetriever(IMindSettings settings)
+        private IQueryableGraph<int> EmptyRetriever()
         {
-            return _associativyServices.GraphEditor.GraphFactory<int>();
-        }
-
-        private IMutableUndirectedGraph<IContent, IUndirectedEdge<IContent>> EmptyContentRetriever(IMindSettings settings)
-        {
-            return _associativyServices.GraphEditor.GraphFactory<IContent>();
+            return _associativyServices.QueryableGraphFactory.Create<int>((parameters) =>
+                {
+                    if (parameters.Method == ExecutionMethod.ToGraph) return _associativyServices.GraphEditor.GraphFactory<int>();
+                    return 0;
+                });
         }
     }
 }

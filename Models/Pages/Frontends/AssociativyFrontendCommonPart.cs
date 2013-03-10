@@ -12,14 +12,16 @@ namespace Associativy.Frontends.Models.Pages.Frontends
     [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendCommonPart : ContentPart, IEngineConfigurationAspect
     {
-        public IGraphContext GraphContext { get; set; }
+        public IGraphDescriptor GraphDescriptor { get; set; }
         public IEngineContext EngineContext { get; set; }
         public IMindSettings MindSettings { get; set; }
+        public GraphSettings GraphSettings { get; set; }
 
 
         public AssociativyFrontendCommonPart()
         {
             MindSettings = Associativy.Models.Services.MindSettings.Default;
+            GraphSettings = GraphSettings.Default;
         }
     }
 }

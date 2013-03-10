@@ -5,6 +5,6 @@ namespace Associativy.Frontends.EngineDiscovery
 {
     public interface IEngineManager : IDependency
     {
-        IEnumerable<EngineDescriptor> GetEngines();
+        IEnumerable<IEngineDescriptor> GetEngines();
     }
 }

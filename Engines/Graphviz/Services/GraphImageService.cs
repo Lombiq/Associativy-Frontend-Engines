@@ -3,6 +3,7 @@ using System.Net;
 using System.Text;
 using Associativy.EventHandlers;
 using Associativy.GraphDiscovery;
+using Associativy.Services;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Orchard.Exceptions;
@@ -17,18 +18,23 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
     public class GraphImageService : IGraphImageService
     {
         protected readonly IStorageProvider _storageProvider;
-        protected readonly ILockingCacheManager _cacheManager;
+        protected readonly ILockFileManager _lockFileManager;
+        protected readonly IGraphCacheService _cacheService;
         protected readonly IGraphEventMonitor _graphEventMonitor;
+
 
         public GraphImageService(
             IStorageProvider storageProvider,
-            ILockingCacheManager cacheManager,
+            ILockFileManager lockFileManager,
+            IGraphCacheService cacheService,
             IGraphEventMonitor graphEventMonitor)
         {
             _storageProvider = storageProvider;
-            _cacheManager = cacheManager;
+            _lockFileManager = lockFileManager;
+            _cacheService = cacheService;
             _graphEventMonitor = graphEventMonitor;
         }
+
 
         public virtual string ToSvg(IGraphDescriptor graphDescriptor, IUndirectedGraph<IContent, IUndirectedEdge<IContent>> graph, Action<GraphvizAlgorithm<IContent, IUndirectedEdge<IContent>>> initialization)
         {
@@ -51,17 +57,14 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
             });
 
             var filePath = "Associativy/Graphs-" + graphDescriptor.Name + "/" + dotData.GetHashCode() + ".svg";
+            var cacheKey = "Associativy.Frontends.Graphviz.GraphImages." + filePath;
 
-            return _cacheManager.Get("Associativy.Frontends.Graphviz.GraphImages." + filePath, 
-                ctx =>
+            return _cacheService.GetMonitored(graphDescriptor, cacheKey, () =>
                 {
-                    _graphEventMonitor.MonitorChanged(graphDescriptor, ctx);
-
-                    return RetrieveImage(dotData, filePath);
-                },
-                () =>
-                {
-                    return RetrieveImage(dotData, filePath);
+                    using (var lockFile = _lockFileManager.TryAcquireLock(cacheKey))
+                    {
+                        return RetrieveImage(dotData, filePath); 
+                    }
                 });
         }
 

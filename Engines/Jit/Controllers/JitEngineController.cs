@@ -10,6 +10,7 @@ using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
+using Associativy.Queryable;
 
 namespace Associativy.Frontends.Engines.Jit.Controllers
 {
@@ -45,12 +46,12 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
                 return new HttpUnauthorizedResult();
             }
 
-            var mindSettings = page.As<IEngineConfigurationAspect>().MindSettings;
-            mindSettings.ZoomLevel = zoomLevel;
+            var config = page.As<IEngineConfigurationAspect>();
+            var graphSettings = config.GraphSettings;
 
             _contentManager.UpdateEditor(page, this);
 
-            var graph = page.As<IGraphRetrieverAspect>().RetrieveContentGraph(mindSettings);
+            var graph = page.As<IGraphRetrieverAspect>().RetrieveGraph().Zoom(zoomLevel, graphSettings.ZoomLevelCount).ToGraph().ToContentGraph(config.GraphDescriptor);
             var viewNodes = new Dictionary<int, NodeViewModel>(graph.VertexCount);
 
             foreach (var vertex in graph.Vertices)
