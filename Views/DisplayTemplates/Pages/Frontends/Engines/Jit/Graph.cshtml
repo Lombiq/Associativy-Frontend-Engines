@@ -5,7 +5,7 @@
     Script.Require("AssociativyFrontends_Jit").AtFoot();
     Style.Require("AssociativyFrontends_Jit");
 
-    var initialZoomLevel = Model.As<Associativy.Frontends.Models.IEngineConfigurationAspect>().MindSettings.ZoomLevel;
+    var initialZoomLevel = Model.As<Associativy.Frontends.Models.IEngineConfigurationAspect>().GraphSettings.InitialZoomLevel;
     var maxZoomLevel = Model.ZoomLevelCount - 1;
 }
 
