@@ -9,7 +9,6 @@ namespace Associativy.Frontends.Models.Pages.Frontends
     /// <summary>
     /// All engine pages should contain this part or another part implementing the aspect
     /// </summary>
-    [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendCommonPart : ContentPart, IEngineConfigurationAspect
     {
         public IGraphDescriptor GraphDescriptor { get; set; }

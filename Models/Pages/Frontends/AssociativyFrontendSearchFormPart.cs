@@ -5,7 +5,6 @@ using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.Models.Pages.Frontends
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendSearchFormPart : ContentPart, IGraphRetrieverAspect
     {
         public string Labels

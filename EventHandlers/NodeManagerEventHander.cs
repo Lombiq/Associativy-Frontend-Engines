@@ -9,7 +9,6 @@ using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.EventHandlers
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class NodeManagerEventHander : INodeManagerEventHander
     {
         public void QueryBuilt(QueryBuiltContext context)

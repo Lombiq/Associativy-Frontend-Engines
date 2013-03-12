@@ -4,7 +4,6 @@ using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.ViewModels
 {
-    [OrchardFeature("Associativy.Frontends")]
     public abstract class NodeViewModelBase
     {
         [ScriptIgnore]

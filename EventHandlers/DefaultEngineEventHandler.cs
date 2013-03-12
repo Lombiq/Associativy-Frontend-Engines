@@ -11,7 +11,6 @@ using QuickGraph;
 
 namespace Associativy.Frontends.EventHandlers
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class DefaultEngineEventHandler : IPageEventHandler
     {
         private readonly IWorkContextAccessor _wca;

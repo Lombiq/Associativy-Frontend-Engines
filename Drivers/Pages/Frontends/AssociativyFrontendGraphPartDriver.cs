@@ -7,7 +7,6 @@ using Associativy.Queryable;
 
 namespace Associativy.Frontends.Drivers.Pages.Frontends
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendGraphPartDriver : ContentPartDriver<AssociativyFrontendGraphPart>
     {
         protected override string Prefix

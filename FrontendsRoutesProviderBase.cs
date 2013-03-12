@@ -7,7 +7,6 @@ using Orchard.Mvc.Routes;
 
 namespace Associativy.Frontends
 {
-    [OrchardFeature("Associativy.Frontends")]
     public abstract class FrontendsRoutesProviderBase : IRouteProvider
     {
         protected readonly List<RouteDescriptor> _routes = new List<RouteDescriptor>();

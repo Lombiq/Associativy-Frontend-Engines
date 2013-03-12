@@ -9,7 +9,6 @@ namespace Associativy.Frontends.EngineDiscovery
 {
     public delegate LocalizedString DisplayNameGetter();
 
-    [OrchardFeature("Associativy.Frontends")]
     public class DescribeContext
     {
         private readonly List<IEngineDescriptor> _descriptors;

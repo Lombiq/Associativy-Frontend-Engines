@@ -5,7 +5,6 @@ using QuickGraph;
 
 namespace Associativy.Frontends.Models.Pages.Frontends
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendGraphPart : ContentPart, IGraphAspect
     {
         private readonly LazyField<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>> _graph = new LazyField<IUndirectedGraph<IContent, IUndirectedEdge<IContent>>>();

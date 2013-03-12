@@ -6,7 +6,6 @@ using Orchard.Mvc.Routes;
 
 namespace Associativy.Frontends.EngineDiscovery
 {
-    [OrchardFeature("Associativy.Frontends")]
     public abstract class EngineProviderBase : IEngineProvider
     {
         public Localizer T { get; set; }

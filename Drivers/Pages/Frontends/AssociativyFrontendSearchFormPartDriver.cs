@@ -13,7 +13,6 @@ using QuickGraph;
 
 namespace Associativy.Frontends.Drivers.Pages.Frontends
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class AssociativyFrontendSearchFormPartDriver : ContentPartDriver<AssociativyFrontendSearchFormPart>
     {
         private readonly IAssociativyServices _associativyServices;

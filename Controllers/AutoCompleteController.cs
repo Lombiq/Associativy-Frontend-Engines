@@ -12,7 +12,6 @@ using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Controllers
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class AutoCompleteController : FrontendControllerBase
     {
         protected override IEngineContext EngineContext

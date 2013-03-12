@@ -4,7 +4,6 @@ using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.EngineDiscovery
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class EngineManager : IEngineManager
     {
         private readonly IEnumerable<IEngineProvider> _engineProviders;

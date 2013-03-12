@@ -8,7 +8,6 @@ using Orchard.Mvc.Routes;
 
 namespace Associativy.Frontends
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class Routes : IRouteProvider
     {
         private readonly IEngineManager _engineManager;

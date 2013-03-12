@@ -4,7 +4,6 @@ using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.Extensions
 {
-    [OrchardFeature("Associativy.Frontends")]
     public static class UrlHelperExtensions
     {
         public static string RouteEngineUrl(this UrlHelper helper, IEngineDescriptor engine, string graphName)

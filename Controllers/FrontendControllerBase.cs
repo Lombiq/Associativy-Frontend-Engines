@@ -15,7 +15,6 @@ using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Controllers
 {
-    [OrchardFeature("Associativy.Frontends")]
     public abstract class FrontendControllerBase : AssociativyControllerBase
     {
         protected readonly IFrontendServices _frontendServices;

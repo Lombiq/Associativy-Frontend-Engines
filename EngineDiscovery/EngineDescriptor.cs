@@ -4,7 +4,6 @@ using Orchard.Mvc.Routes;
 
 namespace Associativy.Frontends.EngineDiscovery
 {
-    [OrchardFeature("Associativy.Frontends")]
     public class EngineDescriptor : IEngineDescriptor
     {
         public string EngineName { get; private set; }
