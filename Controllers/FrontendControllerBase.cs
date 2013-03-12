@@ -8,8 +8,6 @@ using Associativy.GraphDiscovery;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
-using Orchard.Core.Common.Models;
-using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
 

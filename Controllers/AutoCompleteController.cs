@@ -7,7 +7,6 @@ using Associativy.Models;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
-using Orchard.Environment.Extensions;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
 
 namespace Associativy.Frontends.Controllers

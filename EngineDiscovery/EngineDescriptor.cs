@@ -1,5 +1,4 @@
-﻿using Orchard.Environment.Extensions;
-using Orchard.Localization;
+﻿using Orchard.Localization;
 using Orchard.Mvc.Routes;
 
 namespace Associativy.Frontends.EngineDiscovery

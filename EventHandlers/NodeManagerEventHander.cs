@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Associativy.EventHandlers;
-using Associativy.GraphDiscovery;
+﻿using Associativy.EventHandlers;
 using Orchard.Core.Common.Models;
-using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.EventHandlers
 {

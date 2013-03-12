@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Associativy.Frontends.EngineDiscovery;
-using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.Extensions
 {

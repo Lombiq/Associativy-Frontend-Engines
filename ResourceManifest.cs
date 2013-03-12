@@ -1,4 +1,3 @@
-using Orchard.Environment.Extensions;
 using Orchard.UI.Resources;
 
 namespace Associativy.Frontends

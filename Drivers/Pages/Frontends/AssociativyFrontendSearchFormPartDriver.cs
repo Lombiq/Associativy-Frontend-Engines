@@ -7,9 +7,7 @@ using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.ContentManagement.Drivers;
-using Orchard.Environment.Extensions;
 using Orchard.Localization;
-using QuickGraph;
 
 namespace Associativy.Frontends.Drivers.Pages.Frontends
 {

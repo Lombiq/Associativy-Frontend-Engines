@@ -3,10 +3,10 @@ using Associativy.Frontends.Engines.Dracula.Models;
 using Associativy.Frontends.Engines.Dracula.ViewModels;
 using Associativy.Frontends.EventHandlers;
 using Associativy.Frontends.Models;
+using Associativy.GraphDiscovery;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
-using Associativy.GraphDiscovery;
 
 namespace Associativy.Frontends.Engines.Dracula
 {

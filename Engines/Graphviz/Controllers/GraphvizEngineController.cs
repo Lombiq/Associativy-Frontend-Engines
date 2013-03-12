@@ -5,15 +5,13 @@ using Associativy.Frontends.Controllers;
 using Associativy.Frontends.Engines.Graphviz.Services;
 using Associativy.Frontends.Models;
 using Associativy.Frontends.Services;
-using Associativy.GraphDiscovery;
-using Associativy.Models.Services;
+using Associativy.Queryable;
 using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
 using QuickGraph;
-using Associativy.Queryable;
 
 namespace Associativy.Frontends.Engines.Graphviz.Controllers
 {

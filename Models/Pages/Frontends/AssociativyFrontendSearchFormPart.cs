@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using Orchard.ContentManagement;
-using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.Models.Pages.Frontends
 {

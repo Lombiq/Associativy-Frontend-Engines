@@ -1,6 +1,5 @@
 ﻿using Orchard.ContentManagement;
 using Orchard.Core.Common.Utilities;
-using Orchard.Environment.Extensions;
 using QuickGraph;
 
 namespace Associativy.Frontends.Models.Pages.Frontends

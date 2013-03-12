@@ -1,7 +1,5 @@
-﻿using Associativy.Models.Services;
-using Associativy.Queryable;
+﻿using Associativy.Queryable;
 using Orchard.ContentManagement;
-using QuickGraph;
 
 namespace Associativy.Frontends.Models
 {

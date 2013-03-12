@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Associativy.GraphDiscovery;
-using Orchard.Environment.Extensions;
 using Orchard.Mvc.Routes;
 
 namespace Associativy.Frontends

@@ -1,13 +1,9 @@
 ﻿using Associativy.Frontends.Models;
 using Associativy.Frontends.Models.Pages.Frontends;
-using Associativy.Services;
 using Orchard;
 using Orchard.ContentManagement;
-using Orchard.Environment.Extensions;
 using Orchard.Localization;
 using Piedone.HelpfulLibraries.Contents.DynamicPages;
-using Associativy.Models.Services;
-using QuickGraph;
 
 namespace Associativy.Frontends.EventHandlers
 {

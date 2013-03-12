@@ -3,7 +3,6 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Associativy.Frontends.EngineDiscovery;
-using Orchard.Environment.Extensions;
 using Orchard.Mvc.Routes;
 
 namespace Associativy.Frontends
