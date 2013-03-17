@@ -81,7 +81,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                             part.GraphRetrieverField = () =>
                             {
                                 return graph.Services.PathFinder
-                                    .GetPartialGraph(searched.First(), new PathFinderSettings { MaxDistance = config.MindSettings.MaxDistance, UseCache = config.MindSettings.UseCache })
+                                    .GetPartialGraph(searched.First(), new PathFinderSettings { MaxDistance = config.MindSettings.MaxDistance })
                                     .TakeConnections(config.GraphSettings.MaxConnectionCount);
                             };
                         }
