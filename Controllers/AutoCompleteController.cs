@@ -36,7 +36,7 @@ namespace Associativy.Frontends.Controllers
 
             if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
-            return Json(page.As<IEngineConfigurationAspect>().GraphDescriptor.Services.NodeManager.GetSimilarNodesQuery(labelSnippet).Slice(15).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
+            return Json(page.As<IEngineConfigurationAspect>().GraphDescriptor.Services.NodeManager.GetBySimilarLabelQuery(labelSnippet).Slice(15).Select(node => node.As<IAssociativyNodeLabelAspect>().Label), JsonRequestBehavior.AllowGet);
         }
     }
 }
