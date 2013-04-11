@@ -582,7 +582,6 @@
     <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
     <Compile Include="EventHandlers\FrontendContext.cs" />
     <Compile Include="EngineDiscovery\DescribeContext.cs" />
-    <Compile Include="EventHandlers\NodeManagerEventHander.cs" />
     <Compile Include="Extensions\ContentManagerExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="FrontendsPageConfigs.cs" />
