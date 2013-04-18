@@ -68,17 +68,10 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
                 });
         }
 
+
         private string RetrieveImage(string dotData, string filePath)
         {
-            // Since there is no method for checking the existence of a file, we use this ugly technique
-            try
-            {
-                _storageProvider.DeleteFile(filePath);
-            }
-            catch (Exception ex)
-            {
-                if (ex.IsFatal()) throw;
-            }
+            if (_storageProvider.FileExists(filePath)) _storageProvider.DeleteFile(filePath);
 
             using (var wc = new WebClient())
             {
