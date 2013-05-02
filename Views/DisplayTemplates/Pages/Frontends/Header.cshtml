@@ -1,0 +1,14 @@
+﻿@model Associativy.Frontends.Models.Pages.Frontends.AssociativyFrontendHeaderPart
+
+<h1>
+    @if (string.IsNullOrEmpty(Model.Title))
+    {
+        string title = Layout.Title;
+        Layout.Title = string.Empty;
+        @Html.TitleForPage(title);
+    }
+    else
+    {
+        @Html.TitleForPage(Model.Title);
+    }
+</h1>

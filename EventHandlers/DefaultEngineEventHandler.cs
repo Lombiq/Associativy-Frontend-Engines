@@ -28,6 +28,8 @@ namespace Associativy.Frontends.EventHandlers
 
             var page = pageContext.Page;
 
+            page.ContentItem.Weld(new AssociativyFrontendHeaderPart());
+
             page.ContentItem.Weld(new AssociativyFrontendSearchFormPart
                 {
                     GraphRetrieverField = () =>

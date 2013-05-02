@@ -96,7 +96,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                 }
 
                 // Maybe this should be elsewhere, e.g. in a handler
-                _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, graph.DisplayName).ToString();
+                _workContextAccessor.GetContext().Layout.Title = T("Associations for \"{0}\" - {1}", part.Labels, graph.DisplayName).ToString();
             }
             else
             {

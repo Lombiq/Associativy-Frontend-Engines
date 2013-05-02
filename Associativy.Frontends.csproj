@@ -542,9 +542,12 @@
       <Name>Piedone.HelpfulLibraries</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\DisplayTemplates\Pages\Frontends\Header.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FrontendControllerBase.cs" />
+    <Compile Include="Drivers\Pages\Frontends\AssociativyFrontendHeaderPartDriver.cs" />
     <Compile Include="EngineDiscovery\EngineDescriptor.cs" />
     <Compile Include="EngineDiscovery\EngineManager.cs" />
     <Compile Include="EngineDiscovery\EngineProviderBase.cs" />
@@ -587,6 +590,7 @@
     <Compile Include="FrontendsPageConfigs.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendCommonPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendGraphPart.cs" />
+    <Compile Include="Models\Pages\Frontends\AssociativyFrontendHeaderPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendSearchFormPart.cs" />
     <Compile Include="Models\IEngineConfigurationAspect.cs" />
     <Compile Include="Models\IGraphAspect.cs" />
