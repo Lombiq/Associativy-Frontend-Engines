@@ -24,7 +24,7 @@
     <script type="text/javascript">
         (function ($) {
             $(function () {
-                $.associativy.autoComplete.labels("#@Html.FieldIdFor(m => m.Labels)", "@Url.RouteUrl("Associativy.Frontends.AutoComplete.FetchSimilarLabels", new { GraphName = Model.As<IEngineConfigurationAspect>().GraphDescriptor.Name })");
+                $.associativy.autoComplete.labels("#@Html.FieldIdFor(m => m.Labels)", "@Url.Action("FetchSimilarLabels", "AutoComplete", new { Area = "Associativy.Frontends", GraphName = Model.As<IEngineConfigurationAspect>().GraphDescriptor.Name })");
             });
         })(jQuery);
     </script>

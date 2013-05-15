@@ -33,27 +33,7 @@ namespace Associativy.Frontends
                 "Associativy.Frontends/{frontendEngineName}Engine/{action}"
             );
 
-            var routes = new[]
-            {
-                new RouteDescriptor
-                {
-                    Name = "Associativy.Frontends.AutoComplete.FetchSimilarLabels",
-                    Route = new Route(
-                        "Associativy.Frontends/AutoComplete/FetchSimilarLabels",
-                        new RouteValueDictionary {
-                                                    {"area", "Associativy.Frontends"},
-                                                    {"controller", "AutoComplete"},
-                                                    {"action", "FetchSimilarLabels"}
-                                                },
-                        new RouteValueDictionary(),
-                        new RouteValueDictionary {
-                                                    {"area", "Associativy.Frontends"}
-                                                },
-                        new MvcRouteHandler())
-                }
-            };
-
-            return routes.Union(_engineManager.GetEngines().Select(engine => engine.Route));
+            return _engineManager.GetEngines().Select(engine => engine.Route);
         }
     }
 }
