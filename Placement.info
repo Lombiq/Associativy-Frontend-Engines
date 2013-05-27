@@ -4,9 +4,11 @@
          Pages_AssociativyFrontendHeader="Header:5"/>
 
   <Match ContentType="AssociativyFrontendsJitWholeGraphPage">
-    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
+    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"
+           Pages_AssociativyFrontendGraph_Jit="Content:2"/>
   </Match>
   <Match ContentType="AssociativyFrontendsJitAssociationsPage">
-    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
+    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"
+           Pages_AssociativyFrontendGraph_Jit="Content:2"/>
   </Match>
 </Placement>

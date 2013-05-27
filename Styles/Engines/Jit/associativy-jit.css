@@ -1,4 +1,9 @@
-﻿.node
+﻿#associativy-jit-associations-whole-graph-link
+{
+    display: block;
+}
+
+.node
 {
     padding: 0.3em;
     font-size: 1em;

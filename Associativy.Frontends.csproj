@@ -577,6 +577,7 @@
     <Compile Include="Engines\IEngineContext.cs" />
     <Compile Include="Engines\Jit\Controllers\JitEngineController.cs" />
     <Compile Include="Engines\Jit\DefaultJitConfigurationHandler.cs" />
+    <Compile Include="Engines\Jit\Drivers\AssociativyFrontendGraphPartDriver.cs" />
     <Compile Include="Engines\Jit\Drivers\AssociativyFrontendSearchFormPartDriver.cs" />
     <Compile Include="Engines\Jit\IJitConfigurationHandler.cs" />
     <Compile Include="Engines\Jit\EngineProvider.cs" />
@@ -622,6 +623,9 @@
     <Content Include="Views\AssociativyBadgeOfHonor.cshtml" />
     <Content Include="Views\GraphZoomSlider.cshtml" />
     <Content Include="Views\DisplayTemplates\Pages\Frontends\Engines\Jit\FrontendSearchForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DisplayTemplates\Pages\Frontends\Engines\Jit\AssociativyFrontendGraph.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
