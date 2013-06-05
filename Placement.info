@@ -1,6 +1,6 @@
 ﻿<Placement>
-  <Place Pages_AssociativyFrontendSearchForm="Content:1"/>
-  <Place Pages_AssociativyFrontendGraph="Content:2"
+  <Place Pages_AssociativyFrontendSearchForm="Content:1"
+         Pages_AssociativyFrontendGraph="Content:2"
          Pages_AssociativyFrontendHeader="Header:5"/>
 
   <Match ContentType="AssociativyFrontendsJitWholeGraphPage">
