@@ -10,7 +10,7 @@ namespace Associativy.Frontends.Engines.Dracula.Models
     public class DraculaPart : ContentPart
     {
         private readonly LazyField<Dictionary<int, NodeViewModel>> _nodes = new LazyField<Dictionary<int, NodeViewModel>>();
-        public LazyField<Dictionary<int, NodeViewModel>> NodesField { get { return _nodes; } }
+        internal LazyField<Dictionary<int, NodeViewModel>> NodesField { get { return _nodes; } }
         public Dictionary<int, NodeViewModel> Nodes
         {
             get { return _nodes.Value; }
