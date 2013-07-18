@@ -55,7 +55,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
                 initialization(algorithm);
             });
 
-            var filePath = "Associativy/Graphs-" + graphDescriptor.Name + "/" + dotData.GetHashCode() + ".svg";
+            var filePath = "_AssociativyModules/Frontends/GraphImages/" + graphDescriptor.Name + "/" + dotData.GetHashCode() + ".svg";
             var cacheKey = "Associativy.Frontends.Graphviz.GraphImages." + filePath;
 
             return _cacheService.GetMonitored(graphDescriptor, cacheKey, () =>
