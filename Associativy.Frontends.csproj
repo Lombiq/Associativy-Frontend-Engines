@@ -589,6 +589,7 @@
     <Compile Include="Extensions\ContentManagerExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="FrontendsPageConfigs.cs" />
+    <Compile Include="Models\GraphSettings.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendCommonPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendGraphPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendHeaderPart.cs" />
