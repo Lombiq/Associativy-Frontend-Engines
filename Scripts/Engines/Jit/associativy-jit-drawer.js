@@ -196,7 +196,7 @@
 
                 showLoader: function () {
                     if ($("#associativy-jit-loader").length > 0) return;
-                    $("<div id='associativy-jit-loader'></div>").prependTo("#associativy-jit-associations-canvas-container");
+                    $("<div id='associativy-jit-loader'></div>").prependTo("#associativy-jit-associations-canvas");
                 },
 
                 hideLoader: function () {

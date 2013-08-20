@@ -36,7 +36,7 @@ namespace Associativy.Frontends.Controllers
 
             _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
 
-            return new ShapeResult(this, _contentManager.BuildDisplay(page));
+            return new ShapeResult(this, _contentManager.BuildFrontendPageDisplay(page, GraphContext));
         }
 
         public virtual ActionResult Associations()
@@ -53,7 +53,7 @@ namespace Associativy.Frontends.Controllers
 
                 return new ShapeResult(
                     this,
-                    _contentManager.BuildDisplay(page));
+                    _contentManager.BuildFrontendPageDisplay(page, GraphContext));
             }
             else
             {

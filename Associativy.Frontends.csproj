@@ -542,9 +542,12 @@
       <Name>Piedone.HelpfulLibraries</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\DisplayTemplates\Pages\Frontends\Header.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\FrontendControllerBase.cs" />
+    <Compile Include="Drivers\Pages\Frontends\AssociativyFrontendHeaderPartDriver.cs" />
     <Compile Include="EngineDiscovery\EngineDescriptor.cs" />
     <Compile Include="EngineDiscovery\EngineManager.cs" />
     <Compile Include="EngineDiscovery\EngineProviderBase.cs" />
@@ -574,6 +577,7 @@
     <Compile Include="Engines\IEngineContext.cs" />
     <Compile Include="Engines\Jit\Controllers\JitEngineController.cs" />
     <Compile Include="Engines\Jit\DefaultJitConfigurationHandler.cs" />
+    <Compile Include="Engines\Jit\Drivers\AssociativyFrontendGraphPartDriver.cs" />
     <Compile Include="Engines\Jit\Drivers\AssociativyFrontendSearchFormPartDriver.cs" />
     <Compile Include="Engines\Jit\IJitConfigurationHandler.cs" />
     <Compile Include="Engines\Jit\EngineProvider.cs" />
@@ -582,11 +586,13 @@
     <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
     <Compile Include="EventHandlers\FrontendContext.cs" />
     <Compile Include="EngineDiscovery\DescribeContext.cs" />
-    <Compile Include="EventHandlers\NodeManagerEventHander.cs" />
+    <Compile Include="Extensions\ContentManagerExtensions.cs" />
     <Compile Include="Extensions\UrlHelperExtensions.cs" />
     <Compile Include="FrontendsPageConfigs.cs" />
+    <Compile Include="Models\GraphSettings.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendCommonPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendGraphPart.cs" />
+    <Compile Include="Models\Pages\Frontends\AssociativyFrontendHeaderPart.cs" />
     <Compile Include="Models\Pages\Frontends\AssociativyFrontendSearchFormPart.cs" />
     <Compile Include="Models\IEngineConfigurationAspect.cs" />
     <Compile Include="Models\IGraphAspect.cs" />
@@ -618,6 +624,9 @@
     <Content Include="Views\AssociativyBadgeOfHonor.cshtml" />
     <Content Include="Views\GraphZoomSlider.cshtml" />
     <Content Include="Views\DisplayTemplates\Pages\Frontends\Engines\Jit\FrontendSearchForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DisplayTemplates\Pages\Frontends\Engines\Jit\AssociativyFrontendGraph.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

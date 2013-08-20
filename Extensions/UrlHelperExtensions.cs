@@ -7,7 +7,9 @@ namespace Associativy.Frontends.Extensions
     {
         public static string RouteEngineUrl(this UrlHelper helper, IEngineDescriptor engine, string graphName)
         {
-            return helper.RouteUrl(engine.Route.Name, new { GraphName = graphName, Action = "" });
+            var routeValues = ((System.Web.Routing.Route)engine.Route.Route).Defaults;
+            routeValues.Add("GraphName", graphName);
+            return helper.RouteUrl(routeValues);
         }
     }
 }

@@ -1,11 +1,14 @@
 ﻿<Placement>
-  <Place Pages_AssociativyFrontendSearchForm="Content:1"/>
-  <Place Pages_AssociativyFrontendGraph="Content:2"/>
+  <Place Pages_AssociativyFrontendSearchForm="Content:1"
+         Pages_AssociativyFrontendGraph="Content:2"
+         Pages_AssociativyFrontendHeader="Header:5"/>
 
   <Match ContentType="AssociativyFrontendsJitWholeGraphPage">
-    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
+    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"
+           Pages_AssociativyFrontendGraph_Jit="Content:1"/>
   </Match>
   <Match ContentType="AssociativyFrontendsJitAssociationsPage">
-    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"/>
+    <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"
+           Pages_AssociativyFrontendGraph_Jit="Content:1"/>
   </Match>
 </Placement>

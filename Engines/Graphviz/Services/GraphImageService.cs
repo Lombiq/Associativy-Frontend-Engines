@@ -6,7 +6,6 @@ using Associativy.GraphDiscovery;
 using Associativy.Services;
 using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
-using Orchard.Exceptions;
 using Orchard.FileSystems.Media;
 using Piedone.HelpfulLibraries.Tasks;
 using QuickGraph;
@@ -56,7 +55,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
                 initialization(algorithm);
             });
 
-            var filePath = "Associativy/Graphs-" + graphDescriptor.Name + "/" + dotData.GetHashCode() + ".svg";
+            var filePath = "_AssociativyModules/Frontends/GraphImages/" + graphDescriptor.Name + "/" + dotData.GetHashCode() + ".svg";
             var cacheKey = "Associativy.Frontends.Graphviz.GraphImages." + filePath;
 
             return _cacheService.GetMonitored(graphDescriptor, cacheKey, () =>
@@ -68,17 +67,10 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
                 });
         }
 
+
         private string RetrieveImage(string dotData, string filePath)
         {
-            // Since there is no method for checking the existence of a file, we use this ugly technique
-            try
-            {
-                _storageProvider.DeleteFile(filePath);
-            }
-            catch (Exception ex)
-            {
-                if (ex.IsFatal()) throw;
-            }
+            if (_storageProvider.FileExists(filePath)) _storageProvider.DeleteFile(filePath);
 
             using (var wc = new WebClient())
             {

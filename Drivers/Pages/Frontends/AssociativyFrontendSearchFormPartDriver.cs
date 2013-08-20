@@ -68,7 +68,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                 }
                 else
                 {
-                    var searched = graph.Services.NodeManager.GetManyByLabelQuery(part.LabelsArray).List();
+                    var searched = graph.Services.NodeManager.GetByLabelQuery(part.LabelsArray).List();
 
                     if (searched.Count() != part.LabelsArray.Length) // Some nodes were not found
                     {
@@ -96,7 +96,7 @@ namespace Associativy.Frontends.Drivers.Pages.Frontends
                 }
 
                 // Maybe this should be elsewhere, e.g. in a handler
-                _workContextAccessor.GetContext().Layout.Title = T("Associations for {0} - {1}", part.Labels, graph.DisplayName).ToString();
+                _workContextAccessor.GetContext().Layout.Title = T("Associations for \"{0}\" - {1}", part.Labels, graph.DisplayName).ToString();
             }
             else
             {

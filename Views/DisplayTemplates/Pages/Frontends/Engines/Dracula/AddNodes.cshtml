@@ -3,5 +3,5 @@
            
 @foreach (var node in Model.As<Associativy.Frontends.Engines.Dracula.Models.DraculaPart>().Nodes)
 {
-    @Html.Raw("graph.addNode(\"" + node.Value.ContentItem.Id + "\", { label : \"" + node.Value.Label + "\" });")
+    @Html.Raw("graph.addNode(\"" + node.Value.ContentItem.Id + "\", { label : \"" + HttpUtility.JavaScriptStringEncode(node.Value.Label) + "\" });")
 }
