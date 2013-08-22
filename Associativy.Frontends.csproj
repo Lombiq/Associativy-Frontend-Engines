@@ -46,9 +46,6 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClaySharp">
-      <HintPath>..\..\bin\ClaySharp.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="QuickGraph">
       <HintPath>..\Associativy\Libs\QuickGraph\QuickGraph.dll</HintPath>
