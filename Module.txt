@@ -20,7 +20,7 @@ Features:
 		Name: Graphviz Associativy Frontend Engine
         Description: Graphviz Associativy Frontend Engine
 		Category: Associativy
-		Dependencies: Associativy.Frontends, Piedone.HelpfulLibraries.Tasks
+		Dependencies: Associativy.Frontends, Piedone.HelpfulLibraries.Tasks.Locking
 	Associativy.Frontends.Jit:
 		Name: Jit Associativy Frontend Engine
         Description: Jit Associativy Frontend Engine

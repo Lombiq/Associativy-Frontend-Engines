@@ -8,6 +8,7 @@ using Orchard.ContentManagement;
 using Orchard.Environment.Extensions;
 using Orchard.FileSystems.Media;
 using Piedone.HelpfulLibraries.Tasks;
+using Piedone.HelpfulLibraries.Tasks.Locking;
 using QuickGraph;
 using QuickGraph.Graphviz;
 
@@ -17,19 +18,19 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
     public class GraphImageService : IGraphImageService
     {
         protected readonly IStorageProvider _storageProvider;
-        protected readonly ILockFileManager _lockFileManager;
+        protected readonly IDistributedLockManager _lockManager;
         protected readonly IGraphCacheService _cacheService;
         protected readonly IGraphEventMonitor _graphEventMonitor;
 
 
         public GraphImageService(
             IStorageProvider storageProvider,
-            ILockFileManager lockFileManager,
+            IDistributedLockManager lockManager,
             IGraphCacheService cacheService,
             IGraphEventMonitor graphEventMonitor)
         {
             _storageProvider = storageProvider;
-            _lockFileManager = lockFileManager;
+            _lockManager = lockManager;
             _cacheService = cacheService;
             _graphEventMonitor = graphEventMonitor;
         }
@@ -60,7 +61,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Services
 
             return _cacheService.GetMonitored(graphDescriptor, cacheKey, () =>
                 {
-                    using (var lockFile = _lockFileManager.TryAcquireLock(cacheKey))
+                    using (var lockFile = _lockManager.TryAcquireLock(cacheKey))
                     {
                         return RetrieveImage(dotData, filePath); 
                     }
