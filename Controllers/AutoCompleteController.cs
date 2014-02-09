@@ -29,8 +29,10 @@ namespace Associativy.Frontends.Controllers
         }
 
 
-        public virtual ActionResult FetchSimilarLabels(string graphName, string labelSnippet)
+        public virtual ActionResult FetchSimilarLabels(string graphName, string labelSnippet = "")
         {
+            if (string.IsNullOrEmpty(labelSnippet)) return Json(Enumerable.Empty<string>(), JsonRequestBehavior.AllowGet);
+
             var page = NewPage("FetchSimilarLabels");
             _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
 
