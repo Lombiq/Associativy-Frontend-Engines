@@ -22,7 +22,7 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
         private readonly IGraphImageService _graphImageService;
 
         private readonly IEngineContext _engineContext = new EngineContext("Graphviz");
-        protected override IEngineContext EngineContext
+        public override IEngineContext EngineContext
         {
             get { return _engineContext; }
         }
@@ -30,11 +30,10 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
         public GraphvizEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IPageEventHandler eventHandler,
             IOrchardServices orchardServices,
             IGraphvizConfigurationHandler configurationHandler,
             IGraphImageService graphImageService)
-            : base(associativyServices, frontendServices, eventHandler, orchardServices)
+            : base(associativyServices, frontendServices, orchardServices)
         {
             _configurationHandler = configurationHandler;
             _graphImageService = graphImageService;

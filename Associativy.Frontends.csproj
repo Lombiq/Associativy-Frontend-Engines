@@ -556,7 +556,7 @@
     <Compile Include="EngineDiscovery\IEngineManager.cs" />
     <Compile Include="EngineDiscovery\IEngineProvider.cs" />
     <Compile Include="Engines\Dracula\DefaultDraculaConfigurationHandler.cs" />
-    <Compile Include="Engines\Dracula\DraculaEngineEventHandler.cs" />
+    <Compile Include="Engines\Dracula\Handlers\DraculaEnginePageHandler.cs" />
     <Compile Include="Engines\Dracula\EngineProvider.cs" />
     <Compile Include="Engines\Dracula\IDraculaConfigurationHandler.cs" />
     <Compile Include="Engines\Graphviz\DefaultGraphvizConfigurationHandler.cs" />
@@ -584,7 +584,8 @@
     <Compile Include="Engines\Jit\EngineProvider.cs" />
     <Compile Include="Engines\Jit\ResourceManifest.cs" />
     <Compile Include="Engines\Jit\ViewModels\NodeViewModel.cs" />
-    <Compile Include="EventHandlers\DefaultEngineEventHandler.cs" />
+    <Compile Include="Filters\FrontendContextSettingFilter.cs" />
+    <Compile Include="Handlers\DefaultEnginePageHandler.cs" />
     <Compile Include="EventHandlers\FrontendContext.cs" />
     <Compile Include="EngineDiscovery\DescribeContext.cs" />
     <Compile Include="Extensions\ContentManagerExtensions.cs" />
@@ -598,6 +599,7 @@
     <Compile Include="Models\IEngineConfigurationAspect.cs" />
     <Compile Include="Models\IGraphAspect.cs" />
     <Compile Include="Models\IGraphRetrieverAspect.cs" />
+    <Compile Include="Permissions.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Routes.cs" />
     <Compile Include="FrontendsRoutesProviderBase.cs" />
@@ -629,6 +631,7 @@
   <ItemGroup>
     <Content Include="Views\DisplayTemplates\Pages\Frontends\Engines\Jit\AssociativyFrontendGraph.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -13,7 +13,7 @@ namespace Associativy.Frontends.Controllers
 {
     public class AutoCompleteController : FrontendControllerBase
     {
-        protected override IEngineContext EngineContext
+        public override IEngineContext EngineContext
         {
             get { return new EngineContext(string.Empty); }
         }
@@ -22,9 +22,8 @@ namespace Associativy.Frontends.Controllers
         public AutoCompleteController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IPageEventHandler eventHandler,
             IOrchardServices orchardServices)
-            : base(associativyServices, frontendServices, eventHandler, orchardServices)
+            : base(associativyServices, frontendServices, orchardServices)
         {
         }
 
@@ -34,7 +33,6 @@ namespace Associativy.Frontends.Controllers
             if (string.IsNullOrEmpty(labelSnippet)) return Json(Enumerable.Empty<string>(), JsonRequestBehavior.AllowGet);
 
             var page = NewPage("FetchSimilarLabels");
-            _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
 
             if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 

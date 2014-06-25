@@ -17,11 +17,10 @@ namespace Associativy.Frontends.Controllers
     {
         protected readonly IFrontendServices _frontendServices;
         protected readonly IFrontendContextAccessor _frontendContextAccessor;
-        protected readonly IPageEventHandler _eventHandler;
         protected readonly IOrchardServices _orchardServices;
         protected readonly IContentManager _contentManager;
 
-        abstract protected IEngineContext EngineContext { get; }
+        abstract public IEngineContext EngineContext { get; }
 
         public Localizer T { get; set; }
 
@@ -47,14 +46,12 @@ namespace Associativy.Frontends.Controllers
         protected FrontendControllerBase(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IPageEventHandler eventHandler,
             IOrchardServices orchardServices)
             : base(associativyServices)
         {
             _frontendServices = frontendServices;
             _frontendContextAccessor = frontendServices.FrontendContextAccessor;
 
-            _eventHandler = eventHandler;
             _orchardServices = orchardServices;
             _contentManager = orchardServices.ContentManager;
 
@@ -67,27 +64,15 @@ namespace Associativy.Frontends.Controllers
             var graph = _graphManager.FindGraph(GraphContext);
             if (graph == null) throw new HttpException(404, "The graph was not found.");
 
-            var page = _contentManager.NewPage(
+            // The context for the page is set in FrontendContextSettingFilter
+            return _contentManager.NewPage(
                 EngineContext.EngineName + pageName,
-                FrontendsPageConfigs.Group,
-                (content) =>
-                    {
-                        var engineCommonPart = new AssociativyFrontendCommonPart();
-                        engineCommonPart.GraphDescriptor = graph;
-                        engineCommonPart.EngineContext = EngineContext;
-
-                        content.ContentItem.Weld(engineCommonPart);
-                    },
-                _eventHandler);
-
-            return page;
+                FrontendsPageConfigs.Group);
         }
 
         protected virtual bool IsAuthorized(IContent page)
         {
-            var authorizationContext = new PageAutorizationContext(page, FrontendsPageConfigs.Group, _orchardServices.WorkContext.CurrentUser);
-            _eventHandler.OnAuthorization(authorizationContext);
-            return authorizationContext.Granted;
+            return _orchardServices.Authorizer.Authorize(Permissions.ViewGraphs, page);
         }
     }
 }

@@ -3,12 +3,12 @@
          Pages_AssociativyFrontendGraph="Content:2"
          Pages_AssociativyFrontendHeader="Header:5"/>
 
-  <Match ContentType="AssociativyFrontendsJitWholeGraphPage">
+  <Match ContentType="AssociativyFrontends.JitWholeGraph-Page">
     <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"
-           Pages_AssociativyFrontendGraph_Jit="Content:1"/>
+           Pages_AssociativyFrontendGraph_Jit="Content:2"/>
   </Match>
-  <Match ContentType="AssociativyFrontendsJitAssociationsPage">
+  <Match ContentType="AssociativyFrontends.JitAssociations-Page">
     <Place Pages_AssociativyFrontendSearchForm_Jit="Content:99"
-           Pages_AssociativyFrontendGraph_Jit="Content:1"/>
+           Pages_AssociativyFrontendGraph_Jit="Content:2"/>
   </Match>
 </Placement>

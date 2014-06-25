@@ -11,7 +11,7 @@ namespace Associativy.Frontends.Engines.Dracula.Controllers
     public class DraculaEngineController : EngineControllerBase
     {
         private readonly IEngineContext _engineContext = new EngineContext("Dracula");
-        protected override IEngineContext EngineContext
+        public override IEngineContext EngineContext
         {
             get { return _engineContext; }
         }
@@ -19,9 +19,8 @@ namespace Associativy.Frontends.Engines.Dracula.Controllers
         public DraculaEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IPageEventHandler eventHandler,
             IOrchardServices orchardServices)
-            : base(associativyServices, frontendServices, eventHandler, orchardServices)
+            : base(associativyServices, frontendServices, orchardServices)
         {
         }
     }

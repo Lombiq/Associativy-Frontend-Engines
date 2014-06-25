@@ -20,7 +20,7 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
         private readonly IJitConfigurationHandler _configurationHandler;
 
         private readonly IEngineContext _engineContext = new EngineContext("Jit");
-        protected override IEngineContext EngineContext
+        public override IEngineContext EngineContext
         {
             get { return _engineContext; }
         }
@@ -28,10 +28,9 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
         public JitEngineController(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IPageEventHandler eventHandler,
             IOrchardServices orchardServices,
             IJitConfigurationHandler configurationHandler)
-            : base(associativyServices, frontendServices, eventHandler, orchardServices)
+            : base(associativyServices, frontendServices, orchardServices)
         {
             _configurationHandler = configurationHandler;
         }

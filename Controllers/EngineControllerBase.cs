@@ -21,9 +21,8 @@ namespace Associativy.Frontends.Controllers
         protected EngineControllerBase(
             IAssociativyServices associativyServices,
             IFrontendServices frontendServices,
-            IPageEventHandler eventHandler,
             IOrchardServices orchardServices)
-            : base(associativyServices, frontendServices, eventHandler, orchardServices)
+            : base(associativyServices, frontendServices, orchardServices)
         {
         }
 
@@ -33,8 +32,6 @@ namespace Associativy.Frontends.Controllers
             var page = NewPage("WholeGraph");
 
             if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
-
-            _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
 
             return new ShapeResult(this, _contentManager.BuildFrontendPageDisplay(page, GraphContext));
         }
@@ -49,8 +46,6 @@ namespace Associativy.Frontends.Controllers
 
             if (ModelState.IsValid)
             {
-                _eventHandler.OnPageBuilt(new PageContext(page, FrontendsPageConfigs.Group));
-
                 return new ShapeResult(
                     this,
                     _contentManager.BuildFrontendPageDisplay(page, GraphContext));
