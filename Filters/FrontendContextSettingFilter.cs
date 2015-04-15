@@ -12,7 +12,7 @@ using Piedone.HelpfulLibraries.Contents;
 
 namespace Associativy.Frontends.Filters
 {
-    // This filter is a hackish way to set the context for frontend engine dynamic pages. Better would be this: https://orchard.codeplex.com/workitem/20773
+    // This filter is a hackish way to set the context for frontend engine dynamic pages. Better would be this: https://github.com/OrchardCMS/Orchard/issues/4602
     public class FrontendContextSettingFilter : ContentHandler, Orchard.Mvc.Filters.IFilterProvider, IActionFilter
     {
         private readonly IGraphManager _graphManager;

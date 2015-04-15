@@ -27,9 +27,8 @@ namespace Associativy.Frontends.EngineDiscovery
         }
 
 
-        // We need a getter delegate so the localized name is only fetched when needed. This makes it possible to fetch the RouteDescriptors
-        // from an IRouteProvider: otherwise, since there's no work context when building routes localizing will fail.
-        // See: http://orchard.codeplex.com/workitem/19430
+        // We need a getter delegate so the localized name is only fetched when there is already a work context, so the current culture
+        // can be determined.
         public virtual void DescribeEngine(string name, DisplayNameGetter displayNameGetter, RouteDescriptor route)
         {
             if (String.IsNullOrEmpty(name) || displayNameGetter == null)
