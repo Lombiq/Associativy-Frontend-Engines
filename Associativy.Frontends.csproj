@@ -13,7 +13,7 @@
     <RootNamespace>Associativy.Frontends</RootNamespace>
     <AssemblyName>Associativy.Frontends</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews Condition=" '$(Configuration)' == 'Release' ">true</MvcBuildViews>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
