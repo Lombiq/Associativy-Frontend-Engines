@@ -44,10 +44,8 @@ namespace Associativy.Frontends.Engines.Graphviz.Controllers
         {
             var page = NewPage("Render");
 
-            if (!IsAuthorized(page))
-            {
-                return new HttpUnauthorizedResult();
-            }
+            if (page == null) return HttpNotFound();
+            if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             _contentManager.UpdateEditor(page, this);
 

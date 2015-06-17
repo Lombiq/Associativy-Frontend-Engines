@@ -40,10 +40,8 @@ namespace Associativy.Frontends.Engines.Jit.Controllers
         {
             var page = NewPage("FetchGraph");
 
-            if (!IsAuthorized(page))
-            {
-                return new HttpUnauthorizedResult();
-            }
+            if (page == null) return HttpNotFound();
+            if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             var config = page.As<IEngineConfigurationAspect>();
             var graphSettings = config.GraphSettings;

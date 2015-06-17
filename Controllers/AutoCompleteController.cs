@@ -34,6 +34,7 @@ namespace Associativy.Frontends.Controllers
 
             var page = NewPage("FetchSimilarLabels");
 
+            if (page == null) return HttpNotFound();
             if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             var labels = page.As<IEngineConfigurationAspect>().GraphDescriptor.Services.NodeManager.GetBySimilarLabelQuery(labelSnippet).Slice(15).Select(node => node.As<IAssociativyNodeLabelAspect>().Label);

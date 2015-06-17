@@ -62,7 +62,8 @@ namespace Associativy.Frontends.Controllers
         protected virtual IContent NewPage(string pageName)
         {
             var graph = _graphManager.FindGraph(GraphContext);
-            if (graph == null) throw new HttpException(404, "The graph was not found.");
+
+            if (graph == null) return null;
 
             // The context for the page is set in FrontendContextSettingFilter
             return _contentManager.NewPage(

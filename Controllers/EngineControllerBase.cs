@@ -31,6 +31,7 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("WholeGraph");
 
+            if (page == null) return HttpNotFound();
             if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             return new ShapeResult(this, _contentManager.BuildFrontendPageDisplay(page, GraphContext));
@@ -40,6 +41,7 @@ namespace Associativy.Frontends.Controllers
         {
             var page = NewPage("Associations");
 
+            if (page == null) return HttpNotFound();
             if (!IsAuthorized(page)) return new HttpUnauthorizedResult();
 
             _contentManager.UpdateEditor(page, this);
