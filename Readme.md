@@ -6,7 +6,7 @@
 
 Frontend Engines module for the Associativy (http://associativy.com) Orchard graph platform.
 
-**Please do not open issues here! All Associativy issues should be on the [Associativy project site](https://github.com/Lombiq/Associativy).**
+**Please do not open issues here! All Associativy issues should be on the [Associativy project site](https://bitbucket.org/Lombiq/associativy/).**
 
 See the [Associativy homepage](http://associativy.com/).
 
