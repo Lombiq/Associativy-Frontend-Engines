@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Associativy.Frontends.Engines.Dracula.ViewModels;
 using Orchard.ContentManagement;
-using Orchard.Core.Common.Utilities;
+using Orchard.ContentManagement.Utilities;
 using Orchard.Environment.Extensions;
 
 namespace Associativy.Frontends.Engines.Dracula.Models
